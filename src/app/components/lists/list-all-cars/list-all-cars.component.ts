@@ -9,8 +9,11 @@ import {map} from 'rxjs/operators';
   templateUrl: './list-all-cars.component.html',
   styleUrls: ['./list-all-cars.component.css']
 })
+//////////////////////////////////////////////////////////////////////////////////////////
 export class ListAllCarsComponent implements OnInit {
   cars$: Observable<any>;
+  dataSource: any;
+  displayedColumns: any;
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
   }
@@ -25,4 +28,7 @@ export class ListAllCarsComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  applyFilter(value: any) {
+    
+  }
 }

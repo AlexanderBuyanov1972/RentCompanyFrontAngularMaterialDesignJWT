@@ -42,6 +42,9 @@ import { UniquePhoneNumberDirective } from './directives/unique-phone-number.dir
 import { CheckRentDateDirective } from './directives/check-rent-date.directive';
 import { Check18YearDirective } from './directives/check-18-year.directive';
 import { CheckReturnDateDirective } from './directives/check-return-date.directive';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material';
+
 
 const routes: Route[] = [
   // ***********************************************************
@@ -120,7 +123,9 @@ const routes: Route[] = [
     HttpClientModule,
     SecurityModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule
 
   ],
   providers: [{
