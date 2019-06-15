@@ -1,0 +1,40 @@
+<div style="margin: 100px">
+  <h4>Add New Driver</h4>
+  <div>
+    <form #formDriver="ngForm" (ngSubmit)="saveDriver(formDriver)">
+      <mat-form-field>
+        <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
+               required placeholder="License Id" pattern="" appUniqueLicenseId>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
+        <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
+        <mat-error *ngIf="licenseId.errors?.isUniqueLicenseId">License Id is not<strong>unique</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="nameDriver" ngModel #nameDriver="ngModel"
+               required placeholder="Name Driver" pattern="[a-zA-Z]+">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="nameDriver.errors?.pattern">Please enter a valid Name Driver</mat-error>
+        <mat-error *ngIf="nameDriver.errors?.required">Name Driver is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="birthYear" ngModel #birthYear="ngModel"
+               required placeholder="Birth Year" pattern="\d{4}" appCheck18Year>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="birthYear.errors?.pattern">Please enter a valid Birth Year</mat-error>
+        <mat-error *ngIf="birthYear.errors?.required">Birth Year is <strong>required</strong></mat-error>
+        <mat-error *ngIf="birthYear.errors?.have18Years">Driver age <strong>less than 18 years</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="phone" ngModel #phone="ngModel"
+               required placeholder="Phone" pattern="[0]\d{9}" appUniquePhoneNumber>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="phone.errors?.pattern">Please enter a valid Phone</mat-error>
+        <mat-error *ngIf="phone.errors?.required">Phone is <strong>required</strong></mat-error>
+        <mat-error *ngIf="phone.errors?.uniquePhoneNumber">Phone Number is not <strong>unique</strong></mat-error>
+      </mat-form-field>
+      <button type="submit" [disabled]="formDriver.invalid">Save Driver
+      </button>
+    </form>
+  </div>
+</div>

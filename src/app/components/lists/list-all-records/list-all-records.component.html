@@ -1,0 +1,22 @@
+<div class="card">
+  <h4 class="card-header" style="text-align: center">
+    Get All Records
+  </h4>
+  <div class="card-body" style="background-color: aliceblue">
+    <ul class="list-group">
+      <li class="list-group-item list" *ngFor="let record of records$|async">
+        <b style="color: red">|</b> License:   {{record.licenseId}}
+        <b style="color: red">|</b> Registration Number:   {{record.regNumber}}
+        <b style="color: red">|</b> Rent Date:   {{record.rentDate}}
+        <b style="color: red">|</b> Return Date:   {{record.returnDate}}
+        <b style="color: red">|</b> Gas Tank Percent:   {{record.gasTankPercent}}
+        <b style="color: red">|</b> Rent Days:   {{record.rentDays}}
+        <b style="color: red">|</b> Damages:   {{record.damages}}
+        <b style="color: red">|</b> Cost:   {{record.cost}}
+        <b style="color: red">|</b>
+      </li>
+    </ul>
+    <hr>
+    <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+  </div>
+</div>

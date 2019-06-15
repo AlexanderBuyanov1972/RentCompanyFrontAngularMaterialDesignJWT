@@ -1,0 +1,21 @@
+<div class="card">
+  <h4 class="card-header">
+    Remove Car
+  </h4>
+  <div class="card-body" style="background-color: gold">
+    <div class="form-group">
+      <label>Registration Number</label>
+      <input type="text" class="form-control" name="regNumber" [(ngModel)]="regNumberCar" #regNumber="ngModel" required>
+      <div class="alert-danger" *ngIf="regNumber.touched && regNumber.invalid">
+        <div class="alert-danger" *ngIf="regNumber.errors.required">Current date is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="regNumber.invalid" (click)="removeCar()"
+              style="margin: 25px; width: 200px; height: 50px">Submit
+      </button>
+      <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+    </div>
+    <span>Message :   {{messageResponse}}</span>
+  </div>
+</div>

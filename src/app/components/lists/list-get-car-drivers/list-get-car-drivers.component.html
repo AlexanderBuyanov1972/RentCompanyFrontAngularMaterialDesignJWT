@@ -1,0 +1,29 @@
+<div class="card">
+  <h4 class="card-header" style="text-align: center">
+    Get All Car Drivers
+  </h4>
+  <div class="form-group">
+    <label>Registration Number</label>
+    <input type="text" class="form-control" [(ngModel)]="regNumberCar" #regNumber="ngModel" required>
+    <div class="alert-danger" *ngIf="regNumber.touched && regNumber.invalid">
+      <div class="alert-danger" *ngIf="regNumber.errors.required">Model Name is required</div>
+    </div>
+  </div>
+  <div class="card-body" style="background-color: aliceblue">
+    <ul class="list-group">
+      <li class="list-group-item list" *ngFor="let driver of drivers$|async">
+        <b style="color: red">|</b>Number of License:  {{driver.licenseId}}
+        <b style="color: red">|</b> Driver's Name:   {{driver.nameDriver}}
+        <b style="color: red">|</b> Birth of Year:   {{driver.birthYear}}
+        <b style="color: red">|</b> Driver's phone:   {{driver.phone}}
+        <b style="color: red">|</b>
+      </li>
+    </ul>
+    <hr>
+    <div class="form-group">
+    <button class="btn btn-primary btn-lg" [disabled]="regNumber.invalid" (click)="submitRegNumber()">Get</button>
+    <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+    <button class="btn btn-warning btn-lg" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</div>

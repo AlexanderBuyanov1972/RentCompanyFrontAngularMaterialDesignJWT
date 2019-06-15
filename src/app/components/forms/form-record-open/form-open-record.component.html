@@ -1,0 +1,41 @@
+<div style="margin: 100px">
+  <h4>Open New Record</h4>
+  <div>
+    <form #formRentRecord="ngForm" (ngSubmit)="saveRentRecord(formRentRecord)">
+      <mat-form-field>
+        <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
+               required placeholder="License Id" pattern="" appUniqueLicenseId>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
+        <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
+        <mat-error *ngIf="licenseId.errors?.isUniqueLicenseId">License Id is not<strong>unique</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
+               required placeholder="Registration Number" pattern="" appUniqueRegNumber>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="regNumber.errors?.pattern">Please enter a valid Registration Number</mat-error>
+        <mat-error *ngIf="regNumber.errors?.required">Registration Number is <strong>required</strong></mat-error>
+        <mat-error *ngIf="regNumber.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="rentDate" ngModel #rentDate="ngModel"
+               required placeholder="Rent Date" pattern="" appCheckRentDate>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="rentDate.errors?.pattern">Please enter a valid Rent Date</mat-error>
+        <mat-error *ngIf="rentDate.errors?.required">Rent Date is <strong>required</strong></mat-error>
+        <mat-error *ngIf="rentDate.errors?.checkRentDate">Rent Date is <strong>wrong</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" name="rentDays" ngModel #rentDays="ngModel"
+               required placeholder="Rent Days" pattern="\d{1,3}">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="rentDays.errors?.pattern">Please enter a valid Rent Days</mat-error>
+        <mat-error *ngIf="rentDays.errors?.required">Rent Days is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <button type="submit" [disabled]="formRentRecord.invalid">Save Open Record
+      </button>
+    </form>
+  </div>
+</div>

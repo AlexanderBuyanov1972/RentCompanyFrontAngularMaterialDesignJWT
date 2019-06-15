@@ -1,0 +1,19 @@
+<div class="card">
+  <h4 class="card-header" style="text-align: center">
+    Get All Most Popular Models
+  </h4>
+  <div class="card-body" style="background-color: aliceblue">
+    <ul class="list-group">
+      <li class="list-group-item list" *ngFor="let model of models$|async">
+        <b style="color: red">|</b>Model of Name:  {{model.modelName}}
+        <b style="color: red">|</b> Gas Tank:   {{model.gasTank}}
+        <b style="color: red">|</b> Company:   {{model.company}}
+        <b style="color: red">|</b> Country:   {{model.country}}
+        <b style="color: red">|</b> Price of Day:   {{model.priceDay}}
+        <b style="color: red">|</b>
+      </li>
+    </ul>
+    <hr>
+    <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+  </div>
+</div>

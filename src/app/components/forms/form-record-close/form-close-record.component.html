@@ -1,0 +1,48 @@
+<div style="margin: 100px">
+  <h4>Close Record</h4>
+  <div>
+    <form #formReturnRecord="ngForm" (ngSubmit)="saveReturnRecord(formReturnRecord)">
+      <mat-form-field>
+        <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
+               required placeholder="License Id" pattern="" appUniqueLicenseId>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
+        <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
+        <mat-error *ngIf="licenseId.errors?.isUniqueLicenseId">License Id is not<strong>unique</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
+               required placeholder="Registration Number" pattern="" appUniqueRegNumber>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="regNumber.errors?.pattern">Please enter a valid Registration Number</mat-error>
+        <mat-error *ngIf="regNumber.errors?.required">Registration Number is <strong>required</strong></mat-error>
+        <mat-error *ngIf="regNumber.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="returnDate" ngModel #returnDate="ngModel"
+               required placeholder="Return Date" pattern="" appCheckReturnDate>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="returnDate.errors?.pattern">Please enter a valid Return Date</mat-error>
+        <mat-error *ngIf="returnDate.errors?.required">Return Date is <strong>required</strong></mat-error>
+        <mat-error *ngIf="returnDate.errors?.checkReturnDate">Return Date is <strong>wrong</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" name="gasTankPercent" ngModel #gasTankPercent="ngModel"
+               required placeholder="Gas Tank Percent" pattern="\d|[1-9]\d|100">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="gasTankPercent.errors?.pattern">Please enter a valid Gas Tank Percent</mat-error>
+        <mat-error *ngIf="gasTankPercent.errors?.required">Gas Tank Percent is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" name="damages" ngModel #damages="ngModel"
+               required placeholder="Damages" pattern="\d|[1-9]\d|100">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="damages.errors?.pattern">Please enter a valid Damages</mat-error>
+        <mat-error *ngIf="damages.errors?.required">Damages is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <button type="submit" [disabled]="formReturnRecord.invalid">Save Open Record
+      </button>
+    </form>
+  </div>
+</div>

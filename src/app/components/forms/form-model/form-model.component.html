@@ -1,0 +1,45 @@
+<div style="margin: 100px">
+  <h4>Add New Model</h4>
+  <div>
+    <form #formModel="ngForm" (ngSubmit)="saveModel(formModel)">
+      <mat-form-field>
+        <input matInput type="text" name="modelName" ngModel #modelName="ngModel"
+               required placeholder="Model Name" pattern="" appUniqueModelName>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="modelName.errors?.pattern">Please enter a valid Model Name</mat-error>
+        <mat-error *ngIf="modelName.errors?.required">Model Name is <strong>required</strong></mat-error>
+        <mat-error *ngIf="modelName.errors?.isUniqueModelName">Model Name is not<strong>unique</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" name="gasTank" ngModel #gasTank="ngModel"
+               required placeholder="Gas Tank" pattern="\d{1,2}">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="gasTank.errors?.pattern">Please enter a valid Gas Tank</mat-error>
+        <mat-error *ngIf="gasTank.errors?.required">Gas Tank is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="company" ngModel #company="ngModel"
+               required placeholder="Company" pattern="[a-zA-Z]+">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="company.errors?.pattern">Please enter a valid Company</mat-error>
+        <mat-error *ngIf="company.errors?.required">Company is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="country" ngModel #country="ngModel"
+               required placeholder="Сountry" pattern="[a-zA-Z]+">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="country.errors?.pattern">Please enter a valid Country</mat-error>
+        <mat-error *ngIf="country.errors?.required">Country is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" name="priceDay" ngModel #priceDay="ngModel"
+               required placeholder="Price Day" pattern="\d{3}">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="priceDay.errors?.pattern">Please enter a valid Price Day</mat-error>
+        <mat-error *ngIf="priceDay.errors?.required">Price Day is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <button type="submit" [disabled]="formModel.invalid">Save Model
+      </button>
+    </form>
+  </div>
+</div>

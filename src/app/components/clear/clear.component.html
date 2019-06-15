@@ -1,0 +1,36 @@
+<div class="card">
+  <h4 class="card-header">
+    Clear
+  </h4>
+  <div class="card-body" style="background-color: gold">
+    <form #formDateDays="ngForm" (ngSubmit)="submitDateDays(formDateDays)">
+      <div class="form-group">
+        <label>Date</label>
+        <input type="text" class="form-control" name="date" ngModel #currentDate="ngModel" required>
+        <div class="alert-danger" *ngIf="currentDate.touched && currentDate.invalid">
+          <div class="alert-danger" *ngIf="currentDate.errors.required">Current date is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Days</label>
+        <input type="number" class="form-control" ngModel required name="days" #days="ngModel">
+        <div class="alert-danger" *ngIf="days.touched && days.invalid">
+          <div class="alert-danger" *ngIf="days.errors.required">Days is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="formDateDays.invalid"
+                style="margin: 25px; width: 200px; height: 50px">Submit
+        </button>
+        <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+      </div>
+    </form>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let car of listCars">
+        Registration number : -----> {{car.regNumber}};
+        Removed : ----->{{car.flRemoved}};
+        Model's Name : ----->{{car.modelName}}
+      </li>
+    </ul>
+  </div>
+</div>

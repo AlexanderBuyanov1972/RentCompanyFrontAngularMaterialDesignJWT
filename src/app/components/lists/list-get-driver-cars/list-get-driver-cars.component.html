@@ -1,0 +1,31 @@
+<div class="card">
+  <h4 class="card-header" style="text-align: center">
+    Get All Driver Cars
+  </h4>
+  <div class="form-group">
+    <label>License Id</label>
+    <input type="text" class="form-control" [(ngModel)]="licenseIdDriver" #licenseId="ngModel" required>
+    <div class="alert-danger" *ngIf="licenseId.touched && licenseId.invalid">
+      <div class="alert-danger" *ngIf="licenseId.errors.required">License Id is required</div>
+    </div>
+  </div>
+  <div class="card-body" style="background-color: aliceblue">
+    <ul class="list-group">
+      <li class="list-group-item list" *ngFor="let car of cars$|async">
+        <b style="color: red">|</b>Registration number:  {{car.regNumber}}
+        <b style="color: red">|</b> Color:   {{car.color}}
+        <b style="color: red">|</b> Model name:   {{car.modelName}}
+        <b style="color: red">|</b> In Use:   {{car.inUse}}
+        <b style="color: red">|</b> Removed:   {{car.flRemoved}}
+        <b style="color: red">|</b> State:   {{car.state}}
+        <b style="color: red">|</b>
+      </li>
+    </ul>
+    <hr>
+    <div class="form-group">
+      <button class="btn btn-primary btn-lg" [disabled]="licenseId.invalid" (click)="submitLicenseId()">Get</button>
+      <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+      <button class="btn btn-warning btn-lg" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</div>

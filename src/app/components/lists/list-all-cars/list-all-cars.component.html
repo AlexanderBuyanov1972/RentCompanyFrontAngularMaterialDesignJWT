@@ -1,0 +1,20 @@
+<div class="card">
+  <h4 class="card-header" style="text-align: center">
+    Get All Cars
+  </h4>
+  <div class="card-body" style="background-color: aliceblue">
+    <ul class="list-group">
+      <li class="list-group-item list" *ngFor="let car of cars$|async">
+        <b style="color: red">|</b>Registration number:  {{car.regNumber}}
+        <b style="color: red">|</b> Color:   {{car.color}}
+        <b style="color: red">|</b> Model name:   {{car.modelName}}
+        <b style="color: red">|</b> In Use:   {{car.inUse}}
+        <b style="color: red">|</b> Removed:   {{car.flRemoved}}
+        <b style="color: red">|</b> State:   {{car.state}}
+        <b style="color: red">|</b>
+      </li>
+    </ul>
+    <hr>
+    <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+  </div>
+</div>
