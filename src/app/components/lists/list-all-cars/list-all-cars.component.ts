@@ -3,6 +3,7 @@ import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
+import {Car} from '../../../models/car';
 
 @Component({
   selector: 'app-list-all-cars',
@@ -11,7 +12,7 @@ import {map} from 'rxjs/operators';
 })
 //////////////////////////////////////////////////////////////////////////////////////////
 export class ListAllCarsComponent implements OnInit {
-  cars$: Observable<any>;
+  cars: Car [];
   dataSource: any;
   displayedColumns: any;
 
@@ -19,7 +20,7 @@ export class ListAllCarsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cars$ = this.serviceRentCompany.getAllCars().pipe(map(
+    this.serviceRentCompany.getAllCars().pipe(map(
       value => value.content
     ));
   }
