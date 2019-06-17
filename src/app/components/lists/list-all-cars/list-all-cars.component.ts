@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
-import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
 import {Car} from '../../../models/car';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-list-all-cars',
@@ -12,24 +13,33 @@ import {Car} from '../../../models/car';
 })
 //////////////////////////////////////////////////////////////////////////////////////////
 export class ListAllCarsComponent implements OnInit {
-  cars: Car [];
-  dataSource: any;
-  displayedColumns: any;
+  dataSource: MatTableDataSource<Car>;
+  displayedColumns: string[] = ['regNumber', 'color', 'modelName', 'inUse', 'flRemoved', 'state'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+    this.serviceRentCompany.getAllCars().subscribe(
+      value => {
+        this.dataSource = new MatTableDataSource(value.content as Car[]);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    );
   }
 
   ngOnInit() {
-    this.serviceRentCompany.getAllCars().pipe(map(
-      value => value.content
-    ));
   }
 
   back() {
     this.router.navigate(['/']);
   }
 
-  applyFilter(value: any) {
-    
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

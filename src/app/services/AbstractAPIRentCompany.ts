@@ -55,12 +55,12 @@ export abstract class AbstractAPIRentCompany {
 
   abstract getAllModelNames(): Observable<ResponseFrom>;
 
-  abstract getMostPopularModelNames(): Observable<ResponseFrom>; // returns list-all-drivers of
+  abstract getMostPopularModels(): Observable<ResponseFrom>; // returns list-all-drivers of
   // the model names the cars of which have been rented most times
 
   abstract getModelProfit(modelName: string): Observable<ResponseFrom>; // returns value of money received from
   // the renting cars of a given model name
 
-  abstract getMostProfitModelNames(): Observable<ResponseFrom>; // returns list-all-drivers of most
+  abstract getMostProfitModels(): Observable<ResponseFrom>; // returns list-all-drivers of most
   // proftable model names
 }

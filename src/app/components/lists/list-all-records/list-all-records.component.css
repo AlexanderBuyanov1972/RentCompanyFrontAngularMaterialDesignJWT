@@ -1,4 +1,8 @@
-.list-group{
-  height: 80vh;
-  overflow-y: auto;
+/*.list-group{*/
+/*  height: 80vh;*/
+/*  overflow-y: auto;*/
+/*}*/
+
+td, th {
+  width: 12%;
 }

@@ -1,19 +1,50 @@
-<div class="card">
-  <h4 class="card-header" style="text-align: center">
-    Get All Models
-  </h4>
-  <div class="card-body" style="background-color: aliceblue">
-    <ul class="list-group">
-      <li class="list-group-item list" *ngFor="let model of models$|async">
-        <b style="color: red">|</b>Model of Name:  {{model.modelName}}
-        <b style="color: red">|</b> Gas Tank:   {{model.gasTank}}
-        <b style="color: red">|</b> Company:   {{model.company}}
-        <b style="color: red">|</b> Country:   {{model.country}}
-        <b style="color: red">|</b> Price of Day:   {{model.priceDay}}
-        <b style="color: red">|</b>
-      </li>
-    </ul>
-    <hr>
-    <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+<div style="margin: 100px">
+  <h4>Get All Models</h4>
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- modelName Column -->
+        <ng-container matColumnDef="modelName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name's Model</th>
+          <td mat-cell *matCellDef="let row"> {{row.modelName}} </td>
+        </ng-container>
+
+        <!-- gasTank Column -->
+        <ng-container matColumnDef="gasTank">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gas Tank</th>
+          <td mat-cell *matCellDef="let row"> {{row.gasTank}} </td>
+        </ng-container>
+
+        <!-- company Column -->
+        <ng-container matColumnDef="company">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company</th>
+          <td mat-cell *matCellDef="let row"> {{row.company}} </td>
+        </ng-container>
+
+        <!-- country Column -->
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Country</th>
+          <td mat-cell *matCellDef="let row"> {{row.country}} </td>
+        </ng-container>
+
+        <!-- priceDay Column -->
+        <ng-container matColumnDef="priceDay">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Day's Price</th>
+          <td mat-cell *matCellDef="let row"> {{row.priceDay}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+      <button mat-button color="primary" (click)="back()">Back</button>
+      <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+    </div>
   </div>
 </div>
+

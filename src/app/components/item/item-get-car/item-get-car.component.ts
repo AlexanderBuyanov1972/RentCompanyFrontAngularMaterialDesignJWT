@@ -2,6 +2,10 @@ import {Component} from '@angular/core';
 import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
 import {Router} from '@angular/router';
 import {Car} from '../../../models/car';
+import {MatTableDataSource} from '@angular/material';
+
+class PeriodicElement {
+}
 
 @Component({
   selector: 'app-item-get-car',
@@ -9,8 +13,9 @@ import {Car} from '../../../models/car';
   styleUrls: ['./item-get-car.component.css']
 })
 export class ItemGetCarComponent {
-  car: Car;
   regNumberCar = '';
+  displayedColumns: string[] = ['regNumber', 'color', 'inUse', 'flRemoved', 'modelName', 'state'];
+    dataSource: Car[] = [];
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
   }
@@ -18,7 +23,8 @@ export class ItemGetCarComponent {
   submitRegNumber() {
     this.serviceRentCompany.getCar(this.regNumberCar).subscribe(
       value => {
-        this.car = value.content;
+        this.dataSource.push(value.content as Car)
+        console.log(this.dataSource);
         this.regNumberCar = '';
       }
     );

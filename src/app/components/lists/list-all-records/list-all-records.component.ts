@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {RentRecord} from '../../../models/rent-record';
 
 @Component({
   selector: 'app-list-all-records',
@@ -10,17 +12,30 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./list-all-records.component.css']
 })
 export class ListAllRecordsComponent implements OnInit {
-  records$: Observable<any>;
+  dataSource: MatTableDataSource<RentRecord>;
+  displayedColumns: string[] = ['licenseId', 'regNumber', 'rentDate',
+    'returnDate', 'gasTankPercent', 'rentDays', 'damages', 'cost'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) { }
+  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+    this.serviceRentCompany.getAllRecords().subscribe(
+      value => {
+        this.dataSource = new MatTableDataSource(value.content as RentRecord[]);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
+  }
 
   ngOnInit() {
-    this.records$ = this.serviceRentCompany.getAllRecords().pipe(map(
-      value => value.content
-    ));
+
   }
 
   back() {
     this.router.navigate(['/']);
+  }
+
+  applyFilter(value: any) {
+
   }
 }

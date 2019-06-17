@@ -1,18 +1,43 @@
-<div class="card">
-  <h4 class="card-header" style="text-align: center">
-    Get All Drivers
-  </h4>
-  <div class="card-body" style="background-color: aliceblue">
-    <ul class="list-group">
-      <li class="list-group-item list" *ngFor="let driver of drivers$|async">
-        <b style="color: red">|</b>Number of License:  {{driver.licenseId}}
-        <b style="color: red">|</b> Driver's Name:   {{driver.nameDriver}}
-        <b style="color: red">|</b> Birth of Year:   {{driver.birthYear}}
-        <b style="color: red">|</b> Driver's phone:   {{driver.phone}}
-        <b style="color: red">|</b>
-      </li>
-    </ul>
-    <hr>
-    <button class="btn btn-success btn-lg" (click)="back()">Back</button>
+<div style="margin: 100px">
+  <h4>Get All Drivers</h4>
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- licenseId Column -->
+        <ng-container matColumnDef="licenseId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> License Id</th>
+          <td mat-cell *matCellDef="let row"> {{row.licenseId}} </td>
+        </ng-container>
+
+        <!-- Name Driver Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name Driver</th>
+          <td mat-cell *matCellDef="let row"> {{row.name}}</td>
+        </ng-container>
+
+        <!-- Birth Year Column -->
+        <ng-container matColumnDef="birthYear">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Year</th>
+          <td mat-cell *matCellDef="let row"> {{row.birthYear}} </td>
+        </ng-container>
+
+        <!-- Phone Number Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number</th>
+          <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+      <button mat-button color="primary" (click)="back()">Back</button>
+      <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+    </div>
   </div>
 </div>

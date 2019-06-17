@@ -1,6 +1,6 @@
 import {State} from './State';
 
-export class Car {
+export interface Car {
   regNumber: string;
   color: string;
   inUse: boolean;

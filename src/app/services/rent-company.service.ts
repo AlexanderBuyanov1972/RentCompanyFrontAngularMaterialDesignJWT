@@ -75,11 +75,11 @@ export class RentCompanyService extends AbstractAPIRentCompany {
   }
 
   // ************************** getMostPopularModelNames, getMostProfitModelNames ************************************
-  getMostPopularModelNames(): Observable<ResponseFrom> {
+  getMostPopularModels(): Observable<ResponseFrom> {
     return this.httpClient.get<ResponseFrom>(url + Path.MOST_POPULAR_MODELS);
   }
 
-  getMostProfitModelNames(): Observable<ResponseFrom> {
+  getMostProfitModels(): Observable<ResponseFrom> {
     return this.httpClient.get<ResponseFrom>(url + Path.MOST_PROFIT_MODELS);
   }
 

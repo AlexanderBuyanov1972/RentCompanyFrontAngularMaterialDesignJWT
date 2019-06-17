@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Model} from '../../../models/model';
 
 @Component({
   selector: 'app-list-all-models',
@@ -10,19 +12,32 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./list-all-models.component.css']
 })
 export class ListAllModelsComponent implements OnInit {
-  models$: Observable<any>;
+  dataSource: MatTableDataSource<Model>;
+  displayedColumns: string[] = ['modelName', 'gasTank', 'company', 'country', 'priceDay'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+    this.serviceRentCompany.getAllModels().subscribe(
+      value => {
+        this.dataSource = new MatTableDataSource(value.content as Model[]);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    );
   }
 
   ngOnInit() {
-    this.models$ = this.serviceRentCompany.getAllModels().pipe(map(
-      value => value.content
-    ));
   }
 
   back() {
     this.router.navigate(['/']);
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
