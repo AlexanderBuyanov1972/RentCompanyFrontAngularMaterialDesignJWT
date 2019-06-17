@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
 import {Router} from '@angular/router';
+import {MatTableDataSource} from '@angular/material';
+import {Driver} from '../../../models/driver';
 
 @Component({
   selector: 'app-item-get-driver',
@@ -8,18 +10,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./item-get-driver.component.css']
 })
 export class ItemGetDriverComponent {
-  driver: any = {};
+  drivers: Driver[] = [];
   licenseIdDriver = '';
+  dataSource: MatTableDataSource<Driver>;
+  displayedColumns: string[] = ['licenseId', 'name', 'birthYear', 'phone'];
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
   }
 
   submitLicenseId() {
-    const subscription = this.serviceRentCompany.getDriver(this.licenseIdDriver).subscribe(
+    this.serviceRentCompany.getDriver(this.licenseIdDriver).subscribe(
       value => {
-        this.driver = value.content;
+        this.drivers.push(value.content as Driver);
+        this.dataSource = new MatTableDataSource(this.drivers);
         this.licenseIdDriver = '';
-        subscription.unsubscribe();
       }
     );
   }

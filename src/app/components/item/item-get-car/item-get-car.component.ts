@@ -15,7 +15,8 @@ class PeriodicElement {
 export class ItemGetCarComponent {
   regNumberCar = '';
   displayedColumns: string[] = ['regNumber', 'color', 'inUse', 'flRemoved', 'modelName', 'state'];
-    dataSource: Car[] = [];
+  dataSource: MatTableDataSource<Car>;
+  cars: Car[] = [];
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
   }
@@ -23,7 +24,8 @@ export class ItemGetCarComponent {
   submitRegNumber() {
     this.serviceRentCompany.getCar(this.regNumberCar).subscribe(
       value => {
-        this.dataSource.push(value.content as Car)
+        this.cars.push(value.content as Car);
+        this.dataSource = new MatTableDataSource(this.cars);
         console.log(this.dataSource);
         this.regNumberCar = '';
       }

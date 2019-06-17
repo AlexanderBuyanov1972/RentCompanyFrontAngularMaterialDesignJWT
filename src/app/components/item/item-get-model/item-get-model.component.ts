@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
 import {Router} from '@angular/router';
+import {Model} from '../../../models/model';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-item-get-model',
@@ -9,7 +11,9 @@ import {Router} from '@angular/router';
 })
 export class ItemGetModelComponent {
   modelNameCar = '';
-  model: any = {};
+  models: Model[] = [];
+  dataSource: MatTableDataSource<Model>;
+  displayedColumns: string[] = ['modelName', 'gasTank', 'company', 'country', 'priceDay'];
 
   constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
   }
@@ -17,7 +21,8 @@ export class ItemGetModelComponent {
   submitModelName() {
     this.serviceRentCompany.getModel(this.modelNameCar).subscribe(
       value => {
-        this.model = value.content;
+        this.models.push(value.content as Model);
+        this.dataSource = new MatTableDataSource<Model>(this.models);
         this.modelNameCar = '';
       }
     );
