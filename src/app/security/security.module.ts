@@ -1,16 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {AbstractSecurityService} from './abstract-security.service';
-import {SecurityService} from './security.service';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AbstractRegistration} from './abstract-registration';
+import {RegistrationService} from './registration.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
-    {provide: AbstractSecurityService, useExisting: SecurityService}
+    {provide: AbstractRegistration, useExisting: RegistrationService}
   ]
 })
-export class SecurityModule { }
+export class SecurityModule {
+}

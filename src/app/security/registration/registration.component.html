@@ -13,11 +13,11 @@
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput type="text" name="position" ngModel #position="ngModel"
-             required placeholder="Position" pattern="[A-Z]+" appUniquePosition>
+      <input matInput type="text" name="role" ngModel #role="ngModel"
+             required placeholder="Role" pattern="[A-Z]+" appUniqueRole>
       <mat-hint></mat-hint>
-      <mat-error *ngIf="position.errors?.pattern">Please enter a valid Position</mat-error>
-      <mat-error *ngIf="position.errors?.required">Position is <strong>required</strong></mat-error>
+      <mat-error *ngIf="role.errors?.pattern">Please enter a valid Role</mat-error>
+      <mat-error *ngIf="role.errors?.required">Role is <strong>required</strong></mat-error>
     </mat-form-field>
     <br>
     <mat-form-field>

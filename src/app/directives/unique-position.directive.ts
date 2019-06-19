@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[appUniquePosition]'
+  selector: '[appUniqueRole]'
 })
 export class UniquePositionDirective {
 
