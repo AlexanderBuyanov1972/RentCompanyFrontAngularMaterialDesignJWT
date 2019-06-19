@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractSecurityService} from '../abstract-security.service';
-import {User} from '../User';
+import {AbstractSecurityService, User} from '../abstract-security.service';
+
 
 @Component({
   selector: 'app-logout',
@@ -16,7 +16,7 @@ export class LogoutComponent implements OnInit {
   }
 
   logout(formUser: NgForm) {
- this.serviceSecurity.removeLogin(formUser.value as User).subscribe(
+ this.serviceSecurity.logout(formUser.value as User).subscribe(
    (value) => {
      if (value.code === 200) {
        console.log(value.code);

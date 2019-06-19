@@ -1,35 +1,46 @@
-<div class="card">
-  <h4 class="card-header">
-    Registration
-  </h4>
-  <div class="card-body" style="background-color: gold">
-    <form #formUser="ngForm" (ngSubmit)="registration(formUser)">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" ngModel required name="email" #email="ngModel">
-        <div class="alert-danger" *ngIf="email.touched && email.invalid">
-          <div class="alert-danger" *ngIf="email.errors.required">Gas Tank is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Position</label>
-        <input type="text" class="form-control" ngModel required name="position" #position="ngModel">
-        <div class="alert-danger" *ngIf="position.touched && position.invalid">
-          <div class="alert-danger" *ngIf="position.errors.required">Gas Tank is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control" ngModel name="password" #password="ngModel" required>
-        <div class="alert-danger" *ngIf="password.touched && password.invalid">
-          <div class="alert-danger" *ngIf="password.errors.required">Company is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="formUser.invalid"
-                style="margin: 25px; width: 200px; height: 50px">Logout
-        </button>
-      </div>
-    </form>
-  </div>
+<div style="margin: 100px">
+  <mat-card>
+  <h2>Registration</h2>
+  <form #formUser="ngForm" (ngSubmit)="registration(formUser)">
+    <mat-form-field>
+      <input matInput type="email" name="email" ngModel #email="ngModel"
+             required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="email.errors?.pattern">Please enter a valid Email</mat-error>
+      <mat-error *ngIf="email.errors?.required">Email is <strong>required</strong></mat-error>
+      <mat-error *ngIf="email.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="text" name="position" ngModel #position="ngModel"
+             required placeholder="Position" pattern="[A-Z]+" appUniquePosition>
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="position.errors?.pattern">Please enter a valid Position</mat-error>
+      <mat-error *ngIf="position.errors?.required">Position is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="password" name="password" ngModel #password="ngModel"
+             required placeholder="Password" pattern="[a-zA-Z0-9#$&]">
+      <mat-hint> pattern for password: "a-zA-Z0-9#$&"</mat-hint>
+      <mat-error *ngIf="password.errors?.pattern">Please enter a valid Password</mat-error>
+      <mat-error *ngIf="password.errors?.required">Password is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Registration</button>
+  </form>
+  </mat-card>
+<!--  <mat-card>-->
+<!--    <mat-card-header>-->
+<!--      <mat-card-title><h4>Registration using services</h4></mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--    <mat-card-actions>-->
+<!--      <button class="service" mat-button color="primary">GOOGLE</button>-->
+<!--      <button class="service" mat-button color="warn">FACEBOOK</button>-->
+<!--      <button class="service" mat-button color="accent">TWITTER</button>-->
+<!--      <button class="service" mat-button color="primary">GITHUB</button>-->
+<!--    </mat-card-actions>-->
+<!--  </mat-card>-->
 </div>
+

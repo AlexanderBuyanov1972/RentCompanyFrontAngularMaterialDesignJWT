@@ -1,28 +1,25 @@
-<div class="card">
-  <h4 class="card-header">
-    Login
-  </h4>
-  <div class="card-body" style="background-color: gold">
-    <form #formUser="ngForm" (ngSubmit)="login(formUser)">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" ngModel required name="email" #email="ngModel">
-        <div class="alert-danger" *ngIf="email.touched && email.invalid">
-          <div class="alert-danger" *ngIf="email.errors.required">Gas Tank is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control" ngModel name="password" #password="ngModel" required>
-        <div class="alert-danger" *ngIf="password.touched && password.invalid">
-          <div class="alert-danger" *ngIf="password.errors.required">Company is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="formUser.invalid"
-                style="margin: 25px; width: 200px; height: 50px">Login
-        </button>
-      </div>
-    </form>
-  </div>
+<div style="margin: 100px">
+  <h2>Login</h2>
+  <form #formUser="ngForm" (ngSubmit)="login(formUser)">
+    <mat-form-field>
+      <input matInput type="email" name="email" ngModel #email="ngModel"
+             required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="email.errors?.pattern">Please enter a valid Registration Number</mat-error>
+      <mat-error *ngIf="email.errors?.required">Registration Number is <strong>required</strong></mat-error>
+      <mat-error *ngIf="email.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="password" name="password" ngModel #password="ngModel"
+             required placeholder="Password" pattern="[a-zA-Z0-9#$&]">
+      <mat-hint>pattern=\"[a-zA-Z0-9#$&]\"</mat-hint>
+      <mat-error *ngIf="password.errors?.pattern">Please enter a valid Color of Car</mat-error>
+      <mat-error *ngIf="password.errors?.required">Color of Car is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Login</button>
+  </form>
+
 </div>

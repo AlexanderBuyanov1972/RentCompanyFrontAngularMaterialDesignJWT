@@ -43,7 +43,10 @@ import {CheckRentDateDirective} from './directives/check-rent-date.directive';
 import {Check18YearDirective} from './directives/check-18-year.directive';
 import {CheckReturnDateDirective} from './directives/check-return-date.directive';
 import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+import { UniqueEmailDirective } from './directives/unique-email.directive';
+import { UniquePositionDirective } from './directives/unique-position.directive';
+
 
 
 const routes: Route[] = [
@@ -114,7 +117,9 @@ const routes: Route[] = [
     UniquePhoneNumberDirective,
     CheckRentDateDirective,
     Check18YearDirective,
-    CheckReturnDateDirective
+    CheckReturnDateDirective,
+    UniqueEmailDirective,
+    UniquePositionDirective
   ],
   imports: [
     BrowserModule,
@@ -127,7 +132,8 @@ const routes: Route[] = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
 
   ],
   providers: [{

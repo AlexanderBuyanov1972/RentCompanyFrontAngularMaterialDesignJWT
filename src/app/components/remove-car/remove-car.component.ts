@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import {AbstractAPIRentCompany} from '../../services/AbstractAPIRentCompany';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-remove-car',
@@ -18,11 +19,11 @@ export class RemoveCarComponent {
     this.router.navigate(['/']);
   }
 
-  removeCar() {
-    this.serviceRentCompany.removeCar(this.regNumberCar).subscribe(
+  removeCar(formCar: NgForm) {
+    this.serviceRentCompany.removeCar(formCar.value.regNumber).subscribe(
       value => {
         this.messageResponse = value.message;
-        this.regNumberCar = '';
+        formCar.resetForm();
       },
       error => {
         this.messageResponse = 'car is not removed';

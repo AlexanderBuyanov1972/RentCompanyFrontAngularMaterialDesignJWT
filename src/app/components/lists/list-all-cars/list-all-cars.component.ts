@@ -11,7 +11,7 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './list-all-cars.component.html',
   styleUrls: ['./list-all-cars.component.css']
 })
-//////////////////////////////////////////////////////////////////////////////////////////
+
 export class ListAllCarsComponent implements OnInit {
   dataSource: MatTableDataSource<Car>;
   displayedColumns: string[] = ['regNumber', 'color', 'modelName', 'inUse', 'flRemoved', 'state'];

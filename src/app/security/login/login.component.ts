@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractSecurityService} from '../abstract-security.service';
-import {User} from '../User';
+import {AbstractSecurityService, User} from '../abstract-security.service';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(formUser: NgForm) {
-this.serviceSecurity.addLogin(formUser.value as User).subscribe(
+this.serviceSecurity.login(formUser.value as User).subscribe(
   (value) => {
     if (value.code === 200) {
       console.log(value.code);
