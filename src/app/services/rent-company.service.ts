@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AbstractAPIRentCompany} from './AbstractAPIRentCompany';
+import {AbstractRentCompany} from './abstract-rent-company';
 import {Observable} from 'rxjs';
 import {ResponseFrom} from '../models/response-from';
 import {Driver} from '../models/driver';
@@ -16,7 +16,7 @@ const url = urlLocalHost;
 @Injectable({
   providedIn: 'root'
 })
-export class RentCompanyService extends AbstractAPIRentCompany {
+export class RentCompanyService extends AbstractRentCompany {
   constructor(private httpClient: HttpClient) {
     super();
   }

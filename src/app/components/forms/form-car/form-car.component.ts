@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Car} from '../../../models/car';
 import {State} from '../../../models/State';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 
 @Component({
   selector: 'app-form-car',
@@ -10,7 +10,7 @@ import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
   styleUrls: ['./form-car.component.css']
 })
 export class FormCarComponent {
-  constructor(private serviceRentCompany: AbstractAPIRentCompany) {
+  constructor(private serviceRentCompany: AbstractRentCompany) {
   }
 
   saveCar(formCar: NgForm) {

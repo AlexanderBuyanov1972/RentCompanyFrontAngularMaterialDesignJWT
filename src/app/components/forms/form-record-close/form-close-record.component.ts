@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {RentRecord} from '../../../models/rent-record';
 
 @Component({
@@ -10,7 +10,7 @@ import {RentRecord} from '../../../models/rent-record';
 })
 export class FormCloseRecordComponent {
 
-  constructor(private serviceRC: AbstractAPIRentCompany) {
+  constructor(private serviceRC: AbstractRentCompany) {
   }
 
   saveReturnRecord(formReturnRecord: NgForm) {

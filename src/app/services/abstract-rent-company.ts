@@ -6,7 +6,7 @@ import {Model} from '../models/model';
 import {Observable} from 'rxjs';
 import {DateDays} from '../models/DateDays';
 
-export abstract class AbstractAPIRentCompany {
+export abstract class AbstractRentCompany {
 
   constructor() {
   }

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {RentRecord} from '../../../models/rent-record';
 
 @Component({
@@ -9,7 +9,7 @@ import {RentRecord} from '../../../models/rent-record';
   styleUrls: ['./form-open-record.component.css']
 })
 export class FormOpenRecordComponent {
-  constructor(private serviceRentCompany: AbstractAPIRentCompany) {
+  constructor(private serviceRentCompany: AbstractRentCompany) {
   }
 
   saveRentRecord(formRentRecord: NgForm) {

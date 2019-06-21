@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {Car} from '../../../models/car';
 import {MatTableDataSource} from '@angular/material';
@@ -18,7 +18,7 @@ export class ItemGetCarComponent {
   dataSource: MatTableDataSource<Car>;
   cars: Car[] = [];
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
 
   submitRegNumber() {

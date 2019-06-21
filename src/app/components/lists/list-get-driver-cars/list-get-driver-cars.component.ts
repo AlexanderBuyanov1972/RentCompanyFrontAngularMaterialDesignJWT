@@ -3,7 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Observable} from 'rxjs';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {Car} from '../../../models/car';
@@ -19,7 +19,7 @@ export class ListGetDriverCarsComponent {
   displayedColumns: string[] = ['regNumber', 'color', 'modelName', 'inUse', 'flRemoved', 'state'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
   submitLicenseId() {
     this.serviceRentCompany.getDriverCars(this.licenseIdDriver).subscribe(

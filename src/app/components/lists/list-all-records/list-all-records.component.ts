@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {RentRecord} from '../../../models/rent-record';
 
@@ -18,7 +18,7 @@ export class ListAllRecordsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
     this.serviceRentCompany.getAllRecords().subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as RentRecord[]);

@@ -1,24 +1,54 @@
 <div style="margin: 100px">
   <h2>Login</h2>
-  <form #formUser="ngForm" (ngSubmit)="loginSession(formUser)">
-    <mat-form-field>
-      <input matInput type="email" name="email" ngModel #email="ngModel"
-             required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="email.errors?.pattern">Please enter a valid Email</mat-error>
-      <mat-error *ngIf="email.errors?.required">Email is <strong>required</strong></mat-error>
-      <mat-error *ngIf="email.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput type="password" name="password" ngModel #password="ngModel"
-             required placeholder="Password" pattern="[a-zA-Z0-9#$&]+">
-      <mat-hint>pattern=\"[a-zA-Z0-9#$&]\"</mat-hint>
-      <mat-error *ngIf="password.errors?.pattern">Please enter a valid Password</mat-error>
-      <mat-error *ngIf="password.errors?.required">Password is <strong>required</strong></mat-error>
-    </mat-form-field>
-    <br>
-    <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Login</button>
-  </form>
+  <mat-form-field>
+    <input matInput type="email" name="email" [(ngModel)]="emailUser" #email="ngModel"
+           required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>
+    <mat-hint></mat-hint>
+    <mat-error *ngIf="email.errors?.pattern">Please enter a valid Email</mat-error>
+    <mat-error *ngIf="email.errors?.required">Email is <strong>required</strong></mat-error>
+    <mat-error *ngIf="email.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="password" name="password" [(ngModel)]="passwordUser" #password="ngModel"
+           required placeholder="Password" pattern="[a-zA-Z0-9#$&]+">
+    <mat-hint>pattern=\"[a-zA-Z0-9#$&]\"</mat-hint>
+    <mat-error *ngIf="password.errors?.pattern">Please enter a valid Password</mat-error>
+    <mat-error *ngIf="password.errors?.required">Password is <strong>required</strong></mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button (click)="loginWithEmailAndPassword()" color="primary"  [disabled]="email.invalid || password.invalid">Login</button>
+  <button mat-raised-button (click)="loginWithGoogle()">Sign in with Google</button>
+  <button mat-raised-button (click)="loginWithGitHub()">Sign in with GitHub</button>
+  <button mat-raised-button (click)="loginWithFacebook()">Sign in with Facebook</button>
 </div>
+
+
+<!--<div style="margin: 100px">-->
+<!--  <h2>Login</h2>-->
+<!--  <form #formUser="ngForm" (ngSubmit)="login(formUser)">-->
+<!--    <mat-form-field>-->
+<!--      <input matInput type="email" name="email" ngModel #email="ngModel"-->
+<!--             required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>-->
+<!--      <mat-hint></mat-hint>-->
+<!--      <mat-error *ngIf="email.errors?.pattern">Please enter a valid Email</mat-error>-->
+<!--      <mat-error *ngIf="email.errors?.required">Email is <strong>required</strong></mat-error>-->
+<!--      <mat-error *ngIf="email.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
+<!--    <br>-->
+<!--    <mat-form-field>-->
+<!--      <input matInput type="password" name="password" ngModel #password="ngModel"-->
+<!--             required placeholder="Password" pattern="[a-zA-Z0-9#$&]+">-->
+<!--      <mat-hint>pattern=\"[a-zA-Z0-9#$&]\"</mat-hint>-->
+<!--      <mat-error *ngIf="password.errors?.pattern">Please enter a valid Password</mat-error>-->
+<!--      <mat-error *ngIf="password.errors?.required">Password is <strong>required</strong></mat-error>-->
+<!--    </mat-form-field>-->
+<!--    <br>-->
+<!--    <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Login</button>-->
+<!--  </form>-->
+<!--  <button mat-raised-button (click)="loginWithGoogle()">Sign in with Google</button>-->
+<!--  <button mat-raised-button (click)="loginWithGitHub()">Sign in with GitHub</button>-->
+<!--  <button mat-raised-button (click)="loginWithFacebook()">Sign in with Facebook</button>-->
+<!--</div>-->

@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractAPIRentCompany} from '../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {Car} from '../../models/car';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -16,7 +16,7 @@ export class ClearComponent {
   dataSource: MatTableDataSource<Car>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
 
   submitDateDays(formDD: NgForm) {

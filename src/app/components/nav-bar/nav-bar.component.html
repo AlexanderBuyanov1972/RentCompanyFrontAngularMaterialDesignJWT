@@ -1,79 +1,70 @@
-
-
-
-
-<!--<ul class="nav card-header">-->
-<!--  <li class="nav-item" >-->
-<!--    &lt;!&ndash;  **************************Add*******************&ndash;&gt;-->
-<!--    <a routerLink="/addModel" class="nav-link" routerLinkActive="active current"><b style="color: red">|</b> Add Model </a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/addCar" class="nav-link">Add Car</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/addDriver" class="nav-link">Add Driver <b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/rentCar" class="nav-link">Rent Car</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/returnCar" class="nav-link">Return Car <b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--  &lt;!&ndash;  **************************Registration*******************&ndash;&gt;-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/registration" class="nav-link">Registration</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/login" class="nav-link">Login</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/logout" class="nav-link">Logout <b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--  &lt;!&ndash;  **************************lists of *******************&ndash;&gt;-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/allModels" class="nav-link">Get All Models</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/allCars" class="nav-link">Get All Cars</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/allDrivers" class="nav-link">Get All Drivers</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/allRecords" class="nav-link">Get All Records</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/mostPopularModels" class="nav-link">Get All Most Popular Models</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/mostProfitModels" class="nav-link">Get All Most Profit Models <b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--  &lt;!&ndash;  ************************** of *******************&ndash;&gt;-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/profitModelName" class="nav-link">Get Profit Model's name</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/getModel" class="nav-link">Get Model</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/getCar" class="nav-link">Get Car</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/getDriver" class="nav-link">Get Driver<b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--&lt;!&ndash;  **********************************************************************************************************&ndash;&gt;-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/clear" class="nav-link">Clear</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/removeCar" class="nav-link">Remove Car<b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--  &lt;!&ndash;  **********************************************************************************************************&ndash;&gt;-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/carDrivers" class="nav-link">Get All Car Drivers</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item"  >-->
-<!--    <a routerLink="/driverCars" class="nav-link">Get All Driver Cars<b style="color: red">|</b></a>-->
-<!--  </li>-->
-<!--</ul>-->
-<!--<router-outlet></router-outlet>-->
+<nav mat-tab-nav-bar>
+  <!--------------------------------------- For no authorization users ----------------------------------->
+  <label mat-tab-link [routerLink]="homeLink.path" *ngIf="true">{{homeLink.label}}</label>
+  <label mat-tab-link [routerLink]="getModelLink.path" *ngIf="!isAdmin()">{{getModelLink.label}}</label>
+  <label mat-tab-link [routerLink]="getAllModelsLink.path" *ngIf="!isAdmin()">{{getAllModelsLink.label}}</label>
+  <label mat-tab-link [routerLink]="loginLink.path" *ngIf="!isAuth()">{{loginLink.label}}</label>
+    <!--------------------------------------  For admins --------------------------------------------------->
+  <div *ngIf="isAdmin()">
+    <a mat-tab-link
+       *ngFor="let link of navLinksAdmins"
+       [routerLink]="link.path"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </div>
+  <!--------------------------------------  For clerks --------------------------------------------------->
+  <div *ngIf="isClerk()">
+    <a mat-tab-link
+       *ngFor="let link of navLinksClerks"
+       [routerLink]="link.path"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </div>
+  <!--------------------------------------  For managers --------------------------------------------------->
+  <div *ngIf="isManager()">
+    <a mat-tab-link
+       *ngFor="let link of navLinksManagers"
+       [routerLink]="link.path"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </div>
+  <!--------------------------------------  For drivers --------------------------------------------------->
+  <div *ngIf="isDriver()">
+    <a mat-tab-link
+       *ngFor="let link of navLinksDrivers"
+       [routerLink]="link.path"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </div>
+  <!--------------------------------------  For statists --------------------------------------------------->
+  <div *ngIf="isStatist()">
+    <a mat-tab-link
+       *ngFor="let link of navLinksStatists"
+       [routerLink]="link.path"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </div>
+  <!--------------------------------------  For technicians --------------------------------------------------->
+  <div *ngIf="isTechnician()">
+    <a mat-tab-link
+       *ngFor="let link of navLinksTechnicians"
+       [routerLink]="link.path"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </div>
+  <!--------------------------------------- The LogOut ------------------------------------------------------>
+  <button mat-button color="warn" *ngIf="isAuth()" (click)="logout()" style="float: right">LogOut</button>
+</nav>
+<router-outlet></router-outlet>

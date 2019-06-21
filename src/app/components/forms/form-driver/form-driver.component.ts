@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Driver} from '../../../models/driver';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 
 @Component({
   selector: 'app-form-driver',
@@ -8,7 +8,7 @@ import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
   styleUrls: ['./form-driver.component.css']
 })
 export class FormDriverComponent {
-  constructor(private serviceRentCompany: AbstractAPIRentCompany) {
+  constructor(private serviceRentCompany: AbstractRentCompany) {
   }
 
   saveDriver(formDriver: any) {

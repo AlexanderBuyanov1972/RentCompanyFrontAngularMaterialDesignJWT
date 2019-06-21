@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class ListAllDriversComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
     this.serviceRentCompany.getAllDrivers().subscribe(
       value => {this.dataSource = new MatTableDataSource(value.content as Driver[]);
                 this.dataSource.paginator = this.paginator;

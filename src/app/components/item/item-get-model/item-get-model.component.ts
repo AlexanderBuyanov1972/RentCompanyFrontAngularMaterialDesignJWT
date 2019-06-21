@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {Model} from '../../../models/model';
 import {MatTableDataSource} from '@angular/material';
@@ -15,7 +15,7 @@ export class ItemGetModelComponent {
   dataSource: MatTableDataSource<Model>;
   displayedColumns: string[] = ['modelName', 'gasTank', 'company', 'country', 'priceDay'];
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
 
   submitModelName() {

@@ -3,10 +3,9 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 
-import {AbstractAPIRentCompany} from './services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from './services/abstract-rent-company';
 import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {LoginComponent} from './security/login/login.component';
-import {LogoutComponent} from './security/logout/logout.component';
 import {RegistrationComponent} from './security/registration/registration.component';
 import {FormCarComponent} from './components/forms/form-car/form-car.component';
 import {FormModelComponent} from './components/forms/form-model/form-model.component';
@@ -44,20 +43,25 @@ import {Check18YearDirective} from './directives/check-18-year.directive';
 import {CheckReturnDateDirective} from './directives/check-return-date.directive';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule, MatCardModule, MatPaginatorModule, MatSortModule} from '@angular/material';
-import { UniqueEmailDirective } from './directives/unique-email.directive';
-import { UniquePositionDirective } from './directives/unique-position.directive';
-import { HomeComponent } from './components/home/home.component';
+import {UniqueEmailDirective} from './directives/unique-email.directive';
+import {UniquePositionDirective} from './directives/unique-position.directive';
+import {HomeComponent} from './components/home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
-
+import {AuthFirebaseService} from './services/auth-firebase.service';
+import {AbstractAuthService} from './services/abstract-auth-service';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment.prod';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 
 
 const routes: Route[] = [
+  // ******************* General **********************************
   {path: 'home', component: HomeComponent},
-  // ***********************************************************
-  {path: 'registration', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent},
+  // ******************Admin*****************************************
+  {path: 'registration', component: RegistrationComponent},
   // **********************************************************
   {path: 'addModel', component: FormModelComponent},
   {path: 'addCar', component: FormCarComponent},
@@ -91,7 +95,6 @@ const routes: Route[] = [
     AppComponent,
     NavBarComponent,
     LoginComponent,
-    LogoutComponent,
     RegistrationComponent,
     ListAllDriversComponent,
     ListAllCarsComponent,
@@ -102,7 +105,6 @@ const routes: Route[] = [
     FormCloseRecordComponent,
     RegistrationComponent,
     LoginComponent,
-    LogoutComponent,
     ListAllModelsComponent,
     ListAllRecordsComponent,
     ListMostPopularModelsComponent,
@@ -139,11 +141,14 @@ const routes: Route[] = [
     MatSortModule,
     MatButtonModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
-  providers: [{
-    provide: AbstractAPIRentCompany, useExisting: RentCompanyService
-  }],
+  providers: [
+    {provide: AbstractRentCompany, useExisting: RentCompanyService},
+    {provide: AbstractAuthService, useExisting: AuthFirebaseService}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

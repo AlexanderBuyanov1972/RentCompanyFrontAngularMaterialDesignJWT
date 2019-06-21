@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class ItemGetProfitModelComponent {
   modelCost = '';
   cost = 0;
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
 
   submitModelName() {

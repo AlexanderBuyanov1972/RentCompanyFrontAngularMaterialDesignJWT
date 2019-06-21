@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {AbstractAPIRentCompany} from '../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 
@@ -13,7 +13,7 @@ export class RemoveCarComponent {
   regNumberCar = '';
   messageResponse = '';
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) { }
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) { }
 
   back() {
     this.router.navigate(['/']);

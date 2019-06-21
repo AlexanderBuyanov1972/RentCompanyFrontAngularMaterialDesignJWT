@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AbstractAPIRentCompany} from '../../../services/AbstractAPIRentCompany';
+import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {Car} from '../../../models/car';
 import {MatPaginator} from '@angular/material/paginator';
@@ -18,7 +18,7 @@ export class ListAllCarsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private serviceRentCompany: AbstractAPIRentCompany, private router: Router) {
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
     this.serviceRentCompany.getAllCars().subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as Car[]);
