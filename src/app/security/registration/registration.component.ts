@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractSecurityService, User} from '../abstract-security.service';
+import {AbstractRegistration, User} from '../abstract-registration';
 
 
 @Component({
@@ -10,15 +10,18 @@ import {AbstractSecurityService, User} from '../abstract-security.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private serviceSecurity: AbstractSecurityService) {
+  constructor(private serviceSecurity: AbstractRegistration) {
   }
 
   ngOnInit() {
   }
 
   registration(formUser: NgForm) {
-    this.serviceSecurity.addUser(formUser.value as User).subscribe(
-      value => formUser.resetForm(),
+    this.serviceSecurity.addAccount(formUser.value as User).subscribe(
+      value => {
+        formUser.resetForm();
+        console.log(value.message);
+      },
       error1 => alert('Server is not available')
     );
   }

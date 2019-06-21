@@ -1,6 +1,6 @@
 <div style="margin: 100px">
   <h2> Logout</h2>
-  <form #formUser="ngForm" (ngSubmit)="logout(formUser)">
+  <form #formUser="ngForm" (ngSubmit)="logoutSession(formUser)">
     <mat-form-field>
       <input matInput type="email" name="email" ngModel #email="ngModel"
              required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>

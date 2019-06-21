@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractSecurityService, User} from '../abstract-security.service';
+import {AbstractRegistration} from '../abstract-registration';
 
 
 @Component({
@@ -10,21 +10,18 @@ import {AbstractSecurityService, User} from '../abstract-security.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private serviceSecurity: AbstractSecurityService) { }
+  constructor(private serviceSecurity: AbstractRegistration) {
+  }
 
   ngOnInit() {
   }
 
-  logout(formUser: NgForm) {
- this.serviceSecurity.logout(formUser.value as User).subscribe(
-   (value) => {
-     if (value.code === 200) {
-       console.log(value.code);
-       console.log(value.message);
-       console.log(value.timestamp);
-       formUser.resetForm();
-     }
-   }
- );
+  logoutSession(formUser: NgForm) {
+    this.serviceSecurity.logout(formUser.value).subscribe(
+      value => {
+        console.log(value.message);
+        formUser.resetForm();
+      }
+    );
   }
 }

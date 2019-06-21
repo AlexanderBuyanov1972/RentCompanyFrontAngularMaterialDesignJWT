@@ -46,10 +46,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule, MatCardModule, MatPaginatorModule, MatSortModule} from '@angular/material';
 import { UniqueEmailDirective } from './directives/unique-email.directive';
 import { UniquePositionDirective } from './directives/unique-position.directive';
+import { HomeComponent } from './components/home/home.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
 const routes: Route[] = [
+  {path: 'home', component: HomeComponent},
   // ***********************************************************
   {path: 'registration', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
@@ -119,7 +123,8 @@ const routes: Route[] = [
     Check18YearDirective,
     CheckReturnDateDirective,
     UniqueEmailDirective,
-    UniquePositionDirective
+    UniquePositionDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -133,8 +138,8 @@ const routes: Route[] = [
     MatPaginatorModule,
     MatSortModule,
     MatButtonModule,
-    MatCardModule
-
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [{
     provide: AbstractAPIRentCompany, useExisting: RentCompanyService
