@@ -1,8 +1,11 @@
 <nav mat-tab-nav-bar>
   <!--------------------------------------- For no authorization users ----------------------------------->
+  <label><h1>Rent Company LtD</h1></label>
   <label mat-tab-link [routerLink]="homeLink.path" *ngIf="true">{{homeLink.label}}</label>
   <label mat-tab-link [routerLink]="getModelLink.path" *ngIf="!isAdmin()">{{getModelLink.label}}</label>
+  <label mat-tab-link [routerLink]="getCarLink.path" *ngIf="isAuth() && !isAdmin()">{{getCarLink.label}}</label>
   <label mat-tab-link [routerLink]="getAllModelsLink.path" *ngIf="!isAdmin()">{{getAllModelsLink.label}}</label>
+  <label mat-tab-link [routerLink]="getAllCarsLink.path" *ngIf="isAuth() && !isAdmin()">{{getAllCarsLink.label}}</label>
   <label mat-tab-link [routerLink]="loginLink.path" *ngIf="!isAuth()">{{loginLink.label}}</label>
     <!--------------------------------------  For admins --------------------------------------------------->
   <div *ngIf="isAdmin()">

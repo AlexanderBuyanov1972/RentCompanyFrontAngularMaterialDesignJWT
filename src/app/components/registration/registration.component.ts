@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractRegistration, User} from '../abstract-registration';
+import {AbstractRegistration, User} from '../../services/abstract-registration';
 
 
 @Component({

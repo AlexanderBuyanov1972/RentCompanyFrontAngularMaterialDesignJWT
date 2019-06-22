@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractRegistration} from '../abstract-registration';
+import {AbstractRegistration} from '../../services/abstract-registration';
 import {AbstractAuthService} from '../../services/abstract-auth-service';
 import {Router} from '@angular/router';
+import {PathRoutes} from '../../models/constants/path-routes';
 
 
 @Component({
@@ -23,21 +24,21 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle() {
     this.authService.login('google');
-    this.router.navigate(['/home']).then();
+    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 
   loginWithGitHub() {
     this.authService.login('github');
-    this.router.navigate(['/home']).then();
+    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 
   loginWithFacebook() {
     this.authService.login('facebook');
-    this.router.navigate(['/home']).then();
+    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 
   loginWithEmailAndPassword() {
     this.authService.login('email_password', this.emailUser, this.passwordUser);
-    this.router.navigate(['/home']).then();
+    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 }

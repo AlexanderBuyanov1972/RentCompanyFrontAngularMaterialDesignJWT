@@ -1,4 +1,4 @@
-export class Path {
+export class PathHttps {
 // -------------------------------------
   static ADD_CAR = '/car'; // MANAGER
   static ADD_MODEL = '/model'; // MANAGER

@@ -7,7 +7,7 @@ import {Car} from '../models/car';
 import {Model} from '../models/model';
 import {RentRecord} from '../models/rent-record';
 import {HttpClient} from '@angular/common/http';
-import {Path} from '../models/path';
+import {PathHttps} from '../models/constants/path-https';
 
 const urlHeroku = 'https://rentcarscompany.herokuapp.com';
 const urlLocalHost = 'http://localhost:8080';
@@ -23,95 +23,95 @@ export class RentCompanyService extends AbstractRentCompany {
 
 // **************************************************addModel, addCar, addDriver*********************************************
   addModel(model: Model): Observable<ResponseFrom> {
-    return this.httpClient.post<ResponseFrom>(url + Path.ADD_MODEL, model);
+    return this.httpClient.post<ResponseFrom>(url + PathHttps.ADD_MODEL, model);
   }
 
   addCar(car: Car): Observable<ResponseFrom> {
-    return this.httpClient.post<ResponseFrom>(url + Path.ADD_CAR, car);
+    return this.httpClient.post<ResponseFrom>(url + PathHttps.ADD_CAR, car);
   }
 
   addDriver(driver: Driver): Observable<ResponseFrom> {
-    return this.httpClient.post<ResponseFrom>(url + Path.ADD_DRIVER, driver);
+    return this.httpClient.post<ResponseFrom>(url + PathHttps.ADD_DRIVER, driver);
   }
 
   // **************************************** getModel, getCar, getDriver, getModelProfit ************************
 
   getModel(modelName: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_MODEL + '/' + `${modelName}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_MODEL + '/' + `${modelName}`);
   }
 
   getCar(regNumber: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_CAR + '/' + `${regNumber}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_CAR + '/' + `${regNumber}`);
   }
 
 
   getDriver(licenseId: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_DRIVER + '/' + `${licenseId}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_DRIVER + '/' + `${licenseId}`);
   }
 
   getModelProfit(modelName: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_PROFIT_MODEL + '/' + `${modelName}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_PROFIT_MODEL + '/' + `${modelName}`);
   }
 
   // ******************** getAllModelNames, getAllModels, getAllCars,  getAllDrivers, getAllRecords ***************
   getAllModelNames(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_ALL_MODEL_NAMES);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_ALL_MODEL_NAMES);
   }
 
   getAllModels(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_ALL_MODELS);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_ALL_MODELS);
   }
 
   getAllCars(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_ALL_CARS);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_ALL_CARS);
   }
 
   getAllDrivers(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_ALL_DRIVERS);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_ALL_DRIVERS);
   }
 
   getAllRecords(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_ALL_RECORDS);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_ALL_RECORDS);
   }
 
   // ************************** getMostPopularModelNames, getMostProfitModelNames ************************************
   getMostPopularModels(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.MOST_POPULAR_MODELS);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.MOST_POPULAR_MODELS);
   }
 
   getMostProfitModels(): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.MOST_PROFIT_MODELS);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.MOST_PROFIT_MODELS);
   }
 
 // ********************************** rentCar, returnCar *************************************************************
   rentCar(record: RentRecord): Observable<ResponseFrom> {
-    return this.httpClient.post<ResponseFrom>(url + Path.RENT_CAR, record);
+    return this.httpClient.post<ResponseFrom>(url + PathHttps.RENT_CAR, record);
   }
 
   returnCar(record: RentRecord): Observable<ResponseFrom> {
-    return this.httpClient.post<ResponseFrom>(url + Path.RETURN_CAR, record);
+    return this.httpClient.post<ResponseFrom>(url + PathHttps.RETURN_CAR, record);
   }
 
 
 // *************************************************** clear , removeCar *******************************************************************
 
   clear(date: string, days: number): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.CLEAR_CARS + '/' + `${date}` + '/' + `${days}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.CLEAR_CARS + '/' + `${date}` + '/' + `${days}`);
   }
 
   removeCar(regNumber: string): Observable<ResponseFrom> {
-    return this.httpClient.delete<ResponseFrom>(url + Path.REMOVE_CAR + '/' + `${regNumber}`);
+    return this.httpClient.delete<ResponseFrom>(url + PathHttps.REMOVE_CAR + '/' + `${regNumber}`);
   }
 
 
   // *********************************** getDriverCars, getCarDrivers ************************************************
   getDriverCars(licenseId: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_DRIVER_CARS + '/' + `${licenseId}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_DRIVER_CARS + '/' + `${licenseId}`);
   }
 
 
   getCarDrivers(regNumber: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + Path.GET_CAR_DRIVERS + '/' + `${regNumber}`);
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.GET_CAR_DRIVERS + '/' + `${regNumber}`);
   }
 
 }

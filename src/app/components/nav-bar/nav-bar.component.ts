@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractAuthService} from '../../services/abstract-auth-service';
 import {Router} from '@angular/router';
+import {PathRoutes} from '../../models/constants/path-routes';
+import {LabelRoutes} from '../../models/constants/label-routes';
 
 export interface NavLink {
   path: string;
@@ -13,58 +15,58 @@ export interface NavLink {
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  homeLink: NavLink = {path: 'home', label: 'Home'};
-  getModelLink: NavLink = {path: 'getModel', label: 'Get Model'};
-  getAllModelsLink: NavLink = {path: 'allModels', label: 'Get All Models'};
-  loginLink: NavLink = {path: 'login', label: 'Login'};
-  logoutLink: NavLink = {path: 'logout', label: 'LogOut'};
-
+  homeLink: NavLink = {path: PathRoutes.HOME_ROUTE, label: LabelRoutes.HOME_LABEL};
+  getModelLink: NavLink = {path: PathRoutes.GET_MODEL_ROUTE, label: LabelRoutes.GET_MODEL_LABEL};
+  getAllModelsLink: NavLink = {path: PathRoutes.GET_ALL_MODELS_ROUTE, label: LabelRoutes.GET_ALL_MODELS_LABEL};
+  loginLink: NavLink = {path: PathRoutes.LOGIN_ROUTE, label: LabelRoutes.LOGIN_LABEL};
+  getCarLink: NavLink = {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL};
+  getAllCarsLink: NavLink = {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL};
   // -------------------ADMIN---------------------------------
   navLinksAdmins: NavLink[] = [
-    {path: 'registration', label: 'Registration'}
+    {path: PathRoutes.REGISTRATION_ROUTE, label: LabelRoutes.REGISTRATION_LABEL}
   ];
   // ---------------------CLERK-------------------------------
   navLinksClerks: NavLink[] = [
-    {path: 'addDriver', label: 'Add New Driver'},
-    {path: 'rentCar', label: 'Open New Record'},
-    {path: 'returnCar', label: 'Close Record'},
-    {path: 'getCar', label: 'Get Car'},
-    {path: 'getDriver', label: 'Get Driver'},
-    {path: 'allCars', label: 'Get All Cars'},
-    {path: 'allDrivers', label: 'Get All Drivers'}
+    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
+    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
+    {path: PathRoutes.ADD_DRIVER_ROUTE, label: LabelRoutes.ADD_DRIVER_LABEL},
+    {path: PathRoutes.RENT_CAR_ROUTE, label: LabelRoutes.RENT_CAR_LABEL},
+    {path: PathRoutes.RETURN_CAR_ROUTE, label: LabelRoutes.RETURN_CAR_LABEL},
+    {path: PathRoutes.GET_DRIVER_FOR_CLERK_ROUTE, label: LabelRoutes.GET_DRIVER_LABEL},
+    {path: PathRoutes.GET_ALL_DRIVERS_FOR_CLERK_ROUTE, label: LabelRoutes.GET_ALL_DRIVERS_LABEL}
   ];
-  // ---------------------MANAGER-------------------------------
+  // ---------------------------------------------MANAGER-------------------------------
   navLinksManagers: NavLink[] = [
-    {path: 'addModel', label: 'Add New Model'},
-    {path: 'addCar', label: 'Add New Car'},
-    {path: 'getCar', label: 'Get Car'},
-    {path: 'getDriver', label: 'Get Driver'},
-    {path: 'removeCar', label: 'Remove Car'},
-    {path: 'clear', label: 'Clear cars'},
-    {path: 'allCars', label: 'Get All Cars'},
-    {path: 'allDrivers', label: 'Get All Drivers'},
-    {path: 'profitModelName', label: 'Get Model Name\'s Profit'}
+    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
+    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
+    {path: PathRoutes.ADD_MODEL_ROUTE, label: LabelRoutes.ADD_MODEL_LABEL},
+    {path: PathRoutes.ADD_CAR_ROUTE, label: LabelRoutes.ADD_CAR_LABEL},
+    {path: PathRoutes.GET_DRIVER_FOR_MANAGER_ROUTE, label: LabelRoutes.GET_DRIVER_LABEL},
+    {path: PathRoutes.REMOVE_CAR_ROUTE, label: LabelRoutes.REMOVE_CAR_LABEL},
+    {path: PathRoutes.CLEAR_CARS_ROUTE, label: LabelRoutes.CLEAR_CARS_LABEL},
+    {path: PathRoutes.GET_ALL_DRIVERS_FOR_MANAGER_ROUTE, label: LabelRoutes.GET_ALL_DRIVERS_LABEL},
+    {path: PathRoutes.GET_PROFIT_MODEL_FOR_MANAGER_ROUTE, label: LabelRoutes.GET_PROFIT_MODEL_LABEL}
   ];
-  // ---------------------DRIVER-------------------------------
+  // ----------------------------------------------DRIVER-------------------------------
   navLinksDrivers: NavLink[] = [
-    {path: 'getCar', label: 'Get Car'},
-    {path: 'driverCars', label: 'Get Driver Cars'},
-    {path: 'carDrivers', label: 'Get Car Drivers'},
-    {path: 'allCars', label: 'Get All Cars'}
+    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
+    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
+    {path: PathRoutes.GET_DRIVER_CARS_ROUTE, label: LabelRoutes.GET_DRIVER_CARS_LABEL},
+    {path: PathRoutes.GET_CAR_DRIVERS_ROUTE, label: LabelRoutes.GET_CAR_DRIVERS_LABEL}
   ];
   // ---------------------STATIST-------------------------------
   navLinksStatists: NavLink[] = [
-    {path: 'getCar', label: 'Get Car'},
-    {path: 'allCars', label: 'Get All Cars'},
-    {path: 'mostPopularModels', label: 'Get Most Popular Models'},
-    {path: 'mostProfitModels', label: 'Get Most Profit Models'},
-    {path: 'profitModelName', label: 'Get Model Name\'s Profit'}
+    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
+    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
+    {path: PathRoutes.MOST_POPULAR_MODELS_ROUTE, label: LabelRoutes.MOST_POPULAR_MODELS_LABEL},
+    {path: PathRoutes.MOST_PROFIT_MODELS_ROUTE, label: LabelRoutes.MOST_PROFIT_MODELS_LABEL},
+    {path: PathRoutes.GET_PROFIT_MODEL_FOR_STATIST_ROUTE, label: LabelRoutes.GET_PROFIT_MODEL_LABEL}
   ];
   // ---------------------TECHNICIAN-------------------------------
   navLinksTechnicians: NavLink[] = [
-    {path: 'getCar', label: 'Get Car'},
-    {path: 'allCars', label: 'Get All Cars'},
-    {path: 'allRecords', label: 'Get All Records'}
+    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
+    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
+    {path: PathRoutes.GET_ALL_RECORDS_ROUTE, label: LabelRoutes.GET_ALL_RECORDS_LABEL}
   ];
 
 
@@ -106,6 +108,6 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/home']).then();
+    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 }
