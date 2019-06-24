@@ -4,7 +4,7 @@
     <form #formRentRecord="ngForm" (ngSubmit)="saveRentRecord(formRentRecord)">
       <mat-form-field>
         <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
-               required placeholder="License Id" pattern="" appUniqueLicenseId>
+               required placeholder="License Id" pattern="\d{10}" appUniqueLicenseId>
         <mat-hint></mat-hint>
         <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
         <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
@@ -12,7 +12,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
-               required placeholder="Registration Number" pattern="" appUniqueRegNumber>
+               required placeholder="Registration Number" pattern="\d{8}" appUniqueRegNumber>
         <mat-hint></mat-hint>
         <mat-error *ngIf="regNumber.errors?.pattern">Please enter a valid Registration Number</mat-error>
         <mat-error *ngIf="regNumber.errors?.required">Registration Number is <strong>required</strong></mat-error>
@@ -21,7 +21,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" name="rentDate" ngModel #rentDate="ngModel"
-               required placeholder="Rent Date" pattern="" appCheckRentDate>
+               required placeholder="Rent Date" pattern="\d{4}\-\d{2}\-\d{2}" appCheckRentDate>
         <mat-hint></mat-hint>
         <mat-error *ngIf="rentDate.errors?.pattern">Please enter a valid Rent Date</mat-error>
         <mat-error *ngIf="rentDate.errors?.required">Rent Date is <strong>required</strong></mat-error>

@@ -4,7 +4,7 @@
     <form #formCar="ngForm" (ngSubmit)="saveCar(formCar)">
       <mat-form-field>
         <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
-               required placeholder="Registration Number" pattern="" appUniqueRegNumber>
+               required placeholder="Registration Number" pattern="\d{8}" appUniqueRegNumber>
         <mat-hint></mat-hint>
         <mat-error *ngIf="regNumber.errors?.pattern">Please enter a valid Registration Number</mat-error>
         <mat-error *ngIf="regNumber.errors?.required">Registration Number is <strong>required</strong></mat-error>
@@ -13,14 +13,14 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" name="color" ngModel #color="ngModel"
-               required placeholder="Color Of Car" pattern="[a-z]+">
+               required placeholder="Color Of Car" pattern="[a-z]{1,50}">
         <mat-hint></mat-hint>
         <mat-error *ngIf="color.errors?.pattern">Please enter a valid Color of Car</mat-error>
         <mat-error *ngIf="color.errors?.required">Color of Car is <strong>required</strong></mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" name="modelName" ngModel #modelName="ngModel"
-               required placeholder="Model of Name" pattern="[a-zA-Z0-9]+" appUniqueModelName>
+               required placeholder="Model of Name" pattern="[A-Z][a-zA-Z0-9\-]{1,50}" appUniqueModelName>
         <mat-hint></mat-hint>
         <mat-error *ngIf="modelName.errors?.pattern">Please enter a valid Model of Name</mat-error>
         <mat-error *ngIf="modelName.errors?.required">Model of Name is <strong>required</strong></mat-error>

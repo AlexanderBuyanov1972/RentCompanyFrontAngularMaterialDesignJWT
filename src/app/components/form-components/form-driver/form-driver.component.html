@@ -4,15 +4,15 @@
     <form #formDriver="ngForm" (ngSubmit)="saveDriver(formDriver)">
       <mat-form-field>
         <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
-               required placeholder="License Id" pattern="" appUniqueLicenseId>
+               required placeholder="License Id" pattern="\d{10}" appUniqueLicenseId>
         <mat-hint></mat-hint>
         <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
         <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
         <mat-error *ngIf="licenseId.errors?.isUniqueLicenseId">License Id is not<strong>unique</strong></mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" name="nameDriver" ngModel #nameDriver="ngModel"
-               required placeholder="Name Driver" pattern="[a-zA-Z]+">
+        <input matInput type="text" name="name" ngModel #nameDriver="ngModel"
+               required placeholder="Name Driver" pattern="[A-Z][a-z\-]{1,50}">
         <mat-hint></mat-hint>
         <mat-error *ngIf="nameDriver.errors?.pattern">Please enter a valid Name Driver</mat-error>
         <mat-error *ngIf="nameDriver.errors?.required">Name Driver is <strong>required</strong></mat-error>
