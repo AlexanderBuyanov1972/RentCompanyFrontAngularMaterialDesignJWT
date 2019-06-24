@@ -11,7 +11,7 @@ import {PathHttps} from '../models/constants/path-https';
 
 const urlHeroku = 'https://rentcarscompany.herokuapp.com';
 const urlLocalHost = 'http://localhost:8080';
-const url = urlLocalHost;
+const url = urlHeroku;
 
 @Injectable({
   providedIn: 'root'
