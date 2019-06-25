@@ -1,46 +1,37 @@
 <div style="margin: 100px">
   <mat-card>
-  <h2>Registration</h2>
-  <form #formUser="ngForm" (ngSubmit)="registration(formUser)">
-    <mat-form-field>
-      <input matInput type="email" name="email" ngModel #email="ngModel"
-             required placeholder="Email" pattern="[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" appUniqueEmail>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="email.errors?.pattern">Please enter a valid Email</mat-error>
-      <mat-error *ngIf="email.errors?.required">Email is <strong>required</strong></mat-error>
-      <mat-error *ngIf="email.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput type="text" name="role" ngModel #role="ngModel"
-             required placeholder="Role" pattern="[A-Z]+" appUniqueRole>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="role.errors?.pattern">Please enter a valid Role</mat-error>
-      <mat-error *ngIf="role.errors?.required">Role is <strong>required</strong></mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput type="password" name="password" ngModel #password="ngModel"
-             required placeholder="Password" pattern="[a-zA-Z0-9#$&]">
-      <mat-hint> pattern for password: "a-zA-Z0-9#$&"</mat-hint>
-      <mat-error *ngIf="password.errors?.pattern">Please enter a valid Password</mat-error>
-      <mat-error *ngIf="password.errors?.required">Password is <strong>required</strong></mat-error>
-    </mat-form-field>
-    <br>
-    <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Registration</button>
-  </form>
+    <h2>Registration</h2>
+    <!-----------------------------------Information window----------------------------------->
+    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+           style="color: red; font-size: large">
+    <!---------------------------------------------------------------------------------------->
+    <form #formUser="ngForm" (ngSubmit)="registration(formUser)">
+      <mat-form-field>
+        <input matInput type="email" name="email" ngModel #email="ngModel"
+               required placeholder="Email" [pattern]=emailPattern>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="email.errors?.pattern">{{emailValid}}</mat-error>
+        <mat-error *ngIf="email.errors?.required">{{emailRequired}}</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" name="role" ngModel #role="ngModel"
+               required placeholder="Role" [pattern]=rolePattern>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="role.errors?.pattern">{{roleValid}}</mat-error>
+        <mat-error *ngIf="role.errors?.required">{{roleRequired}}</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="password" name="password" ngModel #password="ngModel"
+               required placeholder="Password" [pattern]=passwordPattern>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="password.errors?.pattern">{{passwordValid}}</mat-error>
+        <mat-error *ngIf="password.errors?.required">{{passwordRequired}}</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Registration</button>
+    </form>
   </mat-card>
-<!--  <mat-card>-->
-<!--    <mat-card-header>-->
-<!--      <mat-card-title><h4>Registration using services</h4></mat-card-title>-->
-<!--      </mat-card-header>-->
-<!--    <mat-card-actions>-->
-<!--      <button class="service" mat-button color="primary">GOOGLE</button>-->
-<!--      <button class="service" mat-button color="warn">FACEBOOK</button>-->
-<!--      <button class="service" mat-button color="accent">TWITTER</button>-->
-<!--      <button class="service" mat-button color="primary">GITHUB</button>-->
-<!--    </mat-card-actions>-->
-<!--  </mat-card>-->
 </div>
 

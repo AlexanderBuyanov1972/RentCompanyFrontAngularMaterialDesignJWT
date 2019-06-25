@@ -3,6 +3,8 @@ import {AbstractRegistration} from '../../services/abstract-registration';
 import {AbstractAuthService} from '../../services/abstract-auth-service';
 import {Router} from '@angular/router';
 import {PathRoutes} from '../../models/constants/path-routes';
+import {Patterns} from '../../models/constants/patterns';
+import {ValidationErrors} from '../../models/constants/validation-errors';
 
 
 @Component({
@@ -13,6 +15,12 @@ import {PathRoutes} from '../../models/constants/path-routes';
 export class LoginComponent implements OnInit {
   emailUser: string;
   passwordUser: string;
+  emailPattern = Patterns.EMAIL;
+  passwordPattern = Patterns.PASSWORD;
+  emailValid = ValidationErrors.EMAIL_VALID;
+  emailRequired = ValidationErrors.EMAIL_REQUIRED;
+  passwordValid = ValidationErrors.PASSWORD_VALID;
+  passwordRequired = ValidationErrors.PASSWORD_REQUIRED;
 
   constructor(private serviceSecurity: AbstractRegistration,
               private authService: AbstractAuthService,

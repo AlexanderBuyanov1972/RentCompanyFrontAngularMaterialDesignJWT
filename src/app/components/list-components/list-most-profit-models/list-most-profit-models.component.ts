@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Model} from '../../../models/model';
 
@@ -10,25 +9,30 @@ import {Model} from '../../../models/model';
   templateUrl: './list-most-profit-models.component.html',
   styleUrls: ['./list-most-profit-models.component.css']
 })
-export class ListMostProfitModelsComponent implements OnInit {
+export class ListMostProfitModelsComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<Model>;
   displayedColumns: string[] = ['modelName', 'gasTank', 'company', 'country', 'priceDay'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) { }
+  messageResponse = '';
+
+  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
+  }
 
   ngOnInit() {
-    this.serviceRentCompany.getMostProfitModels().subscribe(
+    const subscription = this.serviceRentCompany.getMostProfitModels().subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as Model[]);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.messageResponse = value.message;
+        subscription.unsubscribe();
       }
     );
   }
 
   back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 
   applyFilter(filterValue: string) {
@@ -36,5 +40,8 @@ export class ListMostProfitModelsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  ngOnDestroy(): void {
   }
 }

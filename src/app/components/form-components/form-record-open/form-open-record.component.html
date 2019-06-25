@@ -1,41 +1,33 @@
 <div style="margin: 100px">
   <h4>Open New Record</h4>
   <div>
+    <!-----------------------------------Information window----------------------------------->
+    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+           style="color: red; font-size: large">
+    <!---------------------------------------------------------------------------------------->
     <form #formRentRecord="ngForm" (ngSubmit)="saveRentRecord(formRentRecord)">
       <mat-form-field>
         <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
-               required placeholder="License Id" pattern="\d{10}" appUniqueLicenseId>
+               required placeholder="License's Id" [pattern]=licenseIdPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
-        <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
-        <mat-error *ngIf="licenseId.errors?.isUniqueLicenseId">License Id is not<strong>unique</strong></mat-error>
+        <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
+        <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
-               required placeholder="Registration Number" pattern="\d{8}" appUniqueRegNumber>
+               required placeholder="Registration's Number" [pattern]=regNumberPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="regNumber.errors?.pattern">Please enter a valid Registration Number</mat-error>
-        <mat-error *ngIf="regNumber.errors?.required">Registration Number is <strong>required</strong></mat-error>
-        <mat-error *ngIf="regNumber.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="text" name="rentDate" ngModel #rentDate="ngModel"
-               required placeholder="Rent Date" pattern="\d{4}\-\d{2}\-\d{2}" appCheckRentDate>
-        <mat-hint></mat-hint>
-        <mat-error *ngIf="rentDate.errors?.pattern">Please enter a valid Rent Date</mat-error>
-        <mat-error *ngIf="rentDate.errors?.required">Rent Date is <strong>required</strong></mat-error>
-        <mat-error *ngIf="rentDate.errors?.checkRentDate">Rent Date is <strong>wrong</strong></mat-error>
+        <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
+        <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="number" name="rentDays" ngModel #rentDays="ngModel"
-               required placeholder="Rent Days" pattern="\d{1,3}">
+               required placeholder="Rent's Days" [pattern]=rentDaysPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="rentDays.errors?.pattern">Please enter a valid Rent Days</mat-error>
-        <mat-error *ngIf="rentDays.errors?.required">Rent Days is <strong>required</strong></mat-error>
+        <mat-error *ngIf="rentDays.errors?.pattern">{{rentDaysValid}}</mat-error>
+        <mat-error *ngIf="rentDays.errors?.required">{{rentDaysRequired}}</mat-error>
       </mat-form-field>
-      <button type="submit" [disabled]="formRentRecord.invalid">Save Open Record
-      </button>
+      <button type="submit" [disabled]="formRentRecord.invalid">Save Open Record</button>
     </form>
   </div>
 </div>

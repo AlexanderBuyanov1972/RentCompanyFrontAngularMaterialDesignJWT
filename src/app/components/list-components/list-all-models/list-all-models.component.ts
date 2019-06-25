@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -11,18 +11,21 @@ import {Model} from '../../../models/model';
   templateUrl: './list-all-models.component.html',
   styleUrls: ['./list-all-models.component.css']
 })
-export class ListAllModelsComponent implements OnInit {
+export class ListAllModelsComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<Model>;
   displayedColumns: string[] = ['modelName', 'gasTank', 'company', 'country', 'priceDay'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  messageResponse = '';
 
   constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
-    this.serviceRentCompany.getAllModels().subscribe(
+    const subscription = this.serviceRentCompany.getAllModels().subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as Model[]);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.messageResponse = value.message;
+        subscription.unsubscribe();
       }
     );
   }
@@ -31,7 +34,7 @@ export class ListAllModelsComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 
   applyFilter(filterValue: string) {
@@ -39,5 +42,8 @@ export class ListAllModelsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  ngOnDestroy(): void {
   }
 }

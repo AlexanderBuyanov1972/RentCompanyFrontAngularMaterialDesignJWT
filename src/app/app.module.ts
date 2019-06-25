@@ -13,17 +13,9 @@ import {ClearComponent} from './components/clear/clear.component';
 import {RemoveCarComponent} from './components/remove-car/remove-car.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
-import {UniqueModelNameDirective} from './directives/unique-model-name.directive';
-import {UniqueRegNumberDirective} from './directives/unique-reg-number.directive';
-import {UniqueLicenseIdDirective} from './directives/unique-license-id.directive';
-import {UniquePhoneNumberDirective} from './directives/unique-phone-number.directive';
-import {CheckRentDateDirective} from './directives/check-rent-date.directive';
 import {Check18YearDirective} from './directives/check-18-year.directive';
-import {CheckReturnDateDirective} from './directives/check-return-date.directive';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule, MatCardModule, MatPaginatorModule, MatSortModule} from '@angular/material';
-import {UniqueEmailDirective} from './directives/unique-email.directive';
-import {UniquePositionDirective} from './directives/unique-position.directive';
 import {HomeComponent} from './components/home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {AuthFirebaseService} from './services/auth-firebase.service';
@@ -126,15 +118,7 @@ const routes: Route[] = [
     RemoveCarComponent,
     ListGetDriverCarsComponent,
     ListGetCarDriversComponent,
-    UniqueModelNameDirective,
-    UniqueRegNumberDirective,
-    UniqueLicenseIdDirective,
-    UniquePhoneNumberDirective,
-    CheckRentDateDirective,
     Check18YearDirective,
-    CheckReturnDateDirective,
-    UniqueEmailDirective,
-    UniquePositionDirective,
     HomeComponent
   ],
   imports: [

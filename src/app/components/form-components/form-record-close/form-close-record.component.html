@@ -1,48 +1,40 @@
 <div style="margin: 100px">
   <h4>Close Record</h4>
   <div>
+    <!-----------------------------------Information window----------------------------------->
+    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+           style="color: red; font-size: large">
+    <!---------------------------------------------------------------------------------------->
     <form #formReturnRecord="ngForm" (ngSubmit)="saveReturnRecord(formReturnRecord)">
       <mat-form-field>
         <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
-               required placeholder="License Id" pattern="\d{10}" appUniqueLicenseId>
+               required placeholder="License's Id" [pattern]=licenseIdPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="licenseId.errors?.pattern">Please enter a valid License Id</mat-error>
-        <mat-error *ngIf="licenseId.errors?.required">License Id is <strong>required</strong></mat-error>
-        <mat-error *ngIf="licenseId.errors?.isUniqueLicenseId">License Id is not<strong>unique</strong></mat-error>
+        <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
+        <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
-               required placeholder="Registration Number" pattern="\d{8}" appUniqueRegNumber>
+               required placeholder="Registration's Number" [pattern]=regNumberPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="regNumber.errors?.pattern">Please enter a valid Registration Number</mat-error>
-        <mat-error *ngIf="regNumber.errors?.required">Registration Number is <strong>required</strong></mat-error>
-        <mat-error *ngIf="regNumber.errors?.isUniqueRegNumber">Registration Number is not<strong>unique</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="text" name="returnDate" ngModel #returnDate="ngModel"
-               required placeholder="Return Date" pattern="\d{4}\-\d{2}\-\d{2}" appCheckReturnDate>
-        <mat-hint></mat-hint>
-        <mat-error *ngIf="returnDate.errors?.pattern">Please enter a valid Return Date</mat-error>
-        <mat-error *ngIf="returnDate.errors?.required">Return Date is <strong>required</strong></mat-error>
-        <mat-error *ngIf="returnDate.errors?.checkReturnDate">Return Date is <strong>wrong</strong></mat-error>
+        <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
+        <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="number" name="gasTankPercent" ngModel #gasTankPercent="ngModel"
-               required placeholder="Gas Tank Percent" pattern="\d|[1-9]\d|100">
+               required placeholder="Gas Tank Percent" [pattern]=gasTankPercentPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="gasTankPercent.errors?.pattern">Please enter a valid Gas Tank Percent</mat-error>
-        <mat-error *ngIf="gasTankPercent.errors?.required">Gas Tank Percent is <strong>required</strong></mat-error>
+        <mat-error *ngIf="gasTankPercent.errors?.pattern">{{gasTankPercentValid}}</mat-error>
+        <mat-error *ngIf="gasTankPercent.errors?.required">{{gasTankPercentRequired}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="number" name="damages" ngModel #damages="ngModel"
-               required placeholder="Damages" pattern="\d|[1-9]\d|100">
+               required placeholder="Damages" [pattern]=damagesPattern>
         <mat-hint></mat-hint>
-        <mat-error *ngIf="damages.errors?.pattern">Please enter a valid Damages</mat-error>
-        <mat-error *ngIf="damages.errors?.required">Damages is <strong>required</strong></mat-error>
+        <mat-error *ngIf="damages.errors?.pattern">{{damagesValid}}</mat-error>
+        <mat-error *ngIf="damages.errors?.required">{{damagesRequired}}</mat-error>
       </mat-form-field>
-      <button type="submit" [disabled]="formReturnRecord.invalid">Save Open Record
-      </button>
+      <button type="submit" [disabled]="formReturnRecord.invalid">Save Open Record</button>
     </form>
   </div>
 </div>

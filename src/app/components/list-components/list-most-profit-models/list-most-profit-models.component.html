@@ -1,6 +1,10 @@
 <div style="margin: 100px">
   <h4>Get All Most Profit Models</h4>
   <div>
+    <!-----------------------------------Information window----------------------------------->
+    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+           style="color: red; font-size: large">
+    <!---------------------------------------------------------------------------------------->
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>

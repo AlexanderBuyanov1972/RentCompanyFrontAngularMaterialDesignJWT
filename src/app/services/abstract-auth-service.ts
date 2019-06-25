@@ -12,6 +12,7 @@ export abstract class AbstractAuthService {
   abstract isDriver(): boolean;
   abstract isStatist(): boolean;
   abstract isTechnician(): boolean;
+  abstract isEmail(email: string): boolean;
 
 
   abstract getUser(): User;

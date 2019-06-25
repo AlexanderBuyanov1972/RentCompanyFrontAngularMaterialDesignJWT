@@ -1,12 +1,16 @@
 <div style="margin: 100px">
   <h4>Get Profit Model</h4>
   <div>
+    <!-----------------------------------Information window----------------------------------->
+    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+           style="color: red; font-size: large">
+    <!---------------------------------------------------------------------------------------->
     <mat-form-field>
       <input matInput type="text" name="modelName" [(ngModel)]="modelNameCar" #modelName="ngModel"
-             required placeholder="Model name" pattern="">
+             required placeholder="Model's Name" [pattern]=modelNamePattern>
       <mat-hint></mat-hint>
-      <mat-error *ngIf="modelName.errors?.pattern">Please enter a valid Model name</mat-error>
-      <mat-error *ngIf="modelName.errors?.required">Model name is <strong>required</strong></mat-error>
+      <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>
+      <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
     </mat-form-field>
 
     <button mat-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>

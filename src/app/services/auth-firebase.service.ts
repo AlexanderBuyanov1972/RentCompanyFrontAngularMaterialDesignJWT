@@ -14,6 +14,7 @@ interface RegUser {
 
 export class AuthFirebaseService implements AbstractAuthService {
   user: firebase.User;
+  emails: string[] = [];
   admins: RegUser[] = [];
   clerks: RegUser[] = [];
   managers: RegUser[] = [];
@@ -55,6 +56,12 @@ export class AuthFirebaseService implements AbstractAuthService {
     fireAuth.authState.subscribe(
       user => this.user = user
     );
+    fireStore.collection('emails').valueChanges().subscribe(
+      emails => {
+        this.emails = emails as string[];
+      }
+    );
+
   }
 
   getUser(): User {
@@ -73,6 +80,9 @@ export class AuthFirebaseService implements AbstractAuthService {
 
   isAuth(): boolean {
     return !!this.user;
+  }
+  isEmail(email: string): boolean {
+    return !!this.emails.includes(email);
   }
 
   login(loginMethod: string, email?: string, password?: string) {
@@ -113,7 +123,7 @@ export class AuthFirebaseService implements AbstractAuthService {
       return false;
     }
     return !!this.managers.find(manager => manager.uid === this.user.uid);
-}
+  }
 
   isStatist(): boolean {
     if (!this.isAuth()) {

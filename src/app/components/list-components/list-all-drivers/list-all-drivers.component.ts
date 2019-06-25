@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
@@ -13,23 +13,29 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './list-all-drivers.component.html',
   styleUrls: ['./list-all-drivers.component.css']
 })
-export class ListAllDriversComponent implements OnInit {
+export class ListAllDriversComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<Driver>;
   displayedColumns: string[] = ['licenseId', 'name', 'birthYear', 'phone'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  messageResponse = '';
 
   constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
-    this.serviceRentCompany.getAllDrivers().subscribe(
-      value => {this.dataSource = new MatTableDataSource(value.content as Driver[]);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort; });
+    const subscription = this.serviceRentCompany.getAllDrivers().subscribe(
+      value => {
+        this.dataSource = new MatTableDataSource(value.content as Driver[]);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.messageResponse = value.message;
+        subscription.unsubscribe();
+      });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 
   applyFilter(filterValue: string) {
@@ -37,5 +43,8 @@ export class ListAllDriversComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  ngOnDestroy(): void {
   }
 }

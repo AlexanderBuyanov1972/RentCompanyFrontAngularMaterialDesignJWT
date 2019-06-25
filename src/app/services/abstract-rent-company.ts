@@ -8,7 +8,7 @@ import {DateDays} from '../models/DateDays';
 
 export abstract class AbstractRentCompany {
 
-  constructor() {
+  protected constructor() {
   }
 
   abstract addModel(model: Model): Observable<ResponseFrom>; // (OK,MODEL_EXISTS)

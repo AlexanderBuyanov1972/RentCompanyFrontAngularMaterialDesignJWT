@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AbstractRentCompany} from '../../../services/abstract-rent-company';
 import {Router} from '@angular/router';
 import {Car} from '../../../models/car';
@@ -12,18 +12,22 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./list-all-cars.component.css']
 })
 
-export class ListAllCarsComponent implements OnInit {
+export class ListAllCarsComponent implements OnInit, OnDestroy {
+
   dataSource: MatTableDataSource<Car>;
   displayedColumns: string[] = ['regNumber', 'color', 'modelName', 'inUse', 'flRemoved', 'state'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  messageResponse = '';
 
   constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
-    this.serviceRentCompany.getAllCars().subscribe(
+    const subscription = this.serviceRentCompany.getAllCars().subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as Car[]);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.messageResponse = value.message;
+        subscription.unsubscribe();
       }
     );
   }
@@ -32,7 +36,7 @@ export class ListAllCarsComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 
   applyFilter(filterValue: string) {
@@ -41,5 +45,8 @@ export class ListAllCarsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  ngOnDestroy(): void {
   }
 }
