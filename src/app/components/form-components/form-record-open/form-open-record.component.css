@@ -1,3 +1,28 @@
 mat-form-field{
   width: 100%;
 }
+.card{
+  margin: 2%;
+  height: 87%;
+}
+.card-header{
+
+}
+.header-avatar-image{
+
+}
+.card-title{
+
+}
+.card-subtitle{
+
+}
+.card-content{
+
+}
+.form-field{
+
+}
+.card-actions{
+  margin: 2% 0% 0% 0% ;
+}

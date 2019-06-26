@@ -15,7 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {Check18YearDirective} from './directives/check-18-year.directive';
 import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule, MatCardModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatListModule, MatPaginatorModule, MatSidenavModule, MatSortModule} from '@angular/material';
 import {HomeComponent} from './components/home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {AuthFirebaseService} from './services/auth-firebase.service';
@@ -52,6 +52,7 @@ import {GuardAuth} from './guards/guard-auth';
 import {GuardTechnician} from './guards/guard-technician';
 import {GuardStatist} from './guards/guard-statist';
 import {GuardDriver} from './guards/guard-driver';
+
 
 const routes: Route[] = [
   // ******************* General **********************************
@@ -136,7 +137,9 @@ const routes: Route[] = [
     MatTabsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [
     {provide: AbstractRentCompany, useExisting: RentCompanyService},

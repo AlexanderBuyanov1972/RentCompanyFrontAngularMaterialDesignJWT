@@ -16,19 +16,23 @@ export interface NavLink {
 })
 export class NavBarComponent implements OnInit {
   homeLink: NavLink = {path: PathRoutes.HOME_ROUTE, label: LabelRoutes.HOME_LABEL};
-  getModelLink: NavLink = {path: PathRoutes.GET_MODEL_ROUTE, label: LabelRoutes.GET_MODEL_LABEL};
-  getAllModelsLink: NavLink = {path: PathRoutes.GET_ALL_MODELS_ROUTE, label: LabelRoutes.GET_ALL_MODELS_LABEL};
   loginLink: NavLink = {path: PathRoutes.LOGIN_ROUTE, label: LabelRoutes.LOGIN_LABEL};
-  getCarLink: NavLink = {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL};
-  getAllCarsLink: NavLink = {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL};
+  // -------------------NO-AUTH---------------------------------
+  navLinksNoAuths: NavLink[] = [
+  {path: PathRoutes.GET_MODEL_ROUTE, label: LabelRoutes.GET_MODEL_LABEL},
+  {path: PathRoutes.GET_ALL_MODELS_ROUTE, label: LabelRoutes.GET_ALL_MODELS_LABEL}
+  ];
+  // -------------------AUTH---------------------------------
+  navLinksAuths: NavLink[] = [
+    {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
+    {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL}
+  ];
   // -------------------ADMIN---------------------------------
   navLinksAdmins: NavLink[] = [
     {path: PathRoutes.REGISTRATION_ROUTE, label: LabelRoutes.REGISTRATION_LABEL}
   ];
   // ---------------------CLERK-------------------------------
   navLinksClerks: NavLink[] = [
-    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
-    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
     {path: PathRoutes.ADD_DRIVER_ROUTE, label: LabelRoutes.ADD_DRIVER_LABEL},
     {path: PathRoutes.RENT_CAR_ROUTE, label: LabelRoutes.RENT_CAR_LABEL},
     {path: PathRoutes.RETURN_CAR_ROUTE, label: LabelRoutes.RETURN_CAR_LABEL},
@@ -49,23 +53,17 @@ export class NavBarComponent implements OnInit {
   ];
   // ----------------------------------------------DRIVER-------------------------------
   navLinksDrivers: NavLink[] = [
-    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
-    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
     {path: PathRoutes.GET_DRIVER_CARS_ROUTE, label: LabelRoutes.GET_DRIVER_CARS_LABEL},
     {path: PathRoutes.GET_CAR_DRIVERS_ROUTE, label: LabelRoutes.GET_CAR_DRIVERS_LABEL}
   ];
   // ---------------------STATIST-------------------------------
   navLinksStatists: NavLink[] = [
-    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
-    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
     {path: PathRoutes.MOST_POPULAR_MODELS_ROUTE, label: LabelRoutes.MOST_POPULAR_MODELS_LABEL},
     {path: PathRoutes.MOST_PROFIT_MODELS_ROUTE, label: LabelRoutes.MOST_PROFIT_MODELS_LABEL},
     {path: PathRoutes.GET_PROFIT_MODEL_FOR_STATIST_ROUTE, label: LabelRoutes.GET_PROFIT_MODEL_LABEL}
   ];
   // ---------------------TECHNICIAN-------------------------------
   navLinksTechnicians: NavLink[] = [
-    // {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
-    // {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL},
     {path: PathRoutes.GET_ALL_RECORDS_ROUTE, label: LabelRoutes.GET_ALL_RECORDS_LABEL}
   ];
 

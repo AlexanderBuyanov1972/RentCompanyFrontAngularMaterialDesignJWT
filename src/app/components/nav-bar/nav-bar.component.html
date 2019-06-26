@@ -1,73 +1,73 @@
 <nav mat-tab-nav-bar>
   <!--------------------------------------- For no authorization users ----------------------------------->
-  <label><h1>Rent Company LtD</h1></label>
+  <label mat-tab-link style="margin-left: 2% "><h1>Rent Company LtD</h1></label>
   <label mat-tab-link [routerLink]="homeLink.path" *ngIf="true">{{homeLink.label}}</label>
-  <label mat-tab-link [routerLink]="getModelLink.path" *ngIf="!isAdmin()">{{getModelLink.label}}</label>
-  <label mat-tab-link [routerLink]="getCarLink.path" *ngIf="isAuth() && !isAdmin()">{{getCarLink.label}}</label>
-  <label mat-tab-link [routerLink]="getAllModelsLink.path" *ngIf="!isAdmin()">{{getAllModelsLink.label}}</label>
-  <label mat-tab-link [routerLink]="getAllCarsLink.path" *ngIf="isAuth() && !isAdmin()">{{getAllCarsLink.label}}</label>
   <label mat-tab-link [routerLink]="loginLink.path" *ngIf="!isAuth()">{{loginLink.label}}</label>
-    <!--------------------------------------  For admins --------------------------------------------------->
-  <div *ngIf="isAdmin()">
-    <a mat-tab-link
-       *ngFor="let link of navLinksAdmins"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </div>
-  <!--------------------------------------  For clerks --------------------------------------------------->
-  <div *ngIf="isClerk()">
-    <a mat-tab-link
-       *ngFor="let link of navLinksClerks"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </div>
-  <!--------------------------------------  For managers --------------------------------------------------->
-  <div *ngIf="isManager()">
-    <a mat-tab-link
-       *ngFor="let link of navLinksManagers"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </div>
-  <!--------------------------------------  For drivers --------------------------------------------------->
-  <div *ngIf="isDriver()">
-    <a mat-tab-link
-       *ngFor="let link of navLinksDrivers"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </div>
-  <!--------------------------------------  For statists --------------------------------------------------->
-  <div *ngIf="isStatist()">
-    <a mat-tab-link
-       *ngFor="let link of navLinksStatists"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </div>
-  <!--------------------------------------  For technicians --------------------------------------------------->
-  <div *ngIf="isTechnician()">
-    <a mat-tab-link
-       *ngFor="let link of navLinksTechnicians"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-  </div>
+
   <!--------------------------------------- The LogOut ------------------------------------------------------>
-  <button mat-button color="warn" *ngIf="isAuth()" (click)="logout()" style="float: right">LogOut</button>
+  <button mat-tab-link class="btn-logout" mat-button color="warn" *ngIf="isAuth()" (click)="logout()">LogOut</button>
 </nav>
-<router-outlet></router-outlet>
+<!--************************************************************************************************-->
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened class="nav-panel">
+    <mat-nav-list>
+      <!--------------------------------------  For NO-authenticates --------------------------------------------------->
+      <div *ngIf="true">
+        <mat-list-item *ngFor="let link of navLinksNoAuths">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For authenticates --------------------------------------------------->
+      <div *ngIf="isAuth()">
+        <mat-list-item *ngFor="let link of navLinksAuths">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For admins --------------------------------------------------->
+      <div *ngIf="isAdmin()">
+        <mat-list-item *ngFor="let link of navLinksAdmins">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For clerks --------------------------------------------------->
+      <div *ngIf="isClerk()">
+        <mat-list-item *ngFor="let link of navLinksClerks">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For managers --------------------------------------------------->
+      <div *ngIf="isManager()">
+        <mat-list-item *ngFor="let link of navLinksManagers">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For drivers --------------------------------------------------->
+      <div *ngIf="isDriver()">
+        <mat-list-item *ngFor="let link of navLinksDrivers">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For statists --------------------------------------------------->
+      <div *ngIf="isStatist()">
+        <mat-list-item *ngFor="let link of navLinksStatists">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!--------------------------------------  For technicians --------------------------------------------------->
+      <div *ngIf="isTechnician()">
+        <mat-list-item *ngFor="let link of navLinksTechnicians">
+          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+        </mat-list-item>
+      </div>
+      <!----------------------------------------------------------------------------------------------------------------->
+    </mat-nav-list>
+  </mat-drawer>
+  <!--************************************************************************************************-->
+  <mat-drawer-content class="content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+<!--************************************************************************************************-->
+
+
+

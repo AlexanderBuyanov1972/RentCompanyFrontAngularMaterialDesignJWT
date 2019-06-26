@@ -1,40 +1,47 @@
-<div style="margin: 100px">
-  <h4>Close Record</h4>
-  <div>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <div mat-card-avatar class="header-avatar-image"></div>
+    <mat-card-title class="card-title"><h4>Close record</h4></mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      <!-----------------------------------Information window----------------------------------->
+      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+             style="color: red; font-size: large">
+      <!---------------------------------------------------------------------------------------->
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="card-content">
     <form #formReturnRecord="ngForm" (ngSubmit)="saveReturnRecord(formReturnRecord)">
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
                required placeholder="License's Id" [pattern]=licenseIdPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
         <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
                required placeholder="Registration's Number" [pattern]=regNumberPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
         <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="number" name="gasTankPercent" ngModel #gasTankPercent="ngModel"
                required placeholder="Gas Tank Percent" [pattern]=gasTankPercentPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="gasTankPercent.errors?.pattern">{{gasTankPercentValid}}</mat-error>
         <mat-error *ngIf="gasTankPercent.errors?.required">{{gasTankPercentRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="number" name="damages" ngModel #damages="ngModel"
                required placeholder="Damages" [pattern]=damagesPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="damages.errors?.pattern">{{damagesValid}}</mat-error>
         <mat-error *ngIf="damages.errors?.required">{{damagesRequired}}</mat-error>
       </mat-form-field>
+      <mat-card-actions class="card-actions">
       <button type="submit" [disabled]="formReturnRecord.invalid">Save Open Record</button>
+      </mat-card-actions>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

@@ -1,26 +1,31 @@
-<div style="margin: 100px">
-  <h4>Add New Driver</h4>
-  <div>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <div mat-card-avatar class="header-avatar-image"></div>
+    <mat-card-title class="card-title"><h4>Add New Driver</h4></mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      <!-----------------------------------Information window----------------------------------->
+      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+             style="color: red; font-size: large">
+      <!---------------------------------------------------------------------------------------->
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="card-content">
     <form #formDriver="ngForm" (ngSubmit)="saveDriver(formDriver)">
-      <mat-form-field>
+      <mat-form-field  class="form-field">
         <input matInput type="text" name="licenseId" ngModel #licenseId="ngModel"
                required placeholder="License's Id" [pattern]=licenseIdDriver>
         <mat-hint></mat-hint>
         <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
         <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field  class="form-field">
         <input matInput type="text" name="name" ngModel #nameDriver="ngModel"
                required placeholder="Driver's Name" [pattern]=nameUser>
         <mat-hint></mat-hint>
         <mat-error *ngIf="nameDriver.errors?.pattern">{{nameDriverValid}}</mat-error>
         <mat-error *ngIf="nameDriver.errors?.required">{{nameDriverRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field  class="form-field">
         <input matInput type="text" name="birthYear" ngModel #birthYear="ngModel"
                required placeholder="Birth Year" [pattern]=year appCheck18Year>
         <mat-hint></mat-hint>
@@ -28,15 +33,17 @@
         <mat-error *ngIf="birthYear.errors?.required">{{birthYearRequired}}</mat-error>
         <mat-error *ngIf="birthYear.errors?.haveNot18Years">{{birthYearLess}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field  class="form-field">
         <input matInput type="text" name="phone" ngModel #phone="ngModel"
                required placeholder="Phone's Number" [pattern]=phoneNumber>
         <mat-hint></mat-hint>
         <mat-error *ngIf="phone.errors?.pattern">{{phoneNumberValid}}</mat-error>
         <mat-error *ngIf="phone.errors?.required">{{phoneNumberRequired}}</mat-error>
       </mat-form-field>
+      <mat-card-actions class="card-actions">
       <button type="submit" [disabled]="formDriver.invalid">Save Driver
       </button>
+      </mat-card-actions>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

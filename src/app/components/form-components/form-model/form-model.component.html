@@ -1,48 +1,54 @@
-<div style="margin: 100px">
-  <h4>Add New Model</h4>
-  <div>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <div mat-card-avatar class="header-avatar-image"></div>
+    <mat-card-title class="card-title"><h4>Add New Model</h4></mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      <!-----------------------------------Information window----------------------------------->
+      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+             style="color: red; font-size: large">
+      <!---------------------------------------------------------------------------------------->
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="card-content">
     <form #formModel="ngForm" (ngSubmit)="saveModel(formModel)">
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="modelName" ngModel #modelName="ngModel"
                required placeholder="Model's Name" [pattern]=modelNamePattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>
         <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="number" name="gasTank" ngModel #gasTank="ngModel"
                required placeholder="Tank's Gas" [pattern]=twoDigits>
         <mat-hint></mat-hint>
         <mat-error *ngIf="gasTank.errors?.pattern">{{gasTankValid}}</mat-error>
         <mat-error *ngIf="gasTank.errors?.required">{{gasTankRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="company" ngModel #company="ngModel"
                required placeholder="Company" [pattern]=companyPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="company.errors?.pattern">{{companyValid}}</mat-error>
         <mat-error *ngIf="company.errors?.required">{{companyRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="country" ngModel #country="ngModel"
                required placeholder="Сountry" [pattern]=countryPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="country.errors?.pattern">{{countryValid}}</mat-error>
         <mat-error *ngIf="country.errors?.required">{{countryRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="number" name="priceDay" ngModel #priceDay="ngModel"
                required placeholder="Day's Price" [pattern]=priceDayPattern>
         <mat-hint></mat-hint>
         <mat-error *ngIf="priceDay.errors?.pattern">{{priceDayValid}}</mat-error>
         <mat-error *ngIf="priceDay.errors?.required">{{priceDayRequired}}</mat-error>
       </mat-form-field>
-      <button type="submit" [disabled]="formModel.invalid">Save Model
-      </button>
+      <mat-card-actions class="card-actions">
+        <button type="submit" [disabled]="formModel.invalid">Save Model</button>
+      </mat-card-actions>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

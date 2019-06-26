@@ -1,34 +1,41 @@
-<div style="margin: 100px">
-  <h4>Add New Car</h4>
-  <div>
-<!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-<!---------------------------------------------------------------------------------------->
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <div mat-card-avatar class="header-avatar-image"></div>
+    <mat-card-title class="card-title"><h4>Add New Car</h4></mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      <!-----------------------------------Information window----------------------------------->
+      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
+             style="color: red; font-size: large">
+      <!---------------------------------------------------------------------------------------->
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="card-content">
     <form #formCar="ngForm" (ngSubmit)="saveCar(formCar)">
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
                required placeholder="Registration's Number" [pattern]=registrationNumber>
         <mat-hint></mat-hint>
         <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
         <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="color" ngModel #color="ngModel"
                required placeholder="Car's Color" [pattern]=colorCar>
         <mat-hint></mat-hint>
         <mat-error *ngIf="color.errors?.pattern">{{colorValid}}</mat-error>
         <mat-error *ngIf="color.errors?.required">{{colorRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <input matInput type="text" name="modelName" ngModel #modelName="ngModel"
                required placeholder="Model's Name" [pattern]=modelNameCar>
         <mat-hint></mat-hint>
         <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>
         <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
-        </mat-form-field>
-      <button type="submit" [disabled]="formCar.invalid">Save Car</button>
+      </mat-form-field>
+      <mat-card-actions class="card-actions">
+        <button type="submit" [disabled]="formCar.invalid">Save Car</button>
+      </mat-card-actions>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>
 

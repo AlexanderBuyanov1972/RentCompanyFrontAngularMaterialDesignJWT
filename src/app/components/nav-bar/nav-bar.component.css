@@ -2,3 +2,23 @@
   height: 10vh;
   overflow-y: auto;
 }
+
+.container {
+  width: auto;
+  height: 80%;
+  margin: 2% 2%;
+  border: 2px solid #555;
+}
+
+.content{
+  width: auto;
+  height: 91%;
+  margin: 2% 2%;
+  border: 2px solid #555;
+}
+.nav-panel{
+  min-width: 300px;
+}
+.btn-logout{
+/*margin-right: 2%;*/
+}
