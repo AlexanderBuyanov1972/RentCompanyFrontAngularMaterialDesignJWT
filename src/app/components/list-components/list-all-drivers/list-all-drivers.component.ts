@@ -34,10 +34,6 @@ export class ListAllDriversComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {

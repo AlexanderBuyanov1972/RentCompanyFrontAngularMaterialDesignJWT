@@ -1,3 +1,10 @@
-button{
-  margin: 20px 20px;
+.form-field{
+  width: 45%;
+  display: inline-block;
+}
+.mat-card{
+  margin: 2% 2% 2% 2%;
+}
+th, td{
+  width: 40%;
 }

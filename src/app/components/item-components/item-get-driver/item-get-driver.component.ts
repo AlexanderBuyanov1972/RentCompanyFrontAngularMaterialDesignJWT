@@ -37,10 +37,6 @@ export class ItemGetDriverComponent implements OnInit, OnDestroy {
     );
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   ngOnDestroy(): void {
   }
 

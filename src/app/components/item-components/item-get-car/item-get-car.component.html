@@ -1,14 +1,8 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <div mat-card-avatar class="header-avatar-image"></div>
-    <mat-card-title class="card-title"><h4>Get Car</h4></mat-card-title>
-    <mat-card-subtitle class="card-subtitle">
-      <!-----------------------------------Information window----------------------------------->
-      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-             style="color: red; font-size: large">
-      <!---------------------------------------------------------------------------------------->
-    </mat-card-subtitle>
-  </mat-card-header>
+  <div class="">
+    <p>Get Car</p>
+    <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
+  </div>
   <mat-card-content class="card-content">
     <mat-form-field class="form-field">
       <input matInput type="text" name="regNumber" [(ngModel)]="regNumberCar" #regNumber="ngModel"
@@ -17,12 +11,8 @@
       <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
       <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
     </mat-form-field>
-    <mat-card-actions class="card-actions">
-      <button mat-button [disabled]="regNumber.invalid" (click)="submitRegNumber()">Get</button>
-      <button mat-button (click)="back()">Back</button>
-    </mat-card-actions>
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <button mat-raised-button color="accent" [disabled]="regNumber.invalid" (click)="submitRegNumber()">Get</button>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
       <!-- Registration number Column -->
       <ng-container matColumnDef="regNumber">
         <th mat-header-cell *matHeaderCellDef> Registration number</th>

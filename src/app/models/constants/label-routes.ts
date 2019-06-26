@@ -19,8 +19,8 @@ export class LabelRoutes {
   static REMOVE_CAR_LABEL = 'Remove Car';
   static CLEAR_CARS_LABEL = 'Clear cars';
 // -------------------------------------------------------------
-  static GET_DRIVER_CARS_LABEL = 'Get Driver Cars';
-  static GET_CAR_DRIVERS_LABEL = 'Get Car Drivers';
+  static GET_DRIVER_CARS_LABEL = 'Get Driver\'s Cars';
+  static GET_CAR_DRIVERS_LABEL = 'Get Car\'s Drivers';
 // -------------------------------------------------------------
   static GET_ALL_MODELS_LABEL = 'Get All Models';
   static GET_ALL_CARS_LABEL = 'Get All Cars';

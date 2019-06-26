@@ -1,32 +1,16 @@
-td, th{
+td, th {
   width: 30%;
 }
-mat-form-field{
+
+mat-form-field {
   width: 100%;
 }
-.card{
+
+.card {
   margin: 2%;
   height: 87%;
 }
-.card-header{
 
+p {
+  display: inline-block;
 }
-.header-avatar-image{
-
-}
-.card-title{
-
-}
-.card-subtitle{
-
-}
-.card-content{
-
-}
-.form-field{
-
-}
-.card-actions{
-  margin: 2% 0% 0% 0% ;
-}
-

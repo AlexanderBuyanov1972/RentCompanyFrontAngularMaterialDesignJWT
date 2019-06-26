@@ -38,10 +38,6 @@ export class ItemGetModelComponent implements OnInit, OnDestroy {
     );
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   ngOnDestroy(): void {
 
   }

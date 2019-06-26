@@ -1,23 +1,20 @@
-<div style="margin: 100px">
-  <h4>Get All Driver Cars</h4>
-  <div>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
-    <mat-form-field>
-      <input matInput type="text" name="licenseId" [(ngModel)]="licenseIdDriver" #licenseId="ngModel"
-             required placeholder="License's Id" [pattern]=licenseIdPattern>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
-      <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
-    </mat-form-field>
-    </div>
+<mat-list class="list">
+  <div class="">
+    <p>Get Car's Drivers</p>
+    <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
+  </div>
+  <mat-form-field>
+    <input matInput type="text" name="licenseId" [(ngModel)]="licenseIdDriver" #licenseId="ngModel"
+           required placeholder="License's Id" [pattern]=licenseIdPattern>
+    <mat-hint></mat-hint>
+    <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
+    <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
+  </mat-form-field>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
 
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z0">
     <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- Registration number Column -->
@@ -38,17 +35,17 @@
         <td mat-cell *matCellDef="let row"> {{row.modelName}} </td>
       </ng-container>
 
-      <!-- In Use Column -->
-      <ng-container matColumnDef="inUse">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> In Use</th>
-        <td mat-cell *matCellDef="let row"> {{row.inUse}} </td>
-      </ng-container>
+<!--      &lt;!&ndash; In Use Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="inUse">-->
+<!--        <th mat-header-cell *matHeaderCellDef mat-sort-header> In Use</th>-->
+<!--        <td mat-cell *matCellDef="let row"> {{row.inUse}} </td>-->
+<!--      </ng-container>-->
 
-      <!-- Removed Column -->
-      <ng-container matColumnDef="flRemoved">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Removed</th>
-        <td mat-cell *matCellDef="let row"> {{row.flRemoved}} </td>
-      </ng-container>
+<!--      &lt;!&ndash; Removed Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="flRemoved">-->
+<!--        <th mat-header-cell *matHeaderCellDef mat-sort-header> Removed</th>-->
+<!--        <td mat-cell *matCellDef="let row"> {{row.flRemoved}} </td>-->
+<!--      </ng-container>-->
 
       <!-- state Column -->
       <ng-container matColumnDef="state">
@@ -61,8 +58,7 @@
       </tr>
     </table>
     <button mat-button color="primary" [disabled]="licenseId.invalid" (click)="submitLicenseId()">Get</button>
-    <button mat-button color="primary" (click)="back()">Back</button>
     <button mat-button color="primary" (click)="reset()">Reset</button>
-    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]"></mat-paginator>
   </div>
-</div>
+</mat-list>

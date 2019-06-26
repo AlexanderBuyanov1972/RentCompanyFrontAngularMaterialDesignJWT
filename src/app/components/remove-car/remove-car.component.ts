@@ -20,10 +20,6 @@ export class RemoveCarComponent implements OnInit, OnDestroy {
   constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   removeCar(formCar: NgForm) {
     const subscription = this.serviceRentCompany.removeCar(formCar.value.regNumber).subscribe(
       value => {

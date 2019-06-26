@@ -1,71 +1,67 @@
-<div style="margin: 100px">
-  <h4>Get All Records</h4>
-  <div>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-
-    <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort>
-
-        <!-- License ID Column -->
-        <ng-container matColumnDef="licenseId">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> License's ID</th>
-          <td mat-cell *matCellDef="let row"> {{row.licenseId}} </td>
-        </ng-container>
-
-        <!-- Reg Number Column -->
-        <ng-container matColumnDef="regNumber">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Registration's Number</th>
-          <td mat-cell *matCellDef="let row"> {{row.regNumber}}</td>
-        </ng-container>
-
-        <!-- rentDate Column -->
-        <ng-container matColumnDef="rentDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rent's Date</th>
-          <td mat-cell *matCellDef="let row"> {{row.rentDate}} </td>
-        </ng-container>
-
-        <!-- returnDate Column -->
-        <ng-container matColumnDef="returnDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Return's Date</th>
-          <td mat-cell *matCellDef="let row"> {{row.returnDate}} </td>
-        </ng-container>
-
-        <!-- gasTankPercent Column -->
-        <ng-container matColumnDef="gasTankPercent">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gas Tank Percent</th>
-          <td mat-cell *matCellDef="let row"> {{row.gasTankPercent}} </td>
-        </ng-container>
-
-        <!-- rentDays Column -->
-        <ng-container matColumnDef="rentDays">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rent's Days</th>
-          <td mat-cell *matCellDef="let row"> {{row.rentDays}} </td>
-        </ng-container>
-
-        <!-- damages Column -->
-        <ng-container matColumnDef="damages">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Damages</th>
-          <td mat-cell *matCellDef="let row"> {{row.damages}} </td>
-        </ng-container>
-
-        <!-- cost Column -->
-        <ng-container matColumnDef="cost">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost</th>
-          <td mat-cell *matCellDef="let row"> {{row.cost}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-        </tr>
-      </table>
-      <button mat-button color="primary" (click)="back()">Back</button>
-      <mat-paginator [pageSizeOptions]="[ 10, 25, 50, 100]"></mat-paginator>
-    </div>
+<mat-list class="list">
+  <div class="">
+    <p>Get All Records</p>
+    <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
   </div>
-</div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <div class="mat-elevation-z0">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- License ID Column -->
+      <ng-container matColumnDef="licenseId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> License's ID</th>
+        <td mat-cell *matCellDef="let row"> {{row.licenseId}} </td>
+      </ng-container>
+
+      <!-- Reg Number Column -->
+      <ng-container matColumnDef="regNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Registration's Number</th>
+        <td mat-cell *matCellDef="let row"> {{row.regNumber}}</td>
+      </ng-container>
+
+      <!-- rentDate Column -->
+      <ng-container matColumnDef="rentDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rent's Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.rentDate}} </td>
+      </ng-container>
+
+      <!-- returnDate Column -->
+      <ng-container matColumnDef="returnDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Return's Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.returnDate}} </td>
+      </ng-container>
+
+      <!-- gasTankPercent Column -->
+      <ng-container matColumnDef="gasTankPercent">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Gas Tank Percent</th>
+        <td mat-cell *matCellDef="let row"> {{row.gasTankPercent}} </td>
+      </ng-container>
+
+      <!-- rentDays Column -->
+      <ng-container matColumnDef="rentDays">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rent's Days</th>
+        <td mat-cell *matCellDef="let row"> {{row.rentDays}} </td>
+      </ng-container>
+
+      <!-- damages Column -->
+      <ng-container matColumnDef="damages">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Damages</th>
+        <td mat-cell *matCellDef="let row"> {{row.damages}} </td>
+      </ng-container>
+
+      <!-- cost Column -->
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost</th>
+        <td mat-cell *matCellDef="let row"> {{row.cost}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[ 5, 10, 20, 50]"></mat-paginator>
+  </div>
+</mat-list>

@@ -1,19 +1,16 @@
-<div style="margin: 100px">
-  <h2>Remove Car</h2>
-  <!-----------------------------------Information window----------------------------------->
-  <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-         style="color: red; font-size: large">
-  <!---------------------------------------------------------------------------------------->
+<mat-card class="mat-card">
+  <div class="">
+    <p>Remove car</p>
+    <p style="color: red; font-size: x-large;  float: right">{{messageResponse}}</p>
+  </div>
   <form #formCar="ngForm" (ngSubmit)="removeCar(formCar)">
-    <mat-form-field>
+    <mat-form-field class="mat-form-field">
       <input matInput type="text" name="regNumber" ngModel #regNumber="ngModel"
              required placeholder="Registration's Number" [pattern]=regNumberPattern>
       <mat-hint></mat-hint>
       <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
       <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
     </mat-form-field>
-    <button mat-button color="primary" type="submit" [disabled]="formCar.invalid">Submit</button>
-    <button mat-button color="warn" type="button" (click)="back()">Back</button>
+    <button mat-raised-button color="accent" type="submit" [disabled]="formCar.invalid">Submit</button>
   </form>
-  <span>Messages :   {{messageResponse}}</span>
-</div>
+</mat-card>

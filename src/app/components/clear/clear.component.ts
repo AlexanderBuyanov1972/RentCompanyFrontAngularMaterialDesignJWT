@@ -42,10 +42,6 @@ export class ClearComponent implements OnInit, OnDestroy {
     );
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

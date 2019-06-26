@@ -1,12 +1,10 @@
-<div style="margin: 100px">
-  <mat-card>
-    <h2>Registration</h2>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
+<mat-card class="mat-card">
+<div class="">
+  <p>Registration</p>
+  <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
+</div>
     <form #formUser="ngForm" (ngSubmit)="registration(formUser)">
-      <mat-form-field>
+      <mat-form-field class="mat-form-field">
         <input matInput type="email" name="email" ngModel #email="ngModel"
                required placeholder="Email" [pattern]=emailPattern>
         <mat-hint></mat-hint>
@@ -14,7 +12,7 @@
         <mat-error *ngIf="email.errors?.required">{{emailRequired}}</mat-error>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field  class="mat-form-field">
         <input matInput type="text" name="role" ngModel #role="ngModel"
                required placeholder="Role" [pattern]=rolePattern>
         <mat-hint></mat-hint>
@@ -22,7 +20,7 @@
         <mat-error *ngIf="role.errors?.required">{{roleRequired}}</mat-error>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field  class="mat-form-field">
         <input matInput type="password" name="password" ngModel #password="ngModel"
                required placeholder="Password" [pattern]=passwordPattern>
         <mat-hint></mat-hint>
@@ -32,6 +30,4 @@
       <br>
       <button mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Registration</button>
     </form>
-  </mat-card>
-</div>
-
+</mat-card>

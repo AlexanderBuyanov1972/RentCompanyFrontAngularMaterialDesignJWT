@@ -41,10 +41,6 @@ export class ListGetCarDriversComponent implements OnInit, OnDestroy {
     );
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   reset() {
     this.regNumber = '';
   }

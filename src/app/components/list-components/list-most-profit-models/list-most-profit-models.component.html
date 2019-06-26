@@ -1,15 +1,13 @@
-<div style="margin: 100px">
-  <h4>Get All Most Profit Models</h4>
-  <div>
-    <!-----------------------------------Information window----------------------------------->
-    <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-           style="color: red; font-size: large">
-    <!---------------------------------------------------------------------------------------->
+<mat-list class="list">
+    <div class="">
+      <p>Get All Most Profit Models</p>
+      <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
+    </div>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
 
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z0">
       <table mat-table [dataSource]="dataSource" matSort>
 
         <!-- modelName Column -->
@@ -46,8 +44,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;">
         </tr>
       </table>
-      <button mat-button color="primary" (click)="back()">Back</button>
       <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
     </div>
-  </div>
-</div>
+</mat-list>

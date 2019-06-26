@@ -33,10 +33,6 @@ export class ItemGetProfitModelComponent implements OnInit, OnDestroy {
     );
   }
 
-  back() {
-    this.router.navigate(['/']).then();
-  }
-
   ngOnDestroy(): void {
   }
 

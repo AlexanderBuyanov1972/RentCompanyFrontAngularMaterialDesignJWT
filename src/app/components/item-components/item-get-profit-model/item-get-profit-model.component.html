@@ -1,14 +1,8 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <div mat-card-avatar class="header-avatar-image"></div>
-    <mat-card-title class="card-title"><h4>Get Profit Model</h4></mat-card-title>
-    <mat-card-subtitle class="card-subtitle">
-      <!-----------------------------------Information window----------------------------------->
-      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-             style="color: red; font-size: large">
-      <!---------------------------------------------------------------------------------------->
-    </mat-card-subtitle>
-  </mat-card-header>
+  <div class="">
+    <p>Get Profit Model</p>
+    <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
+  </div>
   <mat-card-content class="card-content">
     <mat-form-field class="form-field">
       <input matInput type="text" name="modelName" [(ngModel)]="modelNameCar" #modelName="ngModel"
@@ -18,11 +12,13 @@
       <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
     </mat-form-field>
     <mat-card-actions class="card-actions">
-    <button mat-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>
-    <button mat-button (click)="back()">Back</button>
+    <button mat-raised-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>
     </mat-card-actions>
+    <hr>
     <mat-card-content class="cart-content">
+      <h2>
       Cost Model Name: {{modelCost}} is {{cost}} ILS;
+      </h2>
     </mat-card-content>
   </mat-card-content>
 </mat-card>

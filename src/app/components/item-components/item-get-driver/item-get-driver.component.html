@@ -1,14 +1,8 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <div mat-card-avatar class="header-avatar-image"></div>
-    <mat-card-title class="card-title"><h4>Get Driver</h4></mat-card-title>
-    <mat-card-subtitle class="card-subtitle">
-      <!-----------------------------------Information window----------------------------------->
-      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-             style="color: red; font-size: large">
-      <!---------------------------------------------------------------------------------------->
-    </mat-card-subtitle>
-  </mat-card-header>
+  <div class="">
+    <p>Get Driver</p>
+    <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
+  </div>
   <mat-card-content class="card-content">
     <mat-form-field class="form-field">
       <input matInput type="text" name="licenseId" [(ngModel)]="licenseIdDriver" #licenseId="ngModel"
@@ -17,11 +11,8 @@
       <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
       <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
     </mat-form-field>
-    <mat-card-actions class="card-actions">
-    <button mat-button [disabled]="licenseId.invalid" (click)="submitLicenseId()">Get</button>
-    <button mat-button (click)="back()">Back</button>
-    </mat-card-actions>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <button mat-raised-button color="accent" [disabled]="licenseId.invalid" (click)="submitLicenseId()">Get</button>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
       <!-- License Id Column -->
       <ng-container matColumnDef="licenseId">
         <th mat-header-cell *matHeaderCellDef> License Id</th>

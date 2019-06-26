@@ -1,16 +1,9 @@
-button{
-  margin: 20px 20px;
+p{
+  display: inline-block;
 }
-
-input{
-  width: 100%;
+.mat-form-field{
+  width:100%;
 }
-.service{
-  width: 23%;
-}
-h4{
-  text-align: center;
-}
-mat-card{
-  margin: 10px 50px;
+.mat-card{
+  margin: 5% 5% 5% 5%;
 }

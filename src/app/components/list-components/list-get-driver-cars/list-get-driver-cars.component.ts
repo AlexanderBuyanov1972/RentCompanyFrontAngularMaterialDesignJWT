@@ -17,7 +17,7 @@ import {ValidationErrors} from '../../../models/constants/validation-errors';
 export class ListGetDriverCarsComponent implements OnInit, OnDestroy {
   licenseIdDriver = '';
   dataSource: MatTableDataSource<Car>;
-  displayedColumns: string[] = ['regNumber', 'color', 'modelName', 'inUse', 'flRemoved', 'state'];
+  displayedColumns: string[] = ['regNumber', 'color', 'modelName', 'state'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   licenseIdPattern = Patterns.LICENSE_ID;
@@ -38,10 +38,6 @@ export class ListGetDriverCarsComponent implements OnInit, OnDestroy {
         subscription.unsubscribe();
       }
     );
-  }
-
-  back() {
-    this.router.navigate(['/']).then();
   }
 
   reset() {
