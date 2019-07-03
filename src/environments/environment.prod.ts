@@ -1,11 +1,13 @@
 export const environment = {
-  production: true,  firebase: {
-    apiKey: 'AIzaSyCKIwH725VnBZXA1BwW7FqC_oy-Kff_ubQ',
-    authDomain: 'rent-cars-company.firebaseapp.com',
-    databaseURL: 'https://rent-cars-company.firebaseio.com',
-    projectId: 'rent-cars-company',
-    storageBucket: '',
-    messagingSenderId: '859002533618',
-    appId: '1:859002533618:web:fb3ee695c8f8cc44'
+  production: true, firebase: {
+    production: false, firebase: {
+      apiKey: 'AIzaSyBh-5aV7D8YVne12bCj5OJK-Jbqw3o2LFg',
+      authDomain: 'rent-cars-front.firebaseapp.com',
+      databaseURL: 'https://rent-cars-front.firebaseio.com',
+      projectId: 'rent-cars-front',
+      storageBucket: '',
+      messagingSenderId: '368390924387',
+      appId: '1:368390924387:web:838886437d3e15c6'
+    }
   }
 };
