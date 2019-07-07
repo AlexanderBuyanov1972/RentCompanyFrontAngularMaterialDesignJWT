@@ -49,10 +49,5 @@ export class FormCarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  // const subscription = this.serviceRentCompany.addCar(car).subscribe(
-  //   value => {
-  //     formCar.reset();
-  //     subscription.unsubscribe();
-  //   }
-  // );
+
 }

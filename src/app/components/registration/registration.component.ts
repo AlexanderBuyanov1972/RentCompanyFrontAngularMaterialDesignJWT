@@ -1,8 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AbstractRegistration, User} from '../../services/abstract-registration';
 import {Patterns} from '../../models/constants/patterns';
 import {ValidationErrors} from '../../models/constants/validation-errors';
+import {ActivatedRoute} from '@angular/router';
+import {LabelRoutes} from '../../models/constants/label-routes';
 
 @Component({
   selector: 'app-registration',
@@ -11,6 +13,7 @@ import {ValidationErrors} from '../../models/constants/validation-errors';
 })
 
 export class RegistrationComponent implements OnInit, OnDestroy {
+  @Output()
   emailPattern = Patterns.EMAIL;
   passwordPattern = Patterns.PASSWORD;
   rolePattern = Patterns.ROLE;
@@ -21,22 +24,83 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   passwordValid = ValidationErrors.PASSWORD_VALID;
   passwordRequired = ValidationErrors.PASSWORD_REQUIRED;
   messageResponse = '';
+  private action: string;
+  private addAccount = LabelRoutes.ADD_ACCOUNT_LABEL;
+  private updateAccount = LabelRoutes.UPDATE_ACCOUNT_LABEL;
+  private removeAccount = LabelRoutes.REMOVE_ACCOUNT_LABEL;
+  private getAccount = LabelRoutes.GET_ACCOUNT_LABEL;
+  emailUser = '';
+  roleUser = '';
+  passwordUser = '';
+  nameOperation: any;
 
-  constructor(private serviceSecurity: AbstractRegistration) {
+  constructor(private registrationService: AbstractRegistration,
+              private route: ActivatedRoute) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.route.paramMap.subscribe(
+      param => {
+        this.action = param.get('action');
+        this.messageResponse = '';
+      }
+    );
+  }
+
 
   registration(formUser: NgForm) {
-    const subscription = this.serviceSecurity.addAccount(formUser.value as User).subscribe(
+    const subscription = this.registrationService.registration(formUser.value as User, this.action).subscribe(
       value => {
-        formUser.resetForm();
-        console.log(value.message);
+        if (value.content != null) {
+          const user = value.content as User;
+          this.emailUser = user.username;
+          this.roleUser = user.role;
+          this.passwordUser = user.password;
+        } else {
+          formUser.resetForm();
+        }
         this.messageResponse = value.message;
         subscription.unsubscribe();
       }
     );
   }
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {
+  }
+
+  isAddAccount(): boolean {
+    if (this.action === this.addAccount) {
+      this.nameOperation = LabelRoutes.ADD_ACCOUNT_LABEL;
+      return true;
+    }
+    return false;
+  }
+
+  isUpdateAccount(): boolean {
+    if (this.action === this.updateAccount) {
+      this.nameOperation = LabelRoutes.UPDATE_ACCOUNT_LABEL;
+      return true;
+    }
+    return false;
+  }
+
+  isRemoveAccount(): boolean {
+    if (this.action === this.removeAccount) {
+      this.nameOperation = LabelRoutes.REMOVE_ACCOUNT_LABEL;
+      return true;
+    }
+    return false;
+  }
+
+  isGetAccount(): boolean {
+    if (this.action === this.getAccount) {
+      this.nameOperation = LabelRoutes.GET_ACCOUNT_LABEL;
+      return true;
+    }
+    return false;
+  }
+
+  reset(formUser: NgForm) {
+    formUser.resetForm();
+  }
 }

@@ -11,7 +11,7 @@
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened class="nav-panel">
     <mat-nav-list>
-      <!--------------------------------------  For NO-authenticates --------------------------------------------------->
+      <!--------------------------------------  For NO-authenticates -------------------------------------------------->
       <div *ngIf="true">
         <mat-list-item *ngFor="let link of navLinksNoAuths">
           <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>

@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractRegistration} from '../../services/abstract-registration';
-import {AbstractAuthService} from '../../services/abstract-auth-service';
+import {AbstractAuthService, User} from '../../services/abstract-auth-service';
 import {Router} from '@angular/router';
-import {PathRoutes} from '../../models/constants/path-routes';
 import {Patterns} from '../../models/constants/patterns';
 import {ValidationErrors} from '../../models/constants/validation-errors';
-
+import {NgForm} from '@angular/forms';
+import {PathRoutes} from '../../models/constants/path-routes';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -30,23 +31,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginWithGoogle() {
-    this.authService.login('google');
-    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
-  }
 
-  loginWithGitHub() {
-    this.authService.login('github');
-    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
-  }
-
-  loginWithFacebook() {
-    this.authService.login('facebook');
-    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
-  }
-
-  loginWithEmailAndPassword() {
-    this.authService.login('email_password', this.emailUser, this.passwordUser);
+  sendToServer(form: NgForm) {
+    this.authService.login(form.value as User);
     this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 }

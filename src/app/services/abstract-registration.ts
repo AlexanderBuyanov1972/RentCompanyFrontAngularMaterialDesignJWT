@@ -4,22 +4,26 @@ import {Observable} from 'rxjs';
 export interface User {
   username: string;
   password: string;
-  roles: string[];
+  role: string;
+}
+
+export interface MessageServer {
+  message: string;
 }
 
 export abstract class AbstractRegistration {
 
+  abstract shutDown(): Observable<MessageServer> ;
+
+  abstract registration(user: User, action: string): Observable<ResponseFrom>;
+
   abstract addAccount(user: User): Observable<ResponseFrom>;
 
-  abstract removeAccount(username: string): Observable<ResponseFrom>;
+  abstract removeAccount(user: User): Observable<ResponseFrom>;
 
-  abstract updatePassword(user: User): Observable<ResponseFrom>;
+  abstract updateAccount(user: User): Observable<ResponseFrom>;
 
-  abstract addRole(user: User): Observable<ResponseFrom>;
+  abstract getAccount(user: User): Observable<ResponseFrom>;
 
-  abstract removeRole(user: User): Observable<ResponseFrom>;
 
-  abstract logout(user: User): Observable<ResponseFrom>;
-
-  abstract login(user: User): Observable<ResponseFrom>;
 }

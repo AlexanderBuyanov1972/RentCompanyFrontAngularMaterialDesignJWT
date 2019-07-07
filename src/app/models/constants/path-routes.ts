@@ -2,7 +2,8 @@ export class PathRoutes {
   // -------------------------------------
   static HOME_ROUTE = 'home';
   static LOGIN_ROUTE = 'login';
-  static REGISTRATION_ROUTE = 'registration';
+  static ACCOUNT_ROUTE = 'account';
+  static SHUTDOWN_ROUTE = 'shutdown';
   // -------------------------------------
   static ADD_CAR_ROUTE = 'addCar';
   static ADD_MODEL_ROUTE = 'addModel';
@@ -13,9 +14,8 @@ export class PathRoutes {
 // ---------------------------------
   static GET_MODEL_ROUTE = 'getModel';
   static GET_CAR_ROUTE = 'getCar';
-  static GET_DRIVER_FOR_CLERK_ROUTE = 'getDriverForClerk';
-  static GET_DRIVER_FOR_MANAGER_ROUTE = 'getDriverForManager';
-// ---------------------------------
+  static GET_DRIVER_ROUTE = 'getDriver';
+  // ---------------------------------
 
   static REMOVE_CAR_ROUTE = 'removeCar';
   static CLEAR_CARS_ROUTE = 'clear';
@@ -25,12 +25,11 @@ export class PathRoutes {
 // --------------------------------------
   static GET_ALL_MODELS_ROUTE = 'allModels';
   static GET_ALL_CARS_ROUTE = 'allCars';
-  static GET_ALL_DRIVERS_FOR_CLERK_ROUTE = 'allDriversForClerk';
-  static GET_ALL_DRIVERS_FOR_MANAGER_ROUTE = 'allDriversForManager';
+  static GET_ALL_DRIVERS_ROUTE = 'allDrivers';
   static GET_ALL_RECORDS_ROUTE = 'allRecords';
 // -----------------------------------------
   static MOST_POPULAR_MODELS_ROUTE = 'mostPopularModels';
   static MOST_PROFIT_MODELS_ROUTE = 'mostProfitModels';
-  static GET_PROFIT_MODEL_FOR_MANAGER_ROUTE = 'profitModelNameForManager';
-  static GET_PROFIT_MODEL_FOR_STATIST_ROUTE = 'profitModelNameForStatist';
+  static GET_PROFIT_MODEL_ROUTE = 'profitModelNameForManager';
+
 }

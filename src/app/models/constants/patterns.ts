@@ -4,7 +4,7 @@ export class Patterns {
   static NAME_USER = '[A-Z][a-z\-]{1,50}';
   static COMPANY = '[A-Z][a-z\-]{1,50}';
   static COUNTRY = '[A-Z][a-zA-Z\-]{1,50}';
-  static ROLE = '[A-Z]{2,20}';
+  static ROLE = 'ROLE_[A-Z]+';
   // -------------digits-characters----------------------------
   static MODEL_NAME = '[A-Z][a-zA-Z0-9\-]{1,50}';
   static EMAIL = '[_a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?';

@@ -1,8 +1,8 @@
 <mat-card class="card">
   <mat-card-title>Login</mat-card-title>
-
+  <form #formUser="ngForm" (ngSubmit)="sendToServer(formUser)">
     <mat-form-field>
-      <input matInput type="email" name="email" [(ngModel)]="emailUser" #email="ngModel"
+      <input matInput type="email" name="username" [(ngModel)]="emailUser" #email="ngModel"
              required placeholder="Email" [pattern]=emailPattern>
       <mat-hint></mat-hint>
       <mat-error *ngIf="email.errors?.pattern">{{emailValid}}</mat-error>
@@ -15,14 +15,8 @@
       <mat-error *ngIf="password.errors?.pattern">{{passwordValid}}</mat-error>
       <mat-error *ngIf="password.errors?.required">{{passwordRequired}}</mat-error>
     </mat-form-field>
-
-
-    <button mat-raised-button (click)="loginWithEmailAndPassword()" color="primary"
-            [disabled]="email.invalid || password.invalid">Login</button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="email.invalid || password.invalid">Login
+    </button>
     <hr>
-  <mat-card-actions style="display: flex; justify-content: center">
-    <button mat-raised-button color="accent" (click)="loginWithGoogle()">Sign in with Google</button>
-    <button mat-raised-button color="warn" (click)="loginWithGitHub()">Sign in with GitHub</button>
-    <button mat-raised-button color="primary" (click)="loginWithFacebook()">Sign in with Facebook</button>
-  </mat-card-actions>
+  </form>
 </mat-card>

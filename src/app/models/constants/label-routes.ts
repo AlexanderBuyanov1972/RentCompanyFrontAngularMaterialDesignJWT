@@ -2,7 +2,11 @@ export class LabelRoutes {
   // -----------------------------------------------------------
   static HOME_LABEL = 'Home';
   static LOGIN_LABEL = 'Login';
-  static REGISTRATION_LABEL = 'Registration';
+  static ADD_ACCOUNT_LABEL = 'Add Account';
+  static UPDATE_ACCOUNT_LABEL = 'Update Account';
+  static REMOVE_ACCOUNT_LABEL = 'Remove Account';
+  static GET_ACCOUNT_LABEL = 'Get Account';
+  static SHUTDOWN_LABEL = 'ShutDown';
   // -----------------------------------------------------------
   static ADD_CAR_LABEL = 'Add New Car';
   static ADD_MODEL_LABEL = 'Add New Model';

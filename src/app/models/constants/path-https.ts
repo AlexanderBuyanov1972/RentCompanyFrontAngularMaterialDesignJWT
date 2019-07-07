@@ -29,6 +29,7 @@ export class PathHttps {
   static GET_PROFIT_MODEL = '/model/profit'; // MANAGER,STATIST
   // ------------------------------------------
   static SHUTDOWN = '/actuator/shutdown'; // ADMIN
+  static ACCOUNT = '/account'; // ADMIN
+  static LOGIN = '/account/login'; // permitAll
 // --------------------------------------------
-
 }
