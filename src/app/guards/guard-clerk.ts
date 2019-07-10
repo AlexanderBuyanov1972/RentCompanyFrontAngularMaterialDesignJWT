@@ -1,18 +1,18 @@
 import {CanActivate, Router} from '@angular/router';
-import {AbstractAuthService} from '../services/abstract-auth-service';
 import {PathRoutes} from '../models/constants/path-routes';
 import {Injectable} from '@angular/core';
+import {AbstractRegistration} from '../services/abstract-registration';
 
 @Injectable({providedIn: 'root'})
 export class GuardClerk implements CanActivate {
-  constructor(private authService: AbstractAuthService,
+  constructor(private registrationService: AbstractRegistration,
               private router: Router) {
   }
 
   canActivate(): Promise<boolean> {
     return new Promise(resolve => {
       setTimeout(() => {
-        if (this.authService.isClerk()) {
+        if (this.registrationService.isClerk()) {
           resolve(true);
         } else {
           this.router.navigate([PathRoutes.HOME_ROUTE]).then();

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractAuthService} from '../../services/abstract-auth-service';
 import {Router} from '@angular/router';
 import {PathRoutes} from '../../models/constants/path-routes';
 import {LabelRoutes} from '../../models/constants/label-routes';
+import {AbstractRegistration} from '../../services/abstract-registration';
 
 export interface NavLink {
   path: string;
@@ -67,44 +67,42 @@ export class NavBarComponent implements OnInit {
   ];
 
 
-  constructor(private auth: AbstractAuthService,
-              private authService: AbstractAuthService,
-              private router: Router) {
+  constructor(private registrationService: AbstractRegistration, private router: Router) {
   }
 
   ngOnInit() {
   }
 
   isAdmin(): boolean {
-    return this.auth.isAdmin();
+    return this.registrationService.isAdmin();
   }
 
   isClerk(): boolean {
-    return this.auth.isClerk();
+    return this.registrationService.isClerk();
   }
 
   isManager(): boolean {
-    return this.auth.isManager();
+    return this.registrationService.isManager();
   }
 
   isDriver(): boolean {
-    return this.auth.isDriver();
+    return this.registrationService.isDriver();
   }
 
   isStatist(): boolean {
-    return this.auth.isStatist();
+    return this.registrationService.isStatist();
   }
 
   isTechnician(): boolean {
-    return this.auth.isTechnician();
+    return this.registrationService.isTechnician();
   }
 
   isAuth(): boolean {
-    return this.auth.isAuth();
+    return this.registrationService.isAuth();
   }
 
   logout() {
-    this.authService.logout();
+    this.registrationService.logout();
     this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 

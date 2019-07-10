@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {AbstractAuthService} from './services/abstract-auth-service';
+import {AbstractRegistration} from './services/abstract-registration';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,10 @@ import {AbstractAuthService} from './services/abstract-auth-service';
 export class AppComponent implements OnDestroy {
   title = 'RentCompanyFrontAngular';
 
-  constructor(private auth: AbstractAuthService) {
+  constructor(private registrationService: AbstractRegistration) {
   }
 
   ngOnDestroy(): void {
-    this.auth.logout();
+    this.registrationService.logout();
   }
 }

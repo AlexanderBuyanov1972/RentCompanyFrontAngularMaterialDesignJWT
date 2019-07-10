@@ -15,15 +15,27 @@ export abstract class AbstractRegistration {
 
   abstract shutDown(): Observable<MessageServer> ;
 
-  abstract registration(user: User, action: string): Observable<ResponseFrom>;
+  abstract registrationUser(user: User, action: string): Observable<ResponseFrom>;
 
-  abstract addAccount(user: User): Observable<ResponseFrom>;
+  abstract login(user: User);
 
-  abstract removeAccount(user: User): Observable<ResponseFrom>;
+  abstract logout();
 
-  abstract updateAccount(user: User): Observable<ResponseFrom>;
+  abstract isAuth(): boolean;
 
-  abstract getAccount(user: User): Observable<ResponseFrom>;
+  abstract isAdmin(): boolean;
+
+  abstract isClerk(): boolean;
+
+  abstract isManager(): boolean;
+
+  abstract isDriver(): boolean;
+
+  abstract isTechnician(): boolean;
+
+  abstract isStatist(): boolean;
+
+
 
 
 }

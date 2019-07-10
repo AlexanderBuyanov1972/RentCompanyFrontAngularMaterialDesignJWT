@@ -49,7 +49,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
 
   registration(formUser: NgForm) {
-    const subscription = this.registrationService.registration(formUser.value as User, this.action).subscribe(
+    const subscription = this.registrationService.registrationUser(formUser.value as User, this.action).subscribe(
       value => {
         if (value.content != null) {
           const user = value.content as User;

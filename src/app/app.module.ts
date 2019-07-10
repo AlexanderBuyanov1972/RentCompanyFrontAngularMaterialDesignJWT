@@ -26,7 +26,6 @@ import {
 } from '@angular/material';
 import {HomeComponent} from './components/home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import {AbstractAuthService} from './services/abstract-auth-service';
 import {AbstractRegistration} from './services/abstract-registration';
 import {RegistrationService} from './services/registration.service';
 import {FormModelComponent} from './components/form-components/form-model/form-model.component';
@@ -54,8 +53,7 @@ import {GuardAuth} from './guards/guard-auth';
 import {GuardTechnician} from './guards/guard-technician';
 import {GuardStatist} from './guards/guard-statist';
 import {GuardDriver} from './guards/guard-driver';
-import {AuthService} from './services/auth.service';
-import { ShutdownComponent } from './components/shutdown/shutdown.component';
+import {ShutdownComponent} from './components/shutdown/shutdown.component';
 
 
 const routes: Route[] = [
@@ -144,7 +142,6 @@ const routes: Route[] = [
   ],
   providers: [
     {provide: AbstractRentCompany, useExisting: RentCompanyService},
-    {provide: AbstractAuthService, useExisting: AuthService},
     {provide: AbstractRegistration, useExisting: RegistrationService}],
   bootstrap: [AppComponent]
 })
