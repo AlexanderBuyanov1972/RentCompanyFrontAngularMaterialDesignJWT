@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AbstractRentCompany} from './services/abstract-rent-company';
 import {NavBarComponent} from './components/nav-bar/nav-bar.component';
-import {LoginComponent} from './components/login/login.component';
 import {RegistrationComponent} from './components/registration/registration.component';
 import {Route, RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
@@ -54,6 +53,12 @@ import {GuardTechnician} from './guards/guard-technician';
 import {GuardStatist} from './guards/guard-statist';
 import {GuardDriver} from './guards/guard-driver';
 import {ShutdownComponent} from './components/shutdown/shutdown.component';
+import {CookieListComponent} from './jwt-security/pages/cookie-list/cookie-list.component';
+import {HeaderComponent} from './jwt-security/layout/header/header.component';
+import {FooterComponent} from './jwt-security/layout/footer/footer.component';
+import {LoginComponent} from './jwt-security/auth/components/login/login.component';
+
+
 
 
 const routes: Route[] = [
@@ -106,7 +111,6 @@ const routes: Route[] = [
     FormOpenRecordComponent,
     FormCloseRecordComponent,
     RegistrationComponent,
-    LoginComponent,
     ListAllModelsComponent,
     ListAllRecordsComponent,
     ListMostPopularModelsComponent,
@@ -121,7 +125,10 @@ const routes: Route[] = [
     ListGetCarDriversComponent,
     Check18YearDirective,
     HomeComponent,
-    ShutdownComponent
+    ShutdownComponent,
+    CookieListComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

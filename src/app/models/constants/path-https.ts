@@ -31,5 +31,7 @@ export class PathHttps {
   static SHUTDOWN = '/actuator/shutdown'; // ADMIN
   static ACCOUNT = '/account'; // ADMIN
   static LOGIN = '/account/login'; // permitAll
+  static LOGOUT = '/account/logout'; // permitAll
+  static GET_ROLE = '/account/role';
 // --------------------------------------------
 }
