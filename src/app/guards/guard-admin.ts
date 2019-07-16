@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {PathRoutes} from '../models/constants/path-routes';
-import {AbstractRegistration} from '../services/abstract-registration';
+import {RegistrationService} from '../services/registration.service';
+
 
 @Injectable({providedIn: 'root'})
 export class GuardAdmin implements CanActivate {
 
-  constructor(private registrationService: AbstractRegistration,
+  constructor(private registrationService: RegistrationService,
               private router: Router) {
   }
   canActivate(): Promise<boolean> {

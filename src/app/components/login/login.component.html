@@ -1,0 +1,24 @@
+<mat-card class="card">
+  <mat-card-title>Login</mat-card-title>
+  <form #formUser="ngForm">
+    <mat-form-field>
+      <input matInput type="email" name="username" [(ngModel)]="emailUser" #email="ngModel"
+             required placeholder="Email" [pattern]="emailPattern">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="email.errors?.pattern">{{emailValid}}</mat-error>
+      <mat-error *ngIf="email.errors?.required">{{emailRequired}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" name="password" [(ngModel)]="passwordUser" #password="ngModel"
+             required placeholder="Password" [pattern]="passwordPattern">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="password.errors?.pattern">{{passwordValid}}</mat-error>
+      <mat-error *ngIf="password.errors?.required">{{passwordRequired}}</mat-error>
+    </mat-form-field>
+    <button mat-raised-button type="button" color="primary" (click)="login()" [disabled]="formUser.invalid">Login
+    </button>
+    <hr>
+  </form>
+</mat-card>
+
+

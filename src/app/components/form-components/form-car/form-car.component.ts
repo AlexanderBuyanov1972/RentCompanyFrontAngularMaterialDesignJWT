@@ -24,11 +24,17 @@ export class FormCarComponent implements OnInit, OnDestroy {
   modelNameValid = ValidationErrors.MODEL_NAME_VALID;
   modelNameRequired = ValidationErrors.MODEL_NAME_REQUIRED;
 
+  colorModels: string[] = ['', 'Red', 'Yellow', 'White', 'Black', 'Blue', 'Green', 'Pink'];
+  nameModels: string[] = ['', 'Boleno', 'Swift', 'Corolla'];
+  valueColor = '';
+  valueModel = '';
+
   constructor(private serviceRentCompany: AbstractRentCompany) {
   }
 
   saveCar(formCar: NgForm) {
     const car = formCar.value as Car;
+    console.log('car-------------------------->' + car);
     car.inUse = false;
     car.flRemoved = false;
     car.state = State.EXCELLENT;

@@ -1,18 +1,23 @@
-import {Component, OnDestroy} from '@angular/core';
-import {AbstractRegistration} from './services/abstract-registration';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'RentCompanyFrontAngular';
 
-  constructor(private registrationService: AbstractRegistration) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnDestroy(): void {
-    this.registrationService.logout();
+    // this.authService.logout();
   }
+
+  ngOnInit(): void {
+  }
+
+
 }

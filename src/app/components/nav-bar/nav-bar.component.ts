@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PathRoutes} from '../../models/constants/path-routes';
 import {LabelRoutes} from '../../models/constants/label-routes';
-import {AbstractRegistration} from '../../services/abstract-registration';
+import {RegistrationService} from '../../services/registration.service';
+import {TokenService} from '../../services/token.service';
 
 export interface NavLink {
   path: string;
@@ -17,31 +18,31 @@ export interface NavLink {
 export class NavBarComponent implements OnInit {
   homeLink: NavLink = {path: PathRoutes.HOME_ROUTE, label: LabelRoutes.HOME_LABEL};
   loginLink: NavLink = {path: PathRoutes.LOGIN_ROUTE, label: LabelRoutes.LOGIN_LABEL};
-  // -------------------NO-AUTH---------------------------------
+  // -------------------NO-AUTH--------------------------------------------------------------------------------------------------
   navLinksNoAuths: NavLink[] = [
-  {path: PathRoutes.GET_MODEL_ROUTE, label: LabelRoutes.GET_MODEL_LABEL},
-  {path: PathRoutes.GET_ALL_MODELS_ROUTE, label: LabelRoutes.GET_ALL_MODELS_LABEL}
+    {path: PathRoutes.GET_MODEL_ROUTE, label: LabelRoutes.GET_MODEL_LABEL},
+    {path: PathRoutes.GET_ALL_MODELS_ROUTE, label: LabelRoutes.GET_ALL_MODELS_LABEL},
   ];
-  // -------------------AUTH---------------------------------
+  // -------------------AUTH-----------------------------------------------------------------------------------------------------
   navLinksAuths: NavLink[] = [
     {path: PathRoutes.GET_CAR_ROUTE, label: LabelRoutes.GET_CAR_LABEL},
     {path: PathRoutes.GET_ALL_CARS_ROUTE, label: LabelRoutes.GET_ALL_CARS_LABEL}
   ];
   // -------------------ADMIN---------------------------------
   navLinksAdmins: NavLink[] = [
-    {path: PathRoutes.SHUTDOWN_ROUTE, label: LabelRoutes.SHUTDOWN_LABEL},
     {path: PathRoutes.ACCOUNT_ROUTE + '/' + LabelRoutes.ADD_ACCOUNT_LABEL, label: LabelRoutes.ADD_ACCOUNT_LABEL},
     {path: PathRoutes.ACCOUNT_ROUTE + '/' + LabelRoutes.UPDATE_ACCOUNT_LABEL, label: LabelRoutes.UPDATE_ACCOUNT_LABEL},
     {path: PathRoutes.ACCOUNT_ROUTE + '/' + LabelRoutes.REMOVE_ACCOUNT_LABEL, label: LabelRoutes.REMOVE_ACCOUNT_LABEL},
     {path: PathRoutes.ACCOUNT_ROUTE + '/' + LabelRoutes.GET_ACCOUNT_LABEL, label: LabelRoutes.GET_ACCOUNT_LABEL}
   ];
-  // ---------------------CLERK-------------------------------
+  // *******************************************CLERK***************************************************
   navLinksClerks: NavLink[] = [
     {path: PathRoutes.ADD_DRIVER_ROUTE, label: LabelRoutes.ADD_DRIVER_LABEL},
     {path: PathRoutes.RENT_CAR_ROUTE, label: LabelRoutes.RENT_CAR_LABEL},
     {path: PathRoutes.RETURN_CAR_ROUTE, label: LabelRoutes.RETURN_CAR_LABEL},
     {path: PathRoutes.GET_DRIVER_ROUTE, label: LabelRoutes.GET_DRIVER_LABEL},
-    {path: PathRoutes.GET_ALL_DRIVERS_ROUTE, label: LabelRoutes.GET_ALL_DRIVERS_LABEL}
+    {path: PathRoutes.GET_ALL_DRIVERS_ROUTE, label: LabelRoutes.GET_ALL_DRIVERS_LABEL},
+    {path: PathRoutes.GET_ALL_RECORDS_ROUTE, label: LabelRoutes.GET_ALL_RECORDS_LABEL}
   ];
   // ---------------------------------------------MANAGER-------------------------------
   navLinksManagers: NavLink[] = [
@@ -61,16 +62,20 @@ export class NavBarComponent implements OnInit {
     {path: PathRoutes.MOST_POPULAR_MODELS_ROUTE, label: LabelRoutes.MOST_POPULAR_MODELS_LABEL},
     {path: PathRoutes.MOST_PROFIT_MODELS_ROUTE, label: LabelRoutes.MOST_PROFIT_MODELS_LABEL}
   ];
-  // ---------------------TECHNICIAN-------------------------------
-  navLinksTechnicians: NavLink[] = [
-    {path: PathRoutes.GET_ALL_RECORDS_ROUTE, label: LabelRoutes.GET_ALL_RECORDS_LABEL}
-  ];
+   role: string;
 
-
-  constructor(private registrationService: AbstractRegistration, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private registrationService: RegistrationService,
+              private  tokenService: TokenService) {
   }
 
   ngOnInit() {
+    this.role = this.tokenService.getRole();
+  }
+
+  isAuth(): boolean {
+    return this.registrationService.isAuth();
   }
 
   isAdmin(): boolean {
@@ -81,29 +86,19 @@ export class NavBarComponent implements OnInit {
     return this.registrationService.isClerk();
   }
 
-  isManager(): boolean {
-    return this.registrationService.isManager();
-  }
-
   isDriver(): boolean {
     return this.registrationService.isDriver();
+  }
+
+  isManager(): boolean {
+    return this.registrationService.isManager();
   }
 
   isStatist(): boolean {
     return this.registrationService.isStatist();
   }
-
-  isTechnician(): boolean {
-    return this.registrationService.isTechnician();
-  }
-
-  isAuth(): boolean {
-    return this.registrationService.isAuth();
-  }
-
   logout() {
     this.registrationService.logout();
-    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
+    this.role = null;
   }
-
 }

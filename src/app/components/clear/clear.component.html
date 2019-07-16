@@ -4,17 +4,17 @@
     <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
   </div>
 
-  <form #formDateDays="ngForm" (ngSubmit)="submitDateDays(formDateDays)">
+  <form #formDateDays="ngForm">
     <div class="">
     <mat-form-field class="form-field">
-      <input matInput type="text" name="date" ngModel #currentDate="ngModel"
+      <input matInput type="text" name="date" [(ngModel)]="dateClear" #currentDate="ngModel"
              required placeholder="Date" [pattern]=patternDate>
       <mat-hint></mat-hint>
       <mat-error *ngIf="currentDate.errors?.pattern">{{validDate}}</mat-error>
       <mat-error *ngIf="currentDate.errors?.required">{{requiredDate}}</mat-error>
     </mat-form-field>
     <mat-form-field class="form-field" style="float: right">
-      <input matInput type="number" name="days" ngModel #days="ngModel"
+      <input matInput type="number" name="days" [(ngModel)]="daysClear" #days="ngModel"
              required placeholder="Days" [pattern]=patternDays>
       <mat-hint></mat-hint>
       <mat-error *ngIf="days.errors?.pattern">{{validDays}}</mat-error>
@@ -22,7 +22,7 @@
     </mat-form-field>
     </div>
     </form>
-  <button mat-raised-button color="accent" type="submit" [disabled]="formDateDays.invalid">Submit</button>
+  <button mat-raised-button color="accent" type="button" (click)="clear()" [disabled]="formDateDays.invalid">Submit</button>
   <mat-form-field style="float: right; width: 80%">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>

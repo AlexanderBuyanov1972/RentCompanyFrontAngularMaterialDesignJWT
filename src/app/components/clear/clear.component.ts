@@ -13,7 +13,7 @@ import {ValidationErrors} from '../../models/constants/validation-errors';
   templateUrl: './clear.component.html',
   styleUrls: ['./clear.component.css']
 })
-export class ClearComponent implements OnInit, OnDestroy {
+export class ClearComponent {
   displayedColumns: string[] = ['regNumber', 'modelName', 'flRemoved'];
   dataSource: MatTableDataSource<Car>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,17 +25,22 @@ export class ClearComponent implements OnInit, OnDestroy {
   validDays = ValidationErrors.DAYS_VALID;
   requiredDays = ValidationErrors.DAYS_REQUIRED;
   messageResponse = '';
+  dateClear = '';
+  daysClear = '';
 
   constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
   }
 
-  submitDateDays(formDD: NgForm) {
-    const subscription = this.serviceRentCompany.clear(formDD.value.date, formDD.value.days).subscribe(
+  clear() {
+    console.log('daysClear------------>' + this.daysClear);
+    console.log('dateClear------------>' + this.dateClear);
+    const subscription = this.serviceRentCompany.clear(this.dateClear, this.daysClear).subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as Car[]);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        formDD.resetForm();
+        this.dateClear = '';
+        this.daysClear = '';
         this.messageResponse = value.message;
         subscription.unsubscribe();
       }
@@ -48,12 +53,6 @@ export class ClearComponent implements OnInit, OnDestroy {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  ngOnDestroy(): void {
-  }
-
-  ngOnInit(): void {
   }
 
 }

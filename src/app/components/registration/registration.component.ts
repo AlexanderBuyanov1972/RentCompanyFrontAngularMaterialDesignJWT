@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractRegistration, User} from '../../services/abstract-registration';
 import {Patterns} from '../../models/constants/patterns';
 import {ValidationErrors} from '../../models/constants/validation-errors';
 import {ActivatedRoute} from '@angular/router';
 import {LabelRoutes} from '../../models/constants/label-routes';
+import {RegistrationService, User} from '../../services/registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   passwordUser = '';
   nameOperation: any;
 
-  constructor(private registrationService: AbstractRegistration,
+  constructor(private registrationService: RegistrationService,
               private route: ActivatedRoute) {
   }
 
@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   registration(formUser: NgForm) {
     const subscription = this.registrationService.registrationUser(formUser.value as User, this.action).subscribe(
       value => {
-        if (value.content != null) {
+        if (value.content !== '') {
           const user = value.content as User;
           this.emailUser = user.username;
           this.roleUser = user.role;

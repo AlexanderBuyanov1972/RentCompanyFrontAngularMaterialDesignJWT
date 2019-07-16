@@ -1,95 +1,93 @@
 import {Injectable} from '@angular/core';
-import {AbstractRegistration, MessageServer, User} from './abstract-registration';
 import {Observable} from 'rxjs';
 import {ResponseFrom} from '../models/response-from';
-import {HttpClient} from '@angular/common/http';
-import {PathHttps} from '../models/constants/path-https';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {LabelRoutes} from '../models/constants/label-routes';
-import {getToken} from 'codelyzer/angular/styles/cssLexer';
+import {TokenService} from './token.service';
+import {Credentials} from '../models/credentials';
+import {Router} from '@angular/router';
+import {AuthService} from './auth.service';
+import {PathRoutes} from '../models/constants/path-routes';
 
-const urlHeroku = 'https://rentcarscompany.herokuapp.com';
-const urlLocalHost = 'http://localhost:8080';
-const url = urlLocalHost;
+export interface User {
+  username: string;
+  password: string;
+  role: string;
+}
 
+export interface MessageServer {
+  message: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegistrationService implements AbstractRegistration {
-  role = '';
-  token = '';
-
-  constructor(private httpClient: HttpClient) {
+export class RegistrationService {
+  constructor(private httpClient: HttpClient,
+              private tokenService: TokenService,
+              private router: Router,
+              private authService: AuthService) {
   }
 
+  public login(credentials: Credentials) {
+    this.authService.getResponseHeaders(credentials)
+      .subscribe((res: HttpResponse<any>) => {
+        this.tokenService.saveToken(res.headers.get('authorization'));
+        this.authService.getRole(credentials.username).subscribe(
+          value => {
+            this.tokenService.saveRole(value.content);
+            this.router.navigate([PathRoutes.HOME_ROUTE]).then();
+          }
+        );
+      });
+  }
 
-  shutDown(): Observable<MessageServer> {
-    return this.httpClient.post<MessageServer>(url + '/actuator/shutdown', {});
+  logout(): void {
+    this.tokenService.deleteToken();
+    this.tokenService.deleteRole();
+    this.router.navigate([PathRoutes.HOME_ROUTE]).then();
   }
 
   registrationUser(user: User, action: string): Observable<ResponseFrom> {
 
     if (action === LabelRoutes.ADD_ACCOUNT_LABEL) {
-      return this.httpClient.post<ResponseFrom>(url + PathHttps.ACCOUNT, user);
+      return this.authService.addUser(user);
     }
     if (action === LabelRoutes.UPDATE_ACCOUNT_LABEL) {
-      return this.httpClient.put<ResponseFrom>(url + PathHttps.ACCOUNT, user);
+      return this.authService.updateUser(user);
     }
     if (action === LabelRoutes.REMOVE_ACCOUNT_LABEL) {
-      return this.httpClient.delete<ResponseFrom>(url + PathHttps.ACCOUNT + '?username=' + encodeURIComponent(user.username));
+      return this.authService.removeUser(user.username);
     }
     if (action === LabelRoutes.GET_ACCOUNT_LABEL) {
-      return this.httpClient.get<ResponseFrom>(url + PathHttps.ACCOUNT + '?username=' + encodeURIComponent(user.username));
+      return this.authService.getUser(user.username);
     }
   }
 
-  // ----------------------------------------------login----------------------------------------------------------
-  login(user: User) {
-    this.httpClient.post<ResponseFrom>(url + PathHttps.LOGIN, user).subscribe(
-      value => {
-        this.role = value.content;
-        // -----------------------нужно получить токен--------------------------
-
-
-        // -------------------------------------------------------------------
-        localStorage.setItem('token', this.token);
-      }
-    );
-  }
-
-// ---------------------------------------logout-------------------------------------------------------
-  logout(): void {
-    localStorage.removeItem('token');
-  }
-
-// -----------------------------------------------------------------------------------------------------
   isAuth(): boolean {
-    return this.role !== '' || this.role === null;
+    return this.tokenService.isLoggedIn();
   }
 
   isAdmin(): boolean {
-    return this.role === 'ROLE_ADMIN';
+    return this.tokenService.getRole() === 'ROLE_ADMIN';
   }
 
   isClerk(): boolean {
-    return this.role === 'ROLE_CLERK';
-
+    return this.tokenService.getRole() === 'ROLE_CLERK';
   }
 
   isDriver(): boolean {
-    return this.role === 'ROLE_DRIVER';
+    return this.tokenService.getRole() === 'ROLE_DRIVER';
   }
 
   isManager(): boolean {
-    return this.role === 'ROLE_MANAGER';
+    return this.tokenService.getRole() === 'ROLE_MANAGER';
   }
 
-  isStatist(): boolean {
-    return this.role === 'ROLE_STATIST';
-  }
-
-  isTechnician(): boolean {
-    return this.role === 'ROLE_TECHNICIAN';
+  isStatist() {
+    return this.tokenService.getRole() === 'ROLE_STATIST';
   }
 
 }
+
+

@@ -19,13 +19,12 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatListModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSelectModule,
   MatSidenavModule,
   MatSortModule
 } from '@angular/material';
 import {HomeComponent} from './components/home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import {AbstractRegistration} from './services/abstract-registration';
 import {RegistrationService} from './services/registration.service';
 import {FormModelComponent} from './components/form-components/form-model/form-model.component';
 import {FormCarComponent} from './components/form-components/form-car/form-car.component';
@@ -49,14 +48,10 @@ import {GuardAdmin} from './guards/guard-admin';
 import {GuardManager} from './guards/guard-manager';
 import {GuardClerk} from './guards/guard-clerk';
 import {GuardAuth} from './guards/guard-auth';
-import {GuardTechnician} from './guards/guard-technician';
 import {GuardStatist} from './guards/guard-statist';
 import {GuardDriver} from './guards/guard-driver';
-import {ShutdownComponent} from './components/shutdown/shutdown.component';
-import {CookieListComponent} from './jwt-security/pages/cookie-list/cookie-list.component';
-import {HeaderComponent} from './jwt-security/layout/header/header.component';
-import {FooterComponent} from './jwt-security/layout/footer/footer.component';
-import {LoginComponent} from './jwt-security/auth/components/login/login.component';
+import {LoginComponent} from './components/login/login.component';
+
 
 
 
@@ -65,10 +60,10 @@ const routes: Route[] = [
   // ******************* General **********************************
   {path: PathRoutes.HOME_ROUTE, component: HomeComponent},
   {path: PathRoutes.LOGIN_ROUTE, component: LoginComponent},
+  // {path: PathRoutes.ACCOUNT_ROUTE + '/:role', component: NavBarComponent},
   // ******************Admin*****************************************
-  {path: PathRoutes.ACCOUNT_ROUTE + '/:action', component: RegistrationComponent, canActivate: [GuardAdmin]},
-  {path: PathRoutes.SHUTDOWN_ROUTE, component: ShutdownComponent, canActivate: [GuardAdmin]},
-  // **********************************************************
+   {path: PathRoutes.ACCOUNT_ROUTE + '/:action', component: RegistrationComponent, canActivate: [GuardAdmin]},
+  // *************************CarsController*********************************
   {path: PathRoutes.ADD_MODEL_ROUTE, component: FormModelComponent, canActivate: [GuardManager]},
   {path: PathRoutes.ADD_CAR_ROUTE, component: FormCarComponent, canActivate: [GuardManager]},
   {path: PathRoutes.ADD_DRIVER_ROUTE, component: FormDriverComponent, canActivate: [GuardClerk]},
@@ -79,7 +74,7 @@ const routes: Route[] = [
   {path: PathRoutes.GET_ALL_MODELS_ROUTE, component: ListAllModelsComponent},
   {path: PathRoutes.GET_ALL_CARS_ROUTE, component: ListAllCarsComponent, canActivate: [GuardAuth]},
   {path: PathRoutes.GET_ALL_DRIVERS_ROUTE, component: ListAllDriversComponent, canActivate: [GuardClerk]},
-  {path: PathRoutes.GET_ALL_RECORDS_ROUTE, component: ListAllRecordsComponent, canActivate: [GuardTechnician]},
+  {path: PathRoutes.GET_ALL_RECORDS_ROUTE, component: ListAllRecordsComponent, canActivate: [GuardClerk]},
   // **************************************************************
   {path: PathRoutes.MOST_POPULAR_MODELS_ROUTE, component: ListMostPopularModelsComponent, canActivate: [GuardStatist]},
   {path: PathRoutes.MOST_PROFIT_MODELS_ROUTE, component: ListMostProfitModelsComponent, canActivate: [GuardStatist]},
@@ -94,6 +89,7 @@ const routes: Route[] = [
   // ****************************************************
   {path: PathRoutes.GET_CAR_DRIVERS_ROUTE, component: ListGetCarDriversComponent, canActivate: [GuardDriver]},
   {path: PathRoutes.GET_DRIVER_CARS_ROUTE, component: ListGetDriverCarsComponent, canActivate: [GuardDriver]},
+  // *******************************************************************
   {path: '**', redirectTo: PathRoutes.HOME_ROUTE}
 ];
 
@@ -124,11 +120,7 @@ const routes: Route[] = [
     ListGetDriverCarsComponent,
     ListGetCarDriversComponent,
     Check18YearDirective,
-    HomeComponent,
-    ShutdownComponent,
-    CookieListComponent,
-    HeaderComponent,
-    FooterComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -145,11 +137,11 @@ const routes: Route[] = [
     MatTabsModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule
   ],
   providers: [
-    {provide: AbstractRentCompany, useExisting: RentCompanyService},
-    {provide: AbstractRegistration, useExisting: RegistrationService}],
+    {provide: AbstractRentCompany, useExisting: RentCompanyService}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

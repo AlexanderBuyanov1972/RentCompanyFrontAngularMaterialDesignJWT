@@ -4,7 +4,6 @@ import {Driver} from '../models/driver';
 import {ResponseFrom} from '../models/response-from';
 import {Model} from '../models/model';
 import {Observable} from 'rxjs';
-import {DateDays} from '../models/DateDays';
 
 export abstract class AbstractRentCompany {
 
@@ -32,7 +31,7 @@ export abstract class AbstractRentCompany {
   abstract removeCar(regNumber: string): Observable<ResponseFrom>; // (OK,CAR_IN_USE,CAR_NOT_EXISTS)
   // removing car is setting flRemoved in true
 
-  abstract clear(date: string, days: number): Observable<ResponseFrom>;  // LocalDate currentDate
+  abstract clear(date: string, days: string): Observable<ResponseFrom>;  // LocalDate currentDate
 
   // all cars for which the returnDate before currentDate - days with
   // flRemoved=true

@@ -5,20 +5,17 @@
 
 .container {
   width: auto;
-  height: 80%;
-  margin: 2% 2%;
+  height: 88%;
+  margin: 1% 1%;
   border: 2px solid #555;
-}
+ }
 
 .content{
   width: auto;
-  height: 91%;
-  margin: 2% 2%;
+  height: 120%;
+  /*margin: 1% 1%;*/
   border: 2px solid #555;
 }
 .nav-panel{
   min-width: 250px;
-}
-.btn-logout{
-
 }

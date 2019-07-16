@@ -3,7 +3,7 @@ export class PathRoutes {
   static HOME_ROUTE = 'home';
   static LOGIN_ROUTE = 'login';
   static ACCOUNT_ROUTE = 'account';
-  static SHUTDOWN_ROUTE = 'shutdown';
+  static GET_ROLE_ROUTE = 'role';
   // -------------------------------------
   static ADD_CAR_ROUTE = 'addCar';
   static ADD_MODEL_ROUTE = 'addModel';
@@ -16,7 +16,6 @@ export class PathRoutes {
   static GET_CAR_ROUTE = 'getCar';
   static GET_DRIVER_ROUTE = 'getDriver';
   // ---------------------------------
-
   static REMOVE_CAR_ROUTE = 'removeCar';
   static CLEAR_CARS_ROUTE = 'clear';
 // --------------------------------------

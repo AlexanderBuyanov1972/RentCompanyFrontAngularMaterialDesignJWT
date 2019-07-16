@@ -1,14 +1,13 @@
-<nav mat-tab-nav-bar>
+<nav mat-tab-nav-bar style="background-color: #cccaaa">
   <!--------------------------------------- For no authorization users ----------------------------------->
   <label mat-tab-link style="margin-left: 2% "><h1>Rent Company LtD</h1></label>
   <label mat-tab-link [routerLink]="homeLink.path" *ngIf="true">{{homeLink.label}}</label>
   <label mat-tab-link [routerLink]="loginLink.path" *ngIf="!isAuth()">{{loginLink.label}}</label>
-
   <!--------------------------------------- The LogOut ------------------------------------------------------>
   <button mat-tab-link class="btn-logout" mat-button color="warn" *ngIf="isAuth()" (click)="logout()">LogOut</button>
 </nav>
 <!--************************************************************************************************-->
-<mat-drawer-container class="container">
+<mat-drawer-container class="container" style="background-color: #ccceee">
   <mat-drawer mode="side" opened class="nav-panel">
     <mat-nav-list>
       <!--------------------------------------  For NO-authenticates -------------------------------------------------->
@@ -50,12 +49,6 @@
       <!--------------------------------------  For statists --------------------------------------------------->
       <div *ngIf="isStatist()">
         <mat-list-item *ngFor="let link of navLinksStatists">
-          <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
-        </mat-list-item>
-      </div>
-      <!--------------------------------------  For technicians --------------------------------------------------->
-      <div *ngIf="isTechnician()">
-        <mat-list-item *ngFor="let link of navLinksTechnicians">
           <a [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
         </mat-list-item>
       </div>

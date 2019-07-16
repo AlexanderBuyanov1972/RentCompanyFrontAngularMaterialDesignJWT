@@ -1,13 +1,15 @@
 export class LabelRoutes {
-  // -----------------------------------------------------------
+  // *****************************UserController*************************
   static HOME_LABEL = 'Home';
   static LOGIN_LABEL = 'Login';
+  static LOGOUT_LABEL = 'Logout';
+  // --------------------------------------------------------------------
+  static GET_ROLE = 'Get Role';
   static ADD_ACCOUNT_LABEL = 'Add Account';
   static UPDATE_ACCOUNT_LABEL = 'Update Account';
   static REMOVE_ACCOUNT_LABEL = 'Remove Account';
   static GET_ACCOUNT_LABEL = 'Get Account';
-  static SHUTDOWN_LABEL = 'ShutDown';
-  // -----------------------------------------------------------
+  // ********************CarsController*********************************
   static ADD_CAR_LABEL = 'Add New Car';
   static ADD_MODEL_LABEL = 'Add New Model';
   static ADD_DRIVER_LABEL = 'Add New Driver';
@@ -19,7 +21,6 @@ export class LabelRoutes {
   static GET_CAR_LABEL = 'Get Car';
   static GET_DRIVER_LABEL = 'Get Driver';
 // -------------------------------------------------------------
-
   static REMOVE_CAR_LABEL = 'Remove Car';
   static CLEAR_CARS_LABEL = 'Clear cars';
 // -------------------------------------------------------------
