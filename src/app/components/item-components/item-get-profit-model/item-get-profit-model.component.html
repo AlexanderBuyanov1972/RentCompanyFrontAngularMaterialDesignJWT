@@ -12,7 +12,7 @@
       <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
     </mat-form-field>
     <mat-card-actions class="card-actions">
-    <button mat-raised-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>
+    <button class="button-form" mat-raised-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>
     </mat-card-actions>
     <hr>
     <mat-card-content class="cart-content">

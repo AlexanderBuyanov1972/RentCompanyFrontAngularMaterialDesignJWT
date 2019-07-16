@@ -1,14 +1,6 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <div mat-card-avatar class="header-avatar-image"></div>
-    <mat-card-title class="card-title"><h4>Add New Model</h4></mat-card-title>
-    <mat-card-subtitle class="card-subtitle">
-      <!-----------------------------------Information window----------------------------------->
-      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-             style="color: red; font-size: large">
-      <!---------------------------------------------------------------------------------------->
-    </mat-card-subtitle>
-  </mat-card-header>
+  <p>Add New Model</p>
+  <p style="color: red;  float: right">{{messageResponse}}</p>
   <mat-card-content class="card-content">
     <form #formModel="ngForm" (ngSubmit)="saveModel(formModel)">
       <mat-form-field class="form-field">
@@ -47,7 +39,7 @@
         <mat-error *ngIf="priceDay.errors?.required">{{priceDayRequired}}</mat-error>
       </mat-form-field>
       <mat-card-actions class="card-actions">
-        <button type="submit" [disabled]="formModel.invalid">Save Model</button>
+        <button class="button-form" type="submit" [disabled]="formModel.invalid">Save Model</button>
       </mat-card-actions>
     </form>
   </mat-card-content>

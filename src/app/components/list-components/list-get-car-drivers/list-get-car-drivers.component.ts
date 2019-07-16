@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {AbstractRentCompany} from '../../../services/abstract-rent-company';
+import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-company';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {Driver} from '../../../models/driver';

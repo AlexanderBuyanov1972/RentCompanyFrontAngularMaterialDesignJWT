@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AbstractRentCompany} from '../../../services/abstract-rent-company';
+import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-company';
 import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';

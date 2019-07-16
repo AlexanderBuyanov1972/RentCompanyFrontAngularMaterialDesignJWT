@@ -1,8 +1,8 @@
-import {RentRecord} from '../models/rent-record';
-import {Car} from '../models/car';
-import {Driver} from '../models/driver';
-import {ResponseFrom} from '../models/response-from';
-import {Model} from '../models/model';
+import {RentRecord} from '../../models/rent-record';
+import {Car} from '../../models/car';
+import {Driver} from '../../models/driver';
+import {ResponseFrom} from '../../models/response-from';
+import {Model} from '../../models/model';
 import {Observable} from 'rxjs';
 
 export abstract class AbstractRentCompany {

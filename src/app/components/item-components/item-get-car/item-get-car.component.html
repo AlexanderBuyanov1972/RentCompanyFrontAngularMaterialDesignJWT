@@ -11,7 +11,7 @@
       <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
       <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="accent" [disabled]="regNumber.invalid" (click)="submitRegNumber()">Get</button>
+    <button class="button-form" mat-raised-button color="accent" [disabled]="regNumber.invalid" (click)="submitRegNumber()">Get</button>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
       <!-- Registration number Column -->
       <ng-container matColumnDef="regNumber">

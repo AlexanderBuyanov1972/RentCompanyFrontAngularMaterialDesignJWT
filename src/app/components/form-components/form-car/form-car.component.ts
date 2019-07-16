@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Car} from '../../../models/car';
 import {State} from '../../../models/State';
-import {AbstractRentCompany} from '../../../services/abstract-rent-company';
+import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-company';
 import {Patterns} from '../../../models/constants/patterns';
 import {ValidationErrors} from '../../../models/constants/validation-errors';
 import {Messages} from '../../../models/constants/messages';
@@ -12,33 +12,34 @@ import {Messages} from '../../../models/constants/messages';
   templateUrl: './form-car.component.html',
   styleUrls: ['./form-car.component.css']
 })
-export class FormCarComponent implements OnInit, OnDestroy {
+export class FormCarComponent {
   messageResponse = '';
+
   registrationNumber = Patterns.REG_NUMBER;
-  colorCar = Patterns.COLOR;
-  modelNameCar = Patterns.MODEL_NAME;
   regNumberValid = ValidationErrors.REG_NUMBER_VALID;
   regNumberRequired = ValidationErrors.REG_NUMBER_REQUIRED;
+
+  colorCar = Patterns.COLOR;
   colorValid = ValidationErrors.COLOR_VALID;
   colorRequired = ValidationErrors.COLOR_REQUIRED;
-  modelNameValid = ValidationErrors.MODEL_NAME_VALID;
-  modelNameRequired = ValidationErrors.MODEL_NAME_REQUIRED;
 
-  colorModels: string[] = ['', 'Red', 'Yellow', 'White', 'Black', 'Blue', 'Green', 'Pink'];
-  nameModels: string[] = ['', 'Boleno', 'Swift', 'Corolla'];
-  valueColor = '';
+  nameModels: string[] = [];
   valueModel = '';
 
-  constructor(private serviceRentCompany: AbstractRentCompany) {
+  constructor(private rcs: AbstractRentCompany) {
+    rcs.getAllModelNames().subscribe(
+      value => {
+        this.nameModels = value.content as string[];
+      }
+    );
   }
 
   saveCar(formCar: NgForm) {
     const car = formCar.value as Car;
-    console.log('car-------------------------->' + car);
     car.inUse = false;
     car.flRemoved = false;
     car.state = State.EXCELLENT;
-    const subscription = this.serviceRentCompany.addCar(car).subscribe(
+    const subscription = this.rcs.addCar(car).subscribe(
       value => {
         this.messageResponse = value.message;
         if (this.messageResponse === Messages.OK) {
@@ -47,12 +48,6 @@ export class FormCarComponent implements OnInit, OnDestroy {
         subscription.unsubscribe();
       }
     );
-  }
-
-  ngOnDestroy(): void {
-  }
-
-  ngOnInit(): void {
   }
 
 

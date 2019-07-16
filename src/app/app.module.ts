@@ -1,12 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {AbstractRentCompany} from './services/abstract-rent-company';
+import {AbstractRentCompany} from './services/rent_company/abstract-rent-company';
 import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {RegistrationComponent} from './components/registration/registration.component';
 import {Route, RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {RentCompanyService} from './services/rent-company.service';
+import {RentCompanyService} from './services/rent_company/rent-company.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ClearComponent} from './components/clear/clear.component';
 import {RemoveCarComponent} from './components/remove-car/remove-car.component';

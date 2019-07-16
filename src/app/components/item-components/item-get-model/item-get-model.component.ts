@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AbstractRentCompany} from '../../../services/abstract-rent-company';
+import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-company';
 import {Router} from '@angular/router';
 import {Model} from '../../../models/model';
 import {MatTableDataSource} from '@angular/material';

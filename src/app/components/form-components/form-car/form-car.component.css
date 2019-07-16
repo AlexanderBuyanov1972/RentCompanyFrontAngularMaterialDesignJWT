@@ -1,9 +1,10 @@
 mat-form-field{
   width: 100%;
+
 }
 .card{
-margin: 2%;
-  height: 87%;
+margin: 5% 5% 5% 5%;
+  height: 40%;
 }
 
 .card-actions{
@@ -12,4 +13,8 @@ margin: 2%;
 
 p{
   display: inline-block;
+  font-size: x-large;
+}
+.button-form{
+  font-size: 1.25rem ;
 }

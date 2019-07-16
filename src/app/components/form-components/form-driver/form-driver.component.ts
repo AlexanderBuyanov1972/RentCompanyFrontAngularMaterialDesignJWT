@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Driver} from '../../../models/driver';
-import {AbstractRentCompany} from '../../../services/abstract-rent-company';
+import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-company';
 import {Patterns} from '../../../models/constants/patterns';
 import {ValidationErrors} from '../../../models/constants/validation-errors';
 import {Messages} from '../../../models/constants/messages';

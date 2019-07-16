@@ -11,7 +11,7 @@
       <mat-error *ngIf="licenseId.errors?.pattern">{{licenseIdValid}}</mat-error>
       <mat-error *ngIf="licenseId.errors?.required">{{licenseIdRequired}}</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="accent" [disabled]="licenseId.invalid" (click)="submitLicenseId()">Get</button>
+    <button class="button-form" mat-raised-button color="accent" [disabled]="licenseId.invalid" (click)="submitLicenseId()">Get</button>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
       <!-- License Id Column -->
       <ng-container matColumnDef="licenseId">

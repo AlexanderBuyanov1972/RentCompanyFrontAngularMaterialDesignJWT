@@ -1,4 +1,4 @@
-<mat-card class="mat-card">
+<mat-card class="card">
   <div class="">
     <p>Clear Cars</p>
     <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
@@ -22,7 +22,7 @@
     </mat-form-field>
     </div>
     </form>
-  <button mat-raised-button color="accent" type="button" (click)="clear()" [disabled]="formDateDays.invalid">Submit</button>
+  <button class="button-form" mat-raised-button color="accent" type="button" (click)="clear()" [disabled]="formDateDays.invalid">Submit</button>
   <mat-form-field style="float: right; width: 80%">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>

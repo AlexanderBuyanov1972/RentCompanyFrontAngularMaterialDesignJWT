@@ -1,14 +1,6 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <div mat-card-avatar class="header-avatar-image"></div>
-    <mat-card-title class="card-title"><h4>Close record</h4></mat-card-title>
-    <mat-card-subtitle class="card-subtitle">
-      <!-----------------------------------Information window----------------------------------->
-      <input matInput type="text" [(ngModel)]="messageResponse" placeholder="Response's message."
-             style="color: red; font-size: large">
-      <!---------------------------------------------------------------------------------------->
-    </mat-card-subtitle>
-  </mat-card-header>
+  <p>Close Record</p>
+  <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
   <mat-card-content class="card-content">
     <form #formReturnRecord="ngForm" (ngSubmit)="saveReturnRecord(formReturnRecord)">
       <mat-form-field class="form-field">
@@ -40,7 +32,7 @@
         <mat-error *ngIf="damages.errors?.required">{{damagesRequired}}</mat-error>
       </mat-form-field>
       <mat-card-actions class="card-actions">
-      <button type="submit" [disabled]="formReturnRecord.invalid">Save Open Record</button>
+      <button class="button-form" type="submit" [disabled]="formReturnRecord.invalid">Save Open Record</button>
       </mat-card-actions>
     </form>
   </mat-card-content>

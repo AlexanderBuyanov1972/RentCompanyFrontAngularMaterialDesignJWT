@@ -46,7 +46,7 @@ export class AuthService {
 // ***************************************************************************************************************************
 
   getRole(username: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(API_URL + PathHttps.GET_ROLE + '?username=' + encodeURIComponent(username), this.httpOptions);
+    return this.httpClient.get<ResponseFrom>(API_URL + PathHttps.GET_ROLE + '?username=' + encodeURIComponent(username));
   }
 
   addUser(user: User): Observable<ResponseFrom> {

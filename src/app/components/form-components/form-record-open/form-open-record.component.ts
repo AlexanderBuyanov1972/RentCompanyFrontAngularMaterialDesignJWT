@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AbstractRentCompany} from '../../../services/abstract-rent-company';
+import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-company';
 import {RentRecord} from '../../../models/rent-record';
 import {Patterns} from '../../../models/constants/patterns';
 import {ValidationErrors} from '../../../models/constants/validation-errors';
