@@ -12,13 +12,25 @@
       <mat-error *ngIf="email.errors?.required">{{emailRequired}}</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field class="mat-form-field">
-      <input matInput type="text" name="role" [ngModel]="roleUser" #role="ngModel"
-             required placeholder="Role" [pattern]=rolePattern>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="role.errors?.pattern">{{roleValid}}</mat-error>
+
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select ngModel #role = "ngModel" name="color" [value]="valueRole" required>
+        <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+      </mat-select>
       <mat-error *ngIf="role.errors?.required">{{roleRequired}}</mat-error>
     </mat-form-field>
+
+
+<!--    <mat-form-field class="mat-form-field">-->
+<!--      <input matInput type="text" name="role" [ngModel]="roleUser" #role="ngModel"-->
+<!--             required placeholder="Role" [pattern]=rolePattern>-->
+<!--      <mat-hint></mat-hint>-->
+<!--      <mat-error *ngIf="role.errors?.pattern">{{roleValid}}</mat-error>-->
+<!--      <mat-error *ngIf="role.errors?.required">{{roleRequired}}</mat-error>-->
+<!--    </mat-form-field>-->
+<!--    -->
+
     <br>
     <mat-form-field class="mat-form-field">
       <input matInput type="password" name="password" [ngModel]="passwordUser" #password="ngModel"

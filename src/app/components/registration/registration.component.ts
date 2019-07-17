@@ -5,6 +5,7 @@ import {ValidationErrors} from '../../models/constants/validation-errors';
 import {ActivatedRoute} from '@angular/router';
 import {LabelRoutes} from '../../models/constants/label-routes';
 import {RegistrationService, User} from '../../services/registration.service';
+import {SelectionService} from '../../services/selection.service';
 
 @Component({
   selector: 'app-registration',
@@ -33,9 +34,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   roleUser = '';
   passwordUser = '';
   nameOperation: any;
+  valueRole = '';
+  roles: string[] = [];
 
   constructor(private registrationService: RegistrationService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private selectionService: SelectionService) {
+    this.roles = this.selectionService.roles;
   }
 
   ngOnInit() {

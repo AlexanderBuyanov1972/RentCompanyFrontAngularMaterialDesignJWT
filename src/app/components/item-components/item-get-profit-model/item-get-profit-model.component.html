@@ -4,16 +4,31 @@
     <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
   </div>
   <mat-card-content class="card-content">
-    <mat-form-field class="form-field">
-      <input matInput type="text" name="modelName" [(ngModel)]="modelNameCar" #modelName="ngModel"
-             required placeholder="Model's Name" [pattern]=modelNamePattern>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>
-      <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
-    </mat-form-field>
-    <mat-card-actions class="card-actions">
-    <button class="button-form" mat-raised-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>
-    </mat-card-actions>
+
+    <form #formCar="ngForm" (ngSubmit)="submitModelName(formCar)">
+      <mat-form-field>
+        <mat-label>Model's Name</mat-label>
+        <mat-select ngModel #modelNameSelect="ngModel" name="modelName" [value]="valueModel" required>
+          <mat-option *ngFor="let nameModel of nameModels" [value]="nameModel">{{nameModel}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="modelNameSelect.errors?.required">{{modelNamesRequired}}</mat-error>
+      </mat-form-field>
+      <mat-card-actions class="card-actions">
+        <button class="button-form" type="submit" [disabled]="formCar.invalid">Get Model</button>
+      </mat-card-actions>
+    </form>
+
+
+<!--    <mat-form-field class="form-field">-->
+<!--      <input matInput type="text" name="modelName" [(ngModel)]="modelNameCar" #modelName="ngModel"-->
+<!--             required placeholder="Model's Name" [pattern]=modelNamePattern>-->
+<!--      <mat-hint></mat-hint>-->
+<!--      <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>-->
+<!--      <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>-->
+<!--    </mat-form-field>-->
+<!--    <mat-card-actions class="card-actions">-->
+<!--    <button class="button-form" mat-raised-button [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>-->
+<!--    </mat-card-actions>-->
     <hr>
     <mat-card-content class="cart-content">
       <h2>

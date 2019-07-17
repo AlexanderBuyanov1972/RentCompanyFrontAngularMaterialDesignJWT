@@ -4,15 +4,31 @@
     <p style="color: red; font-size: large;  float: right">{{messageResponse}}</p>
   </div>
   <mat-card-content class="card-content">
-    <mat-form-field class="form-field">
-      <input matInput type="text" name="modelName" [(ngModel)]="modelNameCar" #modelName="ngModel"
-             required placeholder="Model's Name" [pattern]=modelNamePattern>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>
-      <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>
-    </mat-form-field>
-       <button class="button-form" mat-raised-button color="accent" [disabled]="modelName.invalid" (click)="submitModelName()">Get</button>
-     <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+    <!--    <mat-form-field class="form-field">-->
+    <!--      <input matInput type="text" name="modelName" [(ngModel)]="modelNameCar" #modelName="ngModel"-->
+    <!--             required placeholder="Model's Name" [pattern]=modelNamePattern>-->
+    <!--      <mat-hint></mat-hint>-->
+    <!--      <mat-error *ngIf="modelName.errors?.pattern">{{modelNameValid}}</mat-error>-->
+    <!--      <mat-error *ngIf="modelName.errors?.required">{{modelNameRequired}}</mat-error>-->
+    <!--       <button class="button-form" mat-raised-button color="accent" [disabled]="modelNameSelect.invalid" (click)="submitModelName()">Get</button>-->
+    <!--    </mat-form-field>-->
+
+
+    <form #formCar="ngForm" (ngSubmit)="submitModelName(formCar)">
+      <mat-form-field>
+        <mat-label>Model's Name</mat-label>
+        <mat-select ngModel #modelNameSelect="ngModel" name="modelName" [value]="valueModel" required>
+          <mat-option *ngFor="let nameModel of nameModels" [value]="nameModel">{{nameModel}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="modelNameSelect.errors?.required">{{modelNamesRequired}}</mat-error>
+      </mat-form-field>
+      <mat-card-actions class="card-actions">
+        <button class="button-form" type="submit" [disabled]="formCar.invalid">Get Model</button>
+      </mat-card-actions>
+    </form>
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
       <!-- Model Name Column -->
       <ng-container matColumnDef="modelName">
         <th mat-header-cell *matHeaderCellDef> Model Name</th>

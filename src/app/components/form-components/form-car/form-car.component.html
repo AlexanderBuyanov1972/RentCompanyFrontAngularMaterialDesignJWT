@@ -10,20 +10,31 @@
         <mat-error *ngIf="regNumber.errors?.pattern">{{regNumberValid}}</mat-error>
         <mat-error *ngIf="regNumber.errors?.required">{{regNumberRequired}}</mat-error>
       </mat-form-field>
-      <mat-form-field class="form-field">
-        <input matInput type="text" name="color" ngModel #color="ngModel"
-               required placeholder="Car's Color" [pattern]=colorCar>
-        <mat-hint></mat-hint>
-        <mat-error *ngIf="color.errors?.pattern">{{colorValid}}</mat-error>
-        <mat-error *ngIf="color.errors?.required">{{colorRequired}}</mat-error>
+
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <mat-select ngModel #colorCar = "ngModel" name="color" [value]="valueColor" required>
+          <mat-option *ngFor="let colorModel of colorsModel" [value]="colorModel">{{colorModel}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="colorCar.errors?.required">{{colorRequired}}</mat-error>
       </mat-form-field>
+
+
+<!--      <mat-form-field class="form-field">-->
+<!--        <input matInput type="text" name="color" ngModel #color="ngModel"-->
+<!--               required placeholder="Car's Color" [pattern]=colorCar>-->
+<!--        <mat-hint></mat-hint>-->
+<!--        <mat-error *ngIf="color.errors?.pattern">{{colorValid}}</mat-error>-->
+<!--        <mat-error *ngIf="color.errors?.required">{{colorRequired}}</mat-error>-->
+<!--      </mat-form-field>-->
 
 
       <mat-form-field>
         <mat-label>Model's Name</mat-label>
-        <mat-select ngModel #color = "ngModel" name="modelName" [value]="valueModel" required>
-          <mat-option *ngFor="let nameModel of nameModels" [value]="nameModel">{{nameModel}}</mat-option>
+        <mat-select ngModel #modelName = "ngModel" name="modelName" [value]="valueModel" required>
+          <mat-option *ngFor="let nameModel of namesModel" [value]="nameModel">{{nameModel}}</mat-option>
         </mat-select>
+        <mat-error *ngIf="modelName.errors?.required">{{modelNamesRequired}}</mat-error>
       </mat-form-field>
 
 
@@ -31,6 +42,7 @@
         <button class="button-form" type="submit" [disabled]="formCar.invalid">Save Car</button>
       </mat-card-actions>
     </form>
+    <hr>
   </mat-card-content>
 </mat-card>
 

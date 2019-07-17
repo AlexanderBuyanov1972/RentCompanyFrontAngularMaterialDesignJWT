@@ -32,9 +32,7 @@ export class ClearComponent {
   }
 
   clear() {
-    console.log('daysClear------------>' + this.daysClear);
-    console.log('dateClear------------>' + this.dateClear);
-    const subscription = this.serviceRentCompany.clear(this.dateClear, this.daysClear).subscribe(
+      const subscription = this.serviceRentCompany.clear(this.daysClear).subscribe(
       value => {
         this.dataSource = new MatTableDataSource(value.content as Car[]);
         this.dataSource.sort = this.sort;

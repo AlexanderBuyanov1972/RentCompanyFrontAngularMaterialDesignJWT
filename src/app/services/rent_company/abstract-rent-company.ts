@@ -31,7 +31,7 @@ export abstract class AbstractRentCompany {
   abstract removeCar(regNumber: string): Observable<ResponseFrom>; // (OK,CAR_IN_USE,CAR_NOT_EXISTS)
   // removing car is setting flRemoved in true
 
-  abstract clear(date: string, days: string): Observable<ResponseFrom>;  // LocalDate currentDate
+  abstract clear(days: string): Observable<ResponseFrom>;  // LocalDate currentDate
 
   // all cars for which the returnDate before currentDate - days with
   // flRemoved=true

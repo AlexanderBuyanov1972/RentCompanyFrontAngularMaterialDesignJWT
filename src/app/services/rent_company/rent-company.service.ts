@@ -100,8 +100,8 @@ export class RentCompanyService extends AbstractRentCompany {
 
 
 // *************************************************** clear , removeCar **********************************************
-  clear(date: string, days: string): Observable<ResponseFrom> {
-    return this.httpClient.get<ResponseFrom>(url + PathHttps.CLEAR_CARS + '/' + `${date}` + '/' + `${days}`, this.httpOptions);
+  clear(days: string): Observable<ResponseFrom> {
+    return this.httpClient.get<ResponseFrom>(url + PathHttps.CLEAR_CARS +  '/' + `${days}`, this.httpOptions);
   }
 
   removeCar(regNumber: string): Observable<ResponseFrom> {

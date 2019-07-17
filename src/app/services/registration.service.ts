@@ -8,6 +8,7 @@ import {Credentials} from '../models/credentials';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
 import {PathRoutes} from '../models/constants/path-routes';
+import {Roles} from '../models/constants/roles';
 
 export interface User {
   username: string;
@@ -69,23 +70,23 @@ export class RegistrationService {
   }
 
   isAdmin(): boolean {
-    return this.tokenService.getRole() === 'ROLE_ADMIN';
+    return this.tokenService.getRole() === Roles.ROLE_ADMIN;
   }
 
   isClerk(): boolean {
-    return this.tokenService.getRole() === 'ROLE_CLERK';
+    return this.tokenService.getRole() === Roles.ROLE_CLERC;
   }
 
   isDriver(): boolean {
-    return this.tokenService.getRole() === 'ROLE_DRIVER';
+    return this.tokenService.getRole() === Roles.ROLE_DRIVER;
   }
 
   isManager(): boolean {
-    return this.tokenService.getRole() === 'ROLE_MANAGER';
+    return this.tokenService.getRole() === Roles.ROLE_MANAGER;
   }
 
   isStatist() {
-    return this.tokenService.getRole() === 'ROLE_STATIST';
+    return this.tokenService.getRole() === Roles.ROLE_STATIST;
   }
 
 }

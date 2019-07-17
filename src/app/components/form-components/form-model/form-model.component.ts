@@ -6,6 +6,7 @@ import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-
 import {Patterns} from '../../../models/constants/patterns';
 import {ValidationErrors} from '../../../models/constants/validation-errors';
 import {Messages} from '../../../models/constants/messages';
+import {SelectionService} from '../../../services/selection.service';
 
 @Component({
   selector: 'app-form-model',
@@ -29,12 +30,26 @@ export class FormModelComponent implements OnInit, OnDestroy {
   priceDayValid = ValidationErrors.PRICE_DAY_VALID;
   priceDayRequired = ValidationErrors.PRICE_DAY_REQUIRED;
   messageResponse = '';
+  namesModel: string[] = [];
+  valueModel = '';
+  modelNamesRequired = ValidationErrors.MODEL_NAME_REQUIRED;
+  valueCompany = '';
+  valueCountry = '';
+  companies: string[] = [];
+  countries: string[] = [];
 
-  constructor(private serviceRentCompany: AbstractRentCompany) {
+  constructor(private rcs: AbstractRentCompany, private selectionService: SelectionService) {
+    rcs.getAllModelNames().subscribe(
+      value => {
+        this.namesModel = value.content as string[];
+      }
+    );
+    this.companies = this.selectionService.companies;
+    this.countries = this.selectionService.countries;
   }
 
   saveModel(formModel: NgForm) {
-    const subscription = this.serviceRentCompany.addModel(formModel.value as Model).subscribe(
+    const subscription = this.rcs.addModel(formModel.value as Model).subscribe(
       value => {
         this.messageResponse = value.message;
         if (this.messageResponse === Messages.OK) {

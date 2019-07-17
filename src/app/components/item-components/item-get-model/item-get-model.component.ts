@@ -3,9 +3,8 @@ import {AbstractRentCompany} from '../../../services/rent_company/abstract-rent-
 import {Router} from '@angular/router';
 import {Model} from '../../../models/model';
 import {MatTableDataSource} from '@angular/material';
-import {Subscription} from 'rxjs';
-import {Patterns} from '../../../models/constants/patterns';
 import {ValidationErrors} from '../../../models/constants/validation-errors';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-item-get-model',
@@ -17,18 +16,24 @@ export class ItemGetModelComponent implements OnInit, OnDestroy {
   models: Model[] = [];
   dataSource: MatTableDataSource<Model>;
   displayedColumns: string[] = ['modelName', 'gasTank', 'company', 'country', 'priceDay'];
-  modelNamePattern = Patterns.MODEL_NAME;
-  modelNameValid = ValidationErrors.MODEL_NAME_VALID;
-  modelNameRequired = ValidationErrors.MODEL_NAME_REQUIRED;
+  modelNamesRequired = ValidationErrors.MODEL_NAME_REQUIRED;
   messageResponse = '';
+  valueModel = '';
+  nameModels: string[] = [];
 
 
-  constructor(private serviceRentCompany: AbstractRentCompany, private router: Router) {
+  constructor(private rcs: AbstractRentCompany, private router: Router) {
+    rcs.getAllModelNames().subscribe(
+      value => {
+        this.nameModels = value.content as string[];
+      }
+    );
   }
 
-  submitModelName() {
-    const subscription = this.serviceRentCompany.getModel(this.modelNameCar).subscribe(
+  submitModelName(formCar: NgForm) {
+    const subscription = this.rcs.getModel(formCar.value.modelName as string).subscribe(
       value => {
+        this.models.length = 0;
         this.models.push(value.content as Model);
         this.dataSource = new MatTableDataSource<Model>(this.models);
         this.modelNameCar = '';

@@ -6,13 +6,6 @@
 
   <form #formDateDays="ngForm">
     <div class="">
-    <mat-form-field class="form-field">
-      <input matInput type="text" name="date" [(ngModel)]="dateClear" #currentDate="ngModel"
-             required placeholder="Date" [pattern]=patternDate>
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="currentDate.errors?.pattern">{{validDate}}</mat-error>
-      <mat-error *ngIf="currentDate.errors?.required">{{requiredDate}}</mat-error>
-    </mat-form-field>
     <mat-form-field class="form-field" style="float: right">
       <input matInput type="number" name="days" [(ngModel)]="daysClear" #days="ngModel"
              required placeholder="Days" [pattern]=patternDays>
