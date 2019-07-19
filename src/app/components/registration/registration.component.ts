@@ -17,10 +17,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   @Output()
   emailPattern = Patterns.EMAIL;
   passwordPattern = Patterns.PASSWORD;
-  rolePattern = Patterns.ROLE;
   emailValid = ValidationErrors.EMAIL_VALID;
   emailRequired = ValidationErrors.EMAIL_REQUIRED;
-  roleValid = ValidationErrors.ROLE_VALID;
   roleRequired = ValidationErrors.ROLE_REQUIRED;
   passwordValid = ValidationErrors.PASSWORD_VALID;
   passwordRequired = ValidationErrors.PASSWORD_REQUIRED;

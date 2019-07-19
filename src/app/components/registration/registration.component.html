@@ -15,7 +15,7 @@
 
     <mat-form-field>
       <mat-label>Role</mat-label>
-      <mat-select ngModel #role = "ngModel" name="color" [value]="valueRole" required>
+      <mat-select ngModel #role = "ngModel" name="color" [value]="valueRole" required [disabled]="isGetAccount() || isRemoveAccount()">
         <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
       </mat-select>
       <mat-error *ngIf="role.errors?.required">{{roleRequired}}</mat-error>
@@ -34,7 +34,7 @@
     <br>
     <mat-form-field class="mat-form-field">
       <input matInput type="password" name="password" [ngModel]="passwordUser" #password="ngModel"
-             required placeholder="Password" [pattern]=passwordPattern>
+             required placeholder="Password" [pattern]=passwordPattern [disabled]="isGetAccount() || isRemoveAccount()">
       <mat-hint></mat-hint>
       <mat-error *ngIf="password.errors?.pattern">{{passwordValid}}</mat-error>
       <mat-error *ngIf="password.errors?.required">{{passwordRequired}}</mat-error>
